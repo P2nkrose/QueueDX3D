@@ -1,0 +1,53 @@
+#pragma once
+
+#include <vector>
+#include <string>
+
+enum SCRIPT_TYPE
+{
+	BLEEDSCRIPT,
+	BOOKSCRIPT_LEFT,
+	BOOKSCRIPT_RIGHT,
+	BOSSHUDSCRIPT,
+	BOSSSCRIPT,
+	CAMERAMOVESCRIPT,
+	CLAPSCRIPT,
+	COLLECTSCRIPT,
+	COMBOSCRIPT,
+	CRASHSCRIPT,
+	DEATHSOULSCRIPT,
+	DOORSCRIPT,
+	DROWNEDATTACKSCRIPT,
+	DROWNEDSCRIPT,
+	ELEVATORSCRIPT,
+	GHOSTATTACKSCRIPT,
+	GHOSTSCRIPT,
+	KRUSHSCRIPT,
+	MISSILESCRIPT,
+	PLATFORMSCRIPT,
+	PLAYEREFFECTSCRIPT,
+	PLAYERHITBOXSCRIPT,
+	PLAYERHUDSCRIPT,
+	PLAYERSCRIPT,
+	PORTALSCRIPT,
+	POSTSCRIPT,
+	PUNCHSCRIPT,
+	RANGESCRIPT,
+	SKELETONATTACKSCRIPT,
+	SKELETONSCRIPT,
+	SLAMSCRIPT,
+	WALLSCRIPT,
+};
+
+using namespace std;
+
+class qScript;
+
+class qScriptMgr
+{
+public:
+	static void GetScriptInfo(vector<wstring>& _vec);
+	static qScript * GetScript(const wstring& _strScriptName);
+	static qScript * GetScript(UINT _iScriptType);
+	static const wchar_t * GetScriptName(qScript * _pScript);
+};

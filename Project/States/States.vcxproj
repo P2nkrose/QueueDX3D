@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{ffacc8d3-6410-4dcb-a846-b9f1addaa810}</ProjectGuid>
+    <RootNamespace>States</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)External\Library\States\</OutDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+    <IncludePath>$(SolutionDir)External\Include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)External\Library\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)External\Library\States\</OutDir>
+    <IncludePath>$(SolutionDir)External\Include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)External\Library\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PreBuildEvent>
+      <Command>cd $(SolutionDir)
+call StatesHeaderCopy.bat
+cd $(SolutionDir)StateCodeGen\
+call CodeGen.exe</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="qBookEffectState.h" />
+    <ClInclude Include="qBossBleedState.h" />
+    <ClInclude Include="qBossBleedWaveState.h" />
+    <ClInclude Include="qBossDeathState.h" />
+    <ClInclude Include="qBossHitState.h" />
+    <ClInclude Include="qBossIdleState.h" />
+    <ClInclude Include="qBossIntroState.h" />
+    <ClInclude Include="qBossPunchState.h" />
+    <ClInclude Include="qBossRunState.h" />
+    <ClInclude Include="qBossSlamFistState.h" />
+    <ClInclude Include="qBossSlamState.h" />
+    <ClInclude Include="qBossStayState.h" />
+    <ClInclude Include="qBossUturnState.h" />
+    <ClInclude Include="qClapState.h" />
+    <ClInclude Include="qDeathSoulState.h" />
+    <ClInclude Include="qDoorCloseState.h" />
+    <ClInclude Include="qDoorOpenState.h" />
+    <ClInclude Include="qDoorStayState.h" />
+    <ClInclude Include="qDrownedAttackState.h" />
+    <ClInclude Include="qDrownedDeathState.h" />
+    <ClInclude Include="qDrownedHitState.h" />
+    <ClInclude Include="qDrownedIdleState.h" />
+    <ClInclude Include="qDrownedRunState.h" />
+    <ClInclude Include="qDrownedUturnState.h" />
+    <ClInclude Include="qElevatorCloseState.h" />
+    <ClInclude Include="qElevatorOpenState.h" />
+    <ClInclude Include="qElevatorStayState.h" />
+    <ClInclude Include="qFireState.h" />
+    <ClInclude Include="qGhostAttackState.h" />
+    <ClInclude Include="qGhostDeathState.h" />
+    <ClInclude Include="qGhostHitState.h" />
+    <ClInclude Include="qGhostIdleState.h" />
+    <ClInclude Include="qGhostRunState.h" />
+    <ClInclude Include="qGhostUturnState.h" />
+    <ClInclude Include="qLoading1State.h" />
+    <ClInclude Include="qLoadingState.h" />
+    <ClInclude Include="qLogoState.h" />
+    <ClInclude Include="qPlayerBookShootState.h" />
+    <ClInclude Include="qPlayerBumpState.h" />
+    <ClInclude Include="qPlayerCombo1State.h" />
+    <ClInclude Include="qPlayerCombo2State.h" />
+    <ClInclude Include="qPlayerCombo3State.h" />
+    <ClInclude Include="qPlayerCombo4State.h" />
+    <ClInclude Include="qPlayerCrashState.h" />
+    <ClInclude Include="qPlayerDashState.h" />
+    <ClInclude Include="qPlayerEffectState.h" />
+    <ClInclude Include="qPlayerElevatorOutState.h" />
+    <ClInclude Include="qPlayerFallingState.h" />
+    <ClInclude Include="qPlayerGetItemState.h" />
+    <ClInclude Include="qPlayerIdleState.h" />
+    <ClInclude Include="qPlayerIdleToRunState.h" />
+    <ClInclude Include="qPlayerIdleUTurnState.h" />
+    <ClInclude Include="qPlayerJumpState.h" />
+    <ClInclude Include="qPlayerKrushState.h" />
+    <ClInclude Include="qPlayerLandingState.h" />
+    <ClInclude Include="qPlayerNullState.h" />
+    <ClInclude Include="qPlayerRangeState.h" />
+    <ClInclude Include="qPlayerRunState.h" />
+    <ClInclude Include="qPlayerRunToIdleState.h" />
+    <ClInclude Include="qPlayerRunUTurnState.h" />
+    <ClInclude Include="qPlayerTeleportFinishState.h" />
+    <ClInclude Include="qPlayerTeleportState.h" />
+    <ClInclude Include="qPlayerWaitState.h" />
+    <ClInclude Include="qPostCloseState.h" />
+    <ClInclude Include="qPostOpenState.h" />
+    <ClInclude Include="qSkeletonAttackState.h" />
+    <ClInclude Include="qSkeletonDeathState.h" />
+    <ClInclude Include="qSkeletonIdleState.h" />
+    <ClInclude Include="qStateMgr.h" />
+    <ClInclude Include="qWarningState.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="qBookEffectState.cpp" />
+    <ClCompile Include="qBossBleedState.cpp" />
+    <ClCompile Include="qBossBleedWaveState.cpp" />
+    <ClCompile Include="qBossDeathState.cpp" />
+    <ClCompile Include="qBossHitState.cpp" />
+    <ClCompile Include="qBossIdleState.cpp" />
+    <ClCompile Include="qBossIntroState.cpp" />
+    <ClCompile Include="qBossPunchState.cpp" />
+    <ClCompile Include="qBossRunState.cpp" />
+    <ClCompile Include="qBossSlamFistState.cpp" />
+    <ClCompile Include="qBossSlamState.cpp" />
+    <ClCompile Include="qBossStayState.cpp" />
+    <ClCompile Include="qBossUturnState.cpp" />
+    <ClCompile Include="qClapState.cpp" />
+    <ClCompile Include="qDeathSoulState.cpp" />
+    <ClCompile Include="qDoorCloseState.cpp" />
+    <ClCompile Include="qDoorOpenState.cpp" />
+    <ClCompile Include="qDoorStayState.cpp" />
+    <ClCompile Include="qDrownedAttackState.cpp" />
+    <ClCompile Include="qDrownedDeathState.cpp" />
+    <ClCompile Include="qDrownedHitState.cpp" />
+    <ClCompile Include="qDrownedIdleState.cpp" />
+    <ClCompile Include="qDrownedRunState.cpp" />
+    <ClCompile Include="qDrownedUturnState.cpp" />
+    <ClCompile Include="qElevatorCloseState.cpp" />
+    <ClCompile Include="qElevatorOpenState.cpp" />
+    <ClCompile Include="qElevatorStayState.cpp" />
+    <ClCompile Include="qFireState.cpp" />
+    <ClCompile Include="qGhostAttackState.cpp" />
+    <ClCompile Include="qGhostDeathState.cpp" />
+    <ClCompile Include="qGhostHitState.cpp" />
+    <ClCompile Include="qGhostIdleState.cpp" />
+    <ClCompile Include="qGhostRunState.cpp" />
+    <ClCompile Include="qGhostUturnState.cpp" />
+    <ClCompile Include="qLoading1State.cpp" />
+    <ClCompile Include="qLoadingState.cpp" />
+    <ClCompile Include="qLogoState.cpp" />
+    <ClCompile Include="qPlayerBookShootState.cpp" />
+    <ClCompile Include="qPlayerBumpState.cpp" />
+    <ClCompile Include="qPlayerCombo1State.cpp" />
+    <ClCompile Include="qPlayerCombo2State.cpp" />
+    <ClCompile Include="qPlayerCombo3State.cpp" />
+    <ClCompile Include="qPlayerCombo4State.cpp" />
+    <ClCompile Include="qPlayerCrashState.cpp" />
+    <ClCompile Include="qPlayerDashState.cpp" />
+    <ClCompile Include="qPlayerEffectState.cpp" />
+    <ClCompile Include="qPlayerElevatorOutState.cpp" />
+    <ClCompile Include="qPlayerFallingState.cpp" />
+    <ClCompile Include="qPlayerGetItemState.cpp" />
+    <ClCompile Include="qPlayerIdleState.cpp" />
+    <ClCompile Include="qPlayerIdleToRunState.cpp" />
+    <ClCompile Include="qPlayerIdleUTurnState.cpp" />
+    <ClCompile Include="qPlayerJumpState.cpp" />
+    <ClCompile Include="qPlayerKrushState.cpp" />
+    <ClCompile Include="qPlayerLandingState.cpp" />
+    <ClCompile Include="qPlayerNullState.cpp" />
+    <ClCompile Include="qPlayerRangeState.cpp" />
+    <ClCompile Include="qPlayerRunState.cpp" />
+    <ClCompile Include="qPlayerRunToIdleState.cpp" />
+    <ClCompile Include="qPlayerRunUTurnState.cpp" />
+    <ClCompile Include="qPlayerTeleportFinishState.cpp" />
+    <ClCompile Include="qPlayerTeleportState.cpp" />
+    <ClCompile Include="qPlayerWaitState.cpp" />
+    <ClCompile Include="qPostCloseState.cpp" />
+    <ClCompile Include="qPostOpenState.cpp" />
+    <ClCompile Include="qSkeletonAttackState.cpp" />
+    <ClCompile Include="qSkeletonDeathState.cpp" />
+    <ClCompile Include="qSkeletonIdleState.cpp" />
+    <ClCompile Include="qStateMgr.cpp" />
+    <ClCompile Include="qWarningState.cpp" />
+    <ClCompile Include="States.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
