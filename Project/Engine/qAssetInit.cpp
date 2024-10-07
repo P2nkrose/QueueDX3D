@@ -24,7 +24,7 @@ void qAssetMgr::CreateEngineMesh()
 	Vtx v;
 
 	// Point Mesh
-	pMesh = new qMesh;
+	pMesh = new qMesh(true);
 	v.vPos = Vec3(0.f, 0.f, 0.f);
 	v.vColor = Vec3(0.f, 0.f, 0.f);
 	v.vUV = Vec2(0.f, 0.f);
@@ -43,28 +43,35 @@ void qAssetMgr::CreateEngineMesh()
 	// Vertex
 	Vtx arrVtx[4] = {};
 	
-	arrVtx[0].vPos = Vec3(-0.5f, 0.5f, 0.f);
-	arrVtx[0].vColor = Vec4(1.f, 0.f, 0.f, 1.f);
-	arrVtx[0].vUV = Vec2(0.f, 0.f);
-	
-	arrVtx[1].vPos = Vec3(0.5f, 0.5f, 0.f);
-	arrVtx[1].vColor = Vec4(0.f, 1.f, 0.f, 1.f);
-	arrVtx[1].vUV = Vec2(1.f, 0.f);
-	
-	arrVtx[2].vPos = Vec3(0.5f, -0.5f, 0.f);
-	arrVtx[2].vColor = Vec4(0.f, 0.f, 1.f, 1.f);
-	arrVtx[2].vUV = Vec2(1.f, 1.f);
-	
-	arrVtx[3].vPos = Vec3(-0.5f, -0.5f, 0.f);
-	arrVtx[3].vColor = Vec4(1.f, 0.f, 0.f, 1.f);
-	arrVtx[3].vUV = Vec2(0.f, 1.f);
+	v.vPos = Vec3(-0.5f, 0.5f, 0.f);
+	v.vColor = Vec4(1.f, 0.f, 0.f, 1.f);
+	v.vUV = Vec2(0.f, 0.f);
+	v.vTangent = Vec3(1.f, 0.f, 0.f);
+	v.vNormal = Vec3(0.f, 0.f, -1.f);
+	v.vBinormal = Vec3(0.f, -1.f, 0.f);
+	arrVtx[0] = v;
+
+	v.vPos = Vec3(0.5f, 0.5f, 0.f);
+	v.vColor = Vec4(0.f, 1.f, 0.f, 1.f);
+	v.vUV = Vec2(1.f, 0.f);
+	arrVtx[1] = v;
+
+	v.vPos = Vec3(0.5f, -0.5f, 0.f);
+	v.vColor = Vec4(0.f, 0.f, 1.f, 1.f);
+	v.vUV = Vec2(1.f, 1.f);
+	arrVtx[2] = v;
+
+	v.vPos = Vec3(-0.5f, -0.5f, 0.f);
+	v.vColor = Vec4(1.f, 0.f, 0.f, 1.f);
+	v.vUV = Vec2(0.f, 1.f);
+	arrVtx[3] = v;
 	
 	// Index 버퍼 생성
 	UINT arrIdx[6] = {};
 	arrIdx[0] = 0;		arrIdx[1] = 1;		arrIdx[2] = 2;
 	arrIdx[3] = 0;		arrIdx[4] = 2;		arrIdx[5] = 3;
 	
-	pMesh = new qMesh;
+	pMesh = new qMesh(true);
 	pMesh->Create(arrVtx, 4, arrIdx, 6);
 	pMesh->SetEngineAsset();
 	AddAsset(L"RectMesh", pMesh);
@@ -72,7 +79,7 @@ void qAssetMgr::CreateEngineMesh()
 	// RectMesh_Debug
 	arrIdx[0] = 0;	arrIdx[1] = 1;	arrIdx[2] = 2;	arrIdx[3] = 3;	arrIdx[4] = 0;
 	
-	pMesh = new qMesh;
+	pMesh = new qMesh(true);
 	pMesh->Create(arrVtx, 4, arrIdx, 5);
 	pMesh->SetEngineAsset();
 	AddAsset(L"RectMesh_Debug", pMesh);
@@ -91,6 +98,9 @@ void qAssetMgr::CreateEngineMesh()
 	v.vPos = Vec3(0.f, 0.f, 0.f);
 	v.vUV = Vec2(0.5f, 0.5f);
 	v.vColor = Vec4(1.f, 1.f, 1.f, 1.f);
+	v.vTangent = Vec3(1.f, 0.f, 0.f);
+	v.vNormal = Vec3(0.f, 0.f, -1.f);
+	v.vBinormal = Vec3(0.f, -1.f, 0.f);
 	vecVtx.push_back(v);
 	
 	// 테두리
@@ -114,7 +124,7 @@ void qAssetMgr::CreateEngineMesh()
 		vecIdx.push_back(i + 1);
 	}
 	
-	pMesh = new qMesh;
+	pMesh = new qMesh(true);
 	pMesh->Create(vecVtx.data(), (UINT)vecVtx.size(), vecIdx.data(), (UINT)vecIdx.size());
 	pMesh->SetEngineAsset();
 	AddAsset(L"CircleMesh", pMesh);
@@ -128,10 +138,211 @@ void qAssetMgr::CreateEngineMesh()
 		vecIdx.push_back((UINT)i);
 	}
 	
-	pMesh = new qMesh;
+	pMesh = new qMesh(true);
 	pMesh->Create(vecVtx.data(), (UINT)vecVtx.size(), vecIdx.data(), (UINT)vecIdx.size());
 	pMesh->SetEngineAsset();
 	AddAsset(L"CircleMesh_Debug", pMesh);
+	vecIdx.clear();
+
+
+	// CubeMesh
+	// 24개의 정점이 필요
+	// 평면 하나당 정점 4개 x 6면 = 24개
+	Vtx arrCube[24] = {};
+
+	// 윗면
+	arrCube[0].vPos = Vec3(-0.5f, 0.5f, 0.5f);
+	arrCube[0].vColor = Vec4(1.f, 1.f, 1.f, 1.f);
+	arrCube[0].vUV = Vec2(0.f, 0.f);
+	arrCube[0].vTangent = Vec3(1.f, 0.f, 0.f);
+	arrCube[0].vNormal = Vec3(0.f, 1.f, 0.f);
+	arrCube[0].vBinormal = Vec3(0.f, 0.f, -1.f);
+
+	arrCube[1].vPos = Vec3(0.5f, 0.5f, 0.5f);
+	arrCube[1].vColor = Vec4(1.f, 1.f, 1.f, 1.f);
+	arrCube[1].vUV = Vec2(1.f, 0.f);
+	arrCube[1].vTangent = Vec3(1.f, 0.f, 0.f);
+	arrCube[1].vNormal = Vec3(0.f, 1.f, 0.f);
+	arrCube[1].vBinormal = Vec3(0.f, 0.f, -1.f);
+
+	arrCube[2].vPos = Vec3(0.5f, 0.5f, -0.5f);
+	arrCube[2].vColor = Vec4(1.f, 1.f, 1.f, 1.f);
+	arrCube[2].vUV = Vec2(1.f, 1.f);
+	arrCube[2].vTangent = Vec3(1.f, 0.f, 0.f);
+	arrCube[2].vNormal = Vec3(0.f, 1.f, 0.f);
+	arrCube[2].vBinormal = Vec3(0.f, 0.f, -1.f);
+
+	arrCube[3].vPos = Vec3(-0.5f, 0.5f, -0.5f);
+	arrCube[3].vColor = Vec4(1.f, 1.f, 1.f, 1.f);
+	arrCube[3].vUV = Vec2(0.f, 1.f);
+	arrCube[3].vTangent = Vec3(1.f, 0.f, 0.f);
+	arrCube[3].vNormal = Vec3(0.f, 1.f, 0.f);
+	arrCube[3].vBinormal = Vec3(0.f, 0.f, -1.f);
+
+
+	// 아랫 면	
+	arrCube[4].vPos = Vec3(-0.5f, -0.5f, -0.5f);
+	arrCube[4].vColor = Vec4(1.f, 0.f, 0.f, 1.f);
+	arrCube[4].vUV = Vec2(0.f, 0.f);
+	arrCube[4].vTangent = Vec3(1.f, 0.f, 0.f);
+	arrCube[4].vNormal = Vec3(0.f, -1.f, 0.f);
+	arrCube[4].vBinormal = Vec3(0.f, 0.f, 1.f);
+
+	arrCube[5].vPos = Vec3(0.5f, -0.5f, -0.5f);
+	arrCube[5].vColor = Vec4(1.f, 0.f, 0.f, 1.f);
+	arrCube[5].vUV = Vec2(1.f, 0.f);
+	arrCube[5].vTangent = Vec3(1.f, 0.f, 0.f);
+	arrCube[5].vNormal = Vec3(0.f, -1.f, 0.f);
+	arrCube[5].vBinormal = Vec3(0.f, 0.f, 1.f);
+
+	arrCube[6].vPos = Vec3(0.5f, -0.5f, 0.5f);
+	arrCube[6].vColor = Vec4(1.f, 0.f, 0.f, 1.f);
+	arrCube[6].vUV = Vec2(1.f, 1.f);
+	arrCube[6].vTangent = Vec3(1.f, 0.f, 0.f);
+	arrCube[6].vNormal = Vec3(0.f, -1.f, 0.f);
+	arrCube[6].vBinormal = Vec3(0.f, 0.f, 1.f);
+
+	arrCube[7].vPos = Vec3(-0.5f, -0.5f, 0.5f);
+	arrCube[7].vColor = Vec4(1.f, 0.f, 0.f, 1.f);
+	arrCube[7].vUV = Vec2(0.f, 1.f);
+	arrCube[7].vTangent = Vec3(1.f, 0.f, 0.f);
+	arrCube[7].vNormal = Vec3(0.f, -1.f, 0.f);
+	arrCube[7].vBinormal = Vec3(0.f, 0.f, 1.f);
+
+	// 왼쪽 면
+	arrCube[8].vPos = Vec3(-0.5f, 0.5f, 0.5f);
+	arrCube[8].vColor = Vec4(0.f, 1.f, 0.f, 1.f);
+	arrCube[8].vUV = Vec2(0.f, 0.f);
+	arrCube[8].vTangent = Vec3(0.f, 0.f, -1.f);
+	arrCube[8].vNormal = Vec3(-1.f, 0.f, 0.f);
+	arrCube[8].vBinormal = Vec3(0.f, -1.f, 0.f);
+
+	arrCube[9].vPos = Vec3(-0.5f, 0.5f, -0.5f);
+	arrCube[9].vColor = Vec4(0.f, 1.f, 0.f, 1.f);
+	arrCube[9].vUV = Vec2(1.f, 0.f);
+	arrCube[9].vTangent = Vec3(0.f, 0.f, -1.f);
+	arrCube[9].vNormal = Vec3(-1.f, 0.f, 0.f);
+	arrCube[9].vBinormal = Vec3(0.f, -1.f, 0.f);
+
+	arrCube[10].vPos = Vec3(-0.5f, -0.5f, -0.5f);
+	arrCube[10].vColor = Vec4(0.f, 1.f, 0.f, 1.f);
+	arrCube[10].vUV = Vec2(1.f, 1.f);
+	arrCube[10].vTangent = Vec3(0.f, 0.f, -1.f);
+	arrCube[10].vNormal = Vec3(-1.f, 0.f, 0.f);
+	arrCube[10].vBinormal = Vec3(0.f, -1.f, 0.f);
+
+	arrCube[11].vPos = Vec3(-0.5f, -0.5f, 0.5f);
+	arrCube[11].vColor = Vec4(0.f, 1.f, 0.f, 1.f);
+	arrCube[11].vUV = Vec2(0.f, 1.f);
+	arrCube[11].vTangent = Vec3(0.f, 0.f, -1.f);
+	arrCube[11].vNormal = Vec3(-1.f, 0.f, 0.f);
+	arrCube[11].vBinormal = Vec3(0.f, -1.f, 0.f);
+
+	// 오른쪽 면
+	arrCube[12].vPos = Vec3(0.5f, 0.5f, -0.5f);
+	arrCube[12].vColor = Vec4(0.f, 0.f, 1.f, 1.f);
+	arrCube[12].vUV = Vec2(0.f, 0.f);
+	arrCube[12].vTangent = Vec3(0.f, 0.f, 1.f);
+	arrCube[12].vNormal = Vec3(1.f, 0.f, 0.f);
+	arrCube[12].vBinormal = Vec3(0.f, -1.f, 0.f);
+
+	arrCube[13].vPos = Vec3(0.5f, 0.5f, 0.5f);
+	arrCube[13].vColor = Vec4(0.f, 0.f, 1.f, 1.f);
+	arrCube[13].vUV = Vec2(1.f, 0.f);
+	arrCube[13].vTangent = Vec3(0.f, 0.f, 1.f);
+	arrCube[13].vNormal = Vec3(1.f, 0.f, 0.f);
+	arrCube[13].vBinormal = Vec3(0.f, -1.f, 0.f);
+
+	arrCube[14].vPos = Vec3(0.5f, -0.5f, 0.5f);
+	arrCube[14].vColor = Vec4(0.f, 0.f, 1.f, 1.f);
+	arrCube[14].vUV = Vec2(1.f, 1.f);
+	arrCube[14].vTangent = Vec3(0.f, 0.f, 1.f);
+	arrCube[14].vNormal = Vec3(1.f, 0.f, 0.f);
+	arrCube[14].vBinormal = Vec3(0.f, -1.f, 0.f);
+
+	arrCube[15].vPos = Vec3(0.5f, -0.5f, -0.5f);
+	arrCube[15].vColor = Vec4(0.f, 0.f, 1.f, 1.f);
+	arrCube[15].vUV = Vec2(0.f, 1.f);
+	arrCube[15].vTangent = Vec3(0.f, 0.f, 1.f);
+	arrCube[15].vNormal = Vec3(1.f, 0.f, 0.f);
+	arrCube[15].vBinormal = Vec3(0.f, -1.f, 0.f);
+
+	// 뒷 면
+	arrCube[16].vPos = Vec3(0.5f, 0.5f, 0.5f);
+	arrCube[16].vColor = Vec4(1.f, 1.f, 0.f, 1.f);
+	arrCube[16].vUV = Vec2(0.f, 0.f);
+	arrCube[16].vTangent = Vec3(-1.f, 0.f, 0.f);
+	arrCube[16].vNormal = Vec3(0.f, 0.f, 1.f);
+	arrCube[16].vBinormal = Vec3(0.f, -1.f, 1.f);
+
+	arrCube[17].vPos = Vec3(-0.5f, 0.5f, 0.5f);
+	arrCube[17].vColor = Vec4(1.f, 1.f, 0.f, 1.f);
+	arrCube[17].vUV = Vec2(1.f, 0.f);
+	arrCube[17].vTangent = Vec3(-1.f, 0.f, 0.f);
+	arrCube[17].vNormal = Vec3(0.f, 0.f, 1.f);
+	arrCube[17].vBinormal = Vec3(0.f, -1.f, 1.f);
+
+	arrCube[18].vPos = Vec3(-0.5f, -0.5f, 0.5f);
+	arrCube[18].vColor = Vec4(1.f, 1.f, 0.f, 1.f);
+	arrCube[18].vUV = Vec2(1.f, 1.f);
+	arrCube[18].vTangent = Vec3(-1.f, 0.f, 0.f);
+	arrCube[18].vNormal = Vec3(0.f, 0.f, 1.f);
+	arrCube[18].vBinormal = Vec3(0.f, -1.f, 1.f);
+
+	arrCube[19].vPos = Vec3(0.5f, -0.5f, 0.5f);
+	arrCube[19].vColor = Vec4(1.f, 1.f, 0.f, 1.f);
+	arrCube[19].vUV = Vec2(0.f, 1.f);
+	arrCube[19].vTangent = Vec3(-1.f, 0.f, 0.f);
+	arrCube[19].vNormal = Vec3(0.f, 0.f, 1.f);
+	arrCube[19].vBinormal = Vec3(0.f, -1.f, 1.f);
+
+	// 앞 면
+	arrCube[20].vPos = Vec3(-0.5f, 0.5f, -0.5f);
+	arrCube[20].vColor = Vec4(1.f, 0.f, 1.f, 1.f);
+	arrCube[20].vUV = Vec2(0.f, 0.f);
+	arrCube[20].vTangent = Vec3(1.f, 0.f, 0.f);
+	arrCube[20].vNormal = Vec3(0.f, 0.f, -1.f);
+	arrCube[20].vBinormal = Vec3(0.f, -1.f, 0.f);
+
+	arrCube[21].vPos = Vec3(0.5f, 0.5f, -0.5f);
+	arrCube[21].vColor = Vec4(1.f, 0.f, 1.f, 1.f);
+	arrCube[21].vUV = Vec2(1.f, 0.f);
+	arrCube[21].vTangent = Vec3(1.f, 0.f, 0.f);
+	arrCube[21].vNormal = Vec3(0.f, 0.f, -1.f);
+	arrCube[21].vBinormal = Vec3(0.f, -1.f, 0.f);
+
+	arrCube[22].vPos = Vec3(0.5f, -0.5f, -0.5f);
+	arrCube[22].vColor = Vec4(1.f, 0.f, 1.f, 1.f);
+	arrCube[22].vUV = Vec2(1.f, 1.f);
+	arrCube[22].vTangent = Vec3(1.f, 0.f, 0.f);
+	arrCube[22].vNormal = Vec3(0.f, 0.f, -1.f);
+	arrCube[22].vBinormal = Vec3(0.f, -1.f, 0.f);
+
+	arrCube[23].vPos = Vec3(-0.5f, -0.5f, -0.5f);
+	arrCube[23].vColor = Vec4(1.f, 0.f, 1.f, 1.f);
+	arrCube[23].vUV = Vec2(0.f, 1.f);
+	arrCube[23].vTangent = Vec3(1.f, 0.f, 0.f);
+	arrCube[23].vNormal = Vec3(0.f, 0.f, -1.f);
+	arrCube[23].vBinormal = Vec3(0.f, -1.f, 0.f);
+
+	// 인덱스
+	for (int i = 0; i < 12; i += 2)
+	{
+		vecIdx.push_back(i * 2);
+		vecIdx.push_back(i * 2 + 1);
+		vecIdx.push_back(i * 2 + 2);
+
+		vecIdx.push_back(i * 2);
+		vecIdx.push_back(i * 2 + 2);
+		vecIdx.push_back(i * 2 + 3);
+	}
+
+	pMesh = new qMesh(true);
+	pMesh->Create(arrCube, 24, vecIdx.data(), (UINT)vecIdx.size());
+	AddAsset(L"CubeMesh", pMesh);
+	vecIdx.clear();
+
+
 }
 
 void qAssetMgr::CreateEngineTexture()
@@ -415,6 +626,20 @@ void qAssetMgr::CreateEngineGraphicShader()
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_POSTPROCESS);
 	AddAsset(L"EffectMergeShader", pShader);
 
+
+	// Std3DShader
+	pShader = new qGraphicShader;
+	pShader->CreateVertexShader(L"shader\\std3d.fx", "VS_Std3D");
+	pShader->CreatePixelShader(L"shader\\std3d.fx", "PS_Std3D");
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_OPAQUE);
+
+	pShader->AddTexParam(TEX_0, "Output Texture");
+	AddAsset(L"Std3DShader", pShader);
+
+
 }
 
 #include "qParticleTickCS.h"
@@ -518,6 +743,9 @@ void qAssetMgr::CreateEngineMaterial()
 	pMtrl->SetTexParam(TEX_5, FindAsset<qTexture>(L"texture\\noise\\noise_05.jpg"));
 	AddAsset(L"DistortionMtrl", pMtrl);
 
-
+	// Std3DMtrl
+	pMtrl = new qMaterial(true);
+	pMtrl->SetShader(FindAsset<qGraphicShader>(L"Std3DShader"));
+	AddAsset(L"Std3DMtrl", pMtrl);
 }
 

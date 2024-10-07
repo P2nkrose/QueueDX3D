@@ -22,7 +22,7 @@ void qEditorMgr::CreateEditorObject()
 	pEditorCamera->Camera()->SetLayerAll();
 	pEditorCamera->Camera()->SetLayer(31, false);
 	pEditorCamera->Camera()->SetFar(100000.f);
-	pEditorCamera->Camera()->SetProjType(ORTHOGRAPHIC);
+	pEditorCamera->Camera()->SetProjType(PERSPECTIVE);
 
 	m_vecEditorObject.push_back(pEditorCamera);
 

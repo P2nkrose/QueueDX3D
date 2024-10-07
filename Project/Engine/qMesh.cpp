@@ -3,7 +3,7 @@
 
 #include "qDevice.h"
 
-qMesh::qMesh()
+qMesh::qMesh(bool _IsEngine)
 	: qAsset(ASSET_TYPE::MESH)
 	, m_VtxCount(0)
 	, m_IdxCount(0)
@@ -12,6 +12,8 @@ qMesh::qMesh()
 	, m_VtxSysMem(nullptr)
 	, m_IdxSysMem(nullptr)
 {
+	if (_IsEngine)
+		SetEngineAsset();
 }
 
 qMesh::~qMesh()

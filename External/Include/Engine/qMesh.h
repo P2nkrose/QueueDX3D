@@ -4,7 +4,7 @@
 class qMesh : public qAsset
 {
 public:
-	qMesh();
+	qMesh(bool _IsEngine = false);
 	~qMesh();
 
 public:

@@ -8,6 +8,10 @@ struct Vtx
 	Vec3	vPos;
 	Vec4    vColor;
 	Vec2	vUV;
+
+	Vec3	vTangent;		// 접선
+	Vec3	vNormal;		// 법선
+	Vec3	vBinormal;		// 종법선
 };
 
 
