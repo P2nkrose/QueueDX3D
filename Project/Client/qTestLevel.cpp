@@ -34,6 +34,7 @@ void qTestLevel::CreateTestLevel()
 
 	pAlphaBlendMtrl->SetTexParam(TEX_0, pTexture);
 
+	// Å×½ºÆ® Ä¿¹Ô
 
 	
 
