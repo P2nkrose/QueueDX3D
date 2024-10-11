@@ -174,6 +174,11 @@ int qDevice::CreateView()
 											, (UINT)m_vResolution.x, (UINT)m_vResolution.y
 											, DXGI_FORMAT_D24_UNORM_S8_UINT, D3D11_BIND_DEPTH_STENCIL);
 
+
+	// 렌더타겟 및 DepthStencilTex 타겟 지정
+	CONTEXT->OMSetRenderTargets(1, m_RTTex->GetRTV().GetAddressOf(), m_DSTex->GetDSV().Get());
+
+
 	// View에는 여러가지 종류가 있음
 	// RenderTargetView
 	// DepthStencilView

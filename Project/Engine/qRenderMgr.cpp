@@ -133,6 +133,7 @@ void qRenderMgr::RenderStart()
 
 	g_GlobalData.g_Resolution = Vec2((float)pRTTex->Width(), (float)pRTTex->Height());
 	g_GlobalData.g_Light2DCount = (int)m_vecLight2D.size();
+	g_GlobalData.g_Light3DCount = (int)m_vecLight3D.size();
 
 
 	//// 키매니저 7번

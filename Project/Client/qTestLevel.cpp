@@ -65,18 +65,39 @@ void qTestLevel::CreateTestLevel()
 	pLevel->AddObject(0, CamObj);
 
 
+	qGameObject* pObject = nullptr;
+
 	// 3D ±¤¿ø Ãß°¡
-	qGameObject* pObject = new qGameObject;
-	pObject->SetName(L"Directional Light");
+	pObject = new qGameObject;
+	pObject->SetName(L"Point Light 1");
 	pObject->AddComponent(new qTransform);
 	pObject->AddComponent(new qLight3D);
 
+	pObject->Transform()->SetRelativePos(-300.f, 0.f, 0.f);
 	pObject->Transform()->SetRelativeRotation(XM_PI / 4.f, XM_PI / 4.f, 0.f);
 
-	pObject->Light3D()->SetLightType(LIGHT_TYPE::DIRECTIONAL);
-	pObject->Light3D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
-	pObject->Light3D()->SetLightAmbient(Vec3(0.15f, 0.15f, 0.15f));
+	pObject->Light3D()->SetLightType(LIGHT_TYPE::POINT);
+	pObject->Light3D()->SetLightColor(Vec3(1.f, 0.5f, 0.5f));
+	pObject->Light3D()->SetLightAmbient(Vec3(0.f, 0.f, 0.f));
 	pObject->Light3D()->SetSpecularCoefficient(0.3f);
+	pObject->Light3D()->SetRadius(800.f);
+
+	pLevel->AddObject(0, pObject);
+
+	// 3D ±¤¿ø Ãß°¡
+	pObject = new qGameObject;
+	pObject->SetName(L"Point Light 2");
+	pObject->AddComponent(new qTransform);
+	pObject->AddComponent(new qLight3D);
+
+	pObject->Transform()->SetRelativePos(300.f, 0.f, 0.f);
+	pObject->Transform()->SetRelativeRotation(XM_PI / 4.f, XM_PI / 4.f, 0.f);
+
+	pObject->Light3D()->SetLightType(LIGHT_TYPE::POINT);
+	pObject->Light3D()->SetLightColor(Vec3(0.5f, 0.5f, 1.f));
+	pObject->Light3D()->SetLightAmbient(Vec3(0.f, 0.f, 0.f));
+	pObject->Light3D()->SetSpecularCoefficient(0.3f);
+	pObject->Light3D()->SetRadius(800.f);
 
 	pLevel->AddObject(0, pObject);
 
@@ -91,11 +112,11 @@ void qTestLevel::CreateTestLevel()
 	pPlayer->AddComponent(new qTransform);
 	pPlayer->AddComponent(new qMeshRender);
 
-	pPlayer->Transform()->SetRelativePos(0.f, 0.0f, 100.f);
-	pPlayer->Transform()->SetRelativeScale(500.f, 500.f, 500.f);
+	pPlayer->Transform()->SetRelativePos(0.f, -500.0f, 0.f);
+	pPlayer->Transform()->SetRelativeScale(1000.f, 1000.f, 1.f);
+	pPlayer->Transform()->SetRelativeRotation(XM_PI / 2.f, 0.f, 0.f);
 
-
-	pPlayer->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"SphereMesh"));
+	pPlayer->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	pPlayer->MeshRender()->SetMaterial(pMtrl);
 	
 	pLevel->AddObject(3, pPlayer);
