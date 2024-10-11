@@ -72,10 +72,10 @@ void qTestLevel::CreateTestLevel()
 	pPlayer->AddComponent(new qMeshRender);
 
 	pPlayer->Transform()->SetRelativePos(0.f, 0.0f, 100.f);
-	pPlayer->Transform()->SetRelativeScale(200.f, 200.f, 200.f);
+	pPlayer->Transform()->SetRelativeScale(500.f, 500.f, 500.f);
 
 
-	pPlayer->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"CubeMesh"));
+	pPlayer->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"SphereMesh"));
 	pPlayer->MeshRender()->SetMaterial(pMtrl);
 	
 	pLevel->AddObject(3, pPlayer);

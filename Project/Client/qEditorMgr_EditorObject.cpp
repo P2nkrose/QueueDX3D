@@ -19,6 +19,8 @@ void qEditorMgr::CreateEditorObject()
 	pEditorCamera->AddComponent(new qCamera);
 	pEditorCamera->AddComponent(new qEditorCameraScript);
 
+	pEditorCamera->Transform()->SetRelativePos(0.f, 0.f, -1000.f);
+
 	pEditorCamera->Camera()->SetLayerAll();
 	pEditorCamera->Camera()->SetLayer(31, false);
 	pEditorCamera->Camera()->SetFar(100000.f);
