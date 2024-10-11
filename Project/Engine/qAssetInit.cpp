@@ -743,12 +743,13 @@ void qAssetMgr::CreateEngineGraphicShader()
 	pShader = new qGraphicShader;
 	pShader->CreateVertexShader(L"shader\\std3d.fx", "VS_Std3D");
 	pShader->CreatePixelShader(L"shader\\std3d.fx", "PS_Std3D");
-	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetRSType(RS_TYPE::CULL_BACK);
 	pShader->SetDSType(DS_TYPE::LESS);
 	pShader->SetBSType(BS_TYPE::DEFAULT);
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_OPAQUE);
+	pShader->AddScalarParam(INT_0, "Light CalcType");
 
-	pShader->AddTexParam(TEX_0, "Output Texture");
+	//pShader->AddTexParam(TEX_0, "Output Texture");
 	AddAsset(L"Std3DShader", pShader);
 
 
