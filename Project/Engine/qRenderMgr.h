@@ -4,6 +4,7 @@
 class qCamera;
 class qGameObject;
 class qLight2D;
+class qLight3D;
 class qStructuredBuffer;
 
 class qRenderMgr : public qSingleton<qRenderMgr>
@@ -18,6 +19,7 @@ public:
 	void RegisterEditorCamera(qCamera* _Cam) { m_EditorCamera = _Cam; }
 	void AddDebugShapeInfo(const tDebugShapeInfo& _Info) { m_DebugShapeList.push_back(_Info); }
 	void RegisterLight2D(qLight2D* _Light) { m_vecLight2D.push_back(_Light); }
+	void RegisterLight3D(qLight3D* _Light) { m_vecLight3D.push_back(_Light); }
 
 	void PostProcessCopy();
 
@@ -38,6 +40,12 @@ private:
 	// Light
 	vector<qLight2D*>			m_vecLight2D;
 	qStructuredBuffer*			m_Light2DBuffer;
+
+
+	// Light
+	vector<qLight3D*>			m_vecLight3D;
+	qStructuredBuffer*			m_Light3DBuffer;
+
 
 	// Post Process
 	Ptr<qTexture>				m_PostProcessTex;

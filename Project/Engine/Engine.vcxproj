@@ -192,6 +192,7 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qLevelMgr.h" />
     <ClInclude Include="qLevel_stage1.h" />
     <ClInclude Include="qLight2D.h" />
+    <ClInclude Include="qLight3D.h" />
     <ClInclude Include="qMaterial.h" />
     <ClInclude Include="qMesh.h" />
     <ClInclude Include="qMeshRender.h" />
@@ -255,6 +256,7 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qLevelMgr.cpp" />
     <ClCompile Include="qLevel_stage1.cpp" />
     <ClCompile Include="qLight2D.cpp" />
+    <ClCompile Include="qLight3D.cpp" />
     <ClCompile Include="qMaterial.cpp" />
     <ClCompile Include="qMesh.cpp" />
     <ClCompile Include="qMeshRender.cpp" />

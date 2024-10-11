@@ -175,9 +175,6 @@
     <Filter Include="08. Component\11. Script">
       <UniqueIdentifier>{60632b66-931b-4f9c-ad8a-451e4011454b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="08. Component\09. StateMachine">
-      <UniqueIdentifier>{0f063462-7b18-42ab-aaf3-631676b113a5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="08. Component\00. FSM">
       <UniqueIdentifier>{54d1f6aa-0338-4bec-89a2-a7ecbd13399c}</UniqueIdentifier>
     </Filter>
@@ -192,6 +189,9 @@
     </Filter>
     <Filter Include="05. Level\03. boss">
       <UniqueIdentifier>{3179255a-c207-4564-a905-267c3c5334b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. Component\09. Light3D">
+      <UniqueIdentifier>{0f063462-7b18-42ab-aaf3-631676b113a5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -366,6 +366,9 @@
     <ClInclude Include="qLevel_stage1.h">
       <Filter>05. Level\01. stage1</Filter>
     </ClInclude>
+    <ClInclude Include="qLight3D.h">
+      <Filter>08. Component\09. Light3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -517,6 +520,9 @@
     </ClCompile>
     <ClCompile Include="qLevel_stage1.cpp">
       <Filter>05. Level\01. stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="qLight3D.cpp">
+      <Filter>08. Component\09. Light3D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

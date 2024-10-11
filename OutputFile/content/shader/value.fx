@@ -80,6 +80,9 @@ cbuffer GLOBAL_DATA : register(b3)
     // 랜더타겟의 해상도 정보
     float2  g_Resolution;
     
+    // 랜더링을 할 때의 카메라 (시점) 의 월드 위치
+    float4  g_CamWorldPos;
+    
     // 바인딩 된 구조화버퍼에 광원이 몇개 들어있느지
     int     g_Light2DCount;
     int     g_Light3DCount;

@@ -16,6 +16,7 @@
 #include "qLevel.h"
 
 #include "qLight2D.h"
+#include "qLight3D.h"
 #include "qStructuredBuffer.h"
 
 #include "qKeyMgr.h"
@@ -26,6 +27,7 @@ qRenderMgr::qRenderMgr()
 	, m_Light2DBuffer(nullptr)
 {
 	m_Light2DBuffer = new qStructuredBuffer;
+	m_Light3DBuffer = new qStructuredBuffer;
 }
 
 qRenderMgr::~qRenderMgr()
@@ -35,6 +37,9 @@ qRenderMgr::~qRenderMgr()
 
 	if (nullptr != m_Light2DBuffer)
 		delete m_Light2DBuffer;
+
+	if (nullptr != m_Light3DBuffer)
+		delete m_Light3DBuffer;
 }
 
 
@@ -160,7 +165,41 @@ void qRenderMgr::RenderStart()
 		m_Light2DBuffer->Binding(11);
 	}
 
-	
+
+	// Light3D 정보 업데이트 및 바인딩
+	vector<tLightInfo> vecLight3DInfo;
+	for (size_t i = 0; i < m_vecLight3D.size(); ++i)
+	{
+		vecLight3DInfo.push_back(m_vecLight3D[i]->GetLightInfo());
+	}
+
+	if (m_Light3DBuffer->GetElementCount() < vecLight3DInfo.size())
+	{
+		m_Light3DBuffer->Create(sizeof(tLightInfo), (UINT)vecLight3DInfo.size(), SB_TYPE::SRV_ONLY, true);
+	}
+
+	if (!vecLight3DInfo.empty())
+	{
+		m_Light3DBuffer->SetData(vecLight3DInfo.data());
+		m_Light3DBuffer->Binding(12);
+	}
+
+
+
+
+
+	// 현재 화면을 렌더링하는 카메라의 월드포즈를 Global 데이터에 전달
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	qCamera* pCam = nullptr;
+	if (PLAY == pCurLevel->GetState())
+		pCam = m_vecCam[0];
+	else
+		pCam = m_EditorCamera;
+
+	if (pCam == nullptr)
+		g_GlobalData.g_CamWorldPos = Vec3(0.f, 0.f, 0.f);
+	else
+		g_GlobalData.g_CamWorldPos = pCam->Transform()->GetWorldPos();
 
 
 
@@ -174,6 +213,7 @@ void qRenderMgr::RenderStart()
 void qRenderMgr::Clear()
 {
 	m_vecLight2D.clear();
+	m_vecLight3D.clear();
 }
 
 void qRenderMgr::RenderDebugShape()

@@ -41,6 +41,7 @@ struct tLight
 {
 	Vec4	Color;		// 빛의 색상
 	Vec4	Ambient;	// 환경광
+	float	SpecCoef;	// 반사광 계수
 };
 
 
@@ -52,7 +53,7 @@ struct tLightInfo
 	float			Radius;			// 광원의 반경
 	float			Angle;			// 광원 범위 각도
 	LIGHT_TYPE		Type;			// 광원 종류
-	int				padding[3];		// 패딩
+	int				padding[2];		// 패딩
 };
 
 
@@ -213,6 +214,9 @@ struct tGlobalData
 
 	// 렌더타겟의 해상도 정보
 	Vec2	g_Resolution;
+
+	// 카메라 월드 위치
+	Vec4	g_CamWorldPos;
 
 	// 바인딩 된 구조화버퍼에 광원이 몇 개 들어있는지
 	int		g_Light2DCount;
