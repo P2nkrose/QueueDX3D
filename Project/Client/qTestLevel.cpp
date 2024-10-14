@@ -69,37 +69,37 @@ void qTestLevel::CreateTestLevel()
 
 	// 3D 광원 추가
 	pObject = new qGameObject;
-	pObject->SetName(L"Point Light 1");
-	pObject->AddComponent(new qTransform);
-	pObject->AddComponent(new qLight3D);
-
-	pObject->Transform()->SetRelativePos(-300.f, 0.f, 0.f);
-	pObject->Transform()->SetRelativeRotation(XM_PI / 4.f, XM_PI / 4.f, 0.f);
-
-	pObject->Light3D()->SetLightType(LIGHT_TYPE::POINT);
-	pObject->Light3D()->SetLightColor(Vec3(1.f, 0.5f, 0.5f));
-	pObject->Light3D()->SetLightAmbient(Vec3(0.f, 0.f, 0.f));
-	pObject->Light3D()->SetSpecularCoefficient(0.3f);
-	pObject->Light3D()->SetRadius(800.f);
-
-	pLevel->AddObject(0, pObject);
-
-	// 3D 광원 추가
-	pObject = new qGameObject;
-	pObject->SetName(L"Point Light 2");
+	pObject->SetName(L"Directional Ligth");
 	pObject->AddComponent(new qTransform);
 	pObject->AddComponent(new qLight3D);
 
 	pObject->Transform()->SetRelativePos(300.f, 0.f, 0.f);
 	pObject->Transform()->SetRelativeRotation(XM_PI / 4.f, XM_PI / 4.f, 0.f);
 
-	pObject->Light3D()->SetLightType(LIGHT_TYPE::POINT);
-	pObject->Light3D()->SetLightColor(Vec3(0.5f, 0.5f, 1.f));
-	pObject->Light3D()->SetLightAmbient(Vec3(0.f, 0.f, 0.f));
+	pObject->Light3D()->SetLightType(LIGHT_TYPE::DIRECTIONAL);
+	pObject->Light3D()->SetLightColor(Vec3(0.9f, 0.9f, 0.9f));
+	pObject->Light3D()->SetLightAmbient(Vec3(0.1f, 0.1f, 0.1f));
 	pObject->Light3D()->SetSpecularCoefficient(0.3f);
 	pObject->Light3D()->SetRadius(800.f);
 
 	pLevel->AddObject(0, pObject);
+
+	//// 3D 광원 추가
+	//pObject = new qGameObject;
+	//pObject->SetName(L"Point Light 2");
+	//pObject->AddComponent(new qTransform);
+	//pObject->AddComponent(new qLight3D);
+	//
+	//pObject->Transform()->SetRelativePos(300.f, 0.f, 0.f);
+	//pObject->Transform()->SetRelativeRotation(XM_PI / 4.f, XM_PI / 4.f, 0.f);
+	//
+	//pObject->Light3D()->SetLightType(LIGHT_TYPE::POINT);
+	//pObject->Light3D()->SetLightColor(Vec3(0.5f, 0.5f, 1.f));
+	//pObject->Light3D()->SetLightAmbient(Vec3(0.f, 0.f, 0.f));
+	//pObject->Light3D()->SetSpecularCoefficient(0.3f);
+	//pObject->Light3D()->SetRadius(800.f);
+	//
+	//pLevel->AddObject(0, pObject);
 
 
 
@@ -119,8 +119,13 @@ void qTestLevel::CreateTestLevel()
 	pPlayer->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	pPlayer->MeshRender()->SetMaterial(pMtrl);
 	
-	pLevel->AddObject(3, pPlayer);
+	Ptr<qTexture> pTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\LandScapeTexture\\gl1_ground_II_albedo.TGA");
+	Ptr<qTexture> pNTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\LandScapeTexture\\gl1_ground_II_normal.TGA");
 
+	pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEX_0, pTex);
+	//pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEX_1, pNTex);
+
+	pLevel->AddObject(3, pPlayer);
 
 
 	// 충돌 지정

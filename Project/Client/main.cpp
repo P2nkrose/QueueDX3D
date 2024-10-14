@@ -43,7 +43,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MyRegisterClass(hInstance);
 
-    HWND hWnd = CreateWindowW(L"MyWindowClass", L"Have a Nice Death", WS_OVERLAPPEDWINDOW,
+    HWND hWnd = CreateWindowW(L"MyWindowClass", L"Queue DirectX 3D", WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
     if (!hWnd)

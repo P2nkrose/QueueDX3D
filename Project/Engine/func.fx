@@ -135,7 +135,34 @@ void CalculateLight3D(int _LightIdx, float3 _ViewNormal, float3 _ViewPos, inout 
     // Spot Light
     else if (2 == LightInfo.Type)
     {
+        // 표면 위치에서 광원의 위치를 뺀다. 광원에서 표면을 향하는 방향벡터를 구할 수 있다.
+        float3 vLightViewPos = mul(float4(LightInfo.WorldPos, 1.f), matView).xyz;
+        float3 vLightDir = normalize(_ViewPos - vLightViewPos);
+    
+    // 광원의 방향과 표면의 노말 벡터를 사용하여 광원의 세기를 계산한다.
+        LightPow = saturate(dot(-vLightDir, _ViewNormal));
+
+    // 스포트라이트의 방향과 표면 간의 각도 계산
+        float3 spotDirection = normalize(mul(float4(LightInfo.WorldDir, 0.f), matView).xyz);
+        float spotFactor = saturate(dot(-vLightDir, spotDirection));
+
+    // 스포트라이트 각도 조건에 맞는지 확인
+        if (spotFactor > cos(LightInfo.Angle))
+        {
+        // 거리 기반 감쇠 계산
+            float Distance = length(vLightViewPos - _ViewPos);
+            Ratio = saturate(cos((PI / 2.f) * saturate(Distance / LightInfo.Radius)));
+
+        // 반사광 계산 (스페큘러 계산)
+            float3 vReflect = vLightDir + 2 * dot(-vLightDir, _ViewNormal) * _ViewNormal;
+            vReflect = normalize(vReflect);
+            float3 vEye = normalize(_ViewPos);
+            SpecularPow = saturate(dot(vReflect, -vEye));
+            SpecularPow = pow(SpecularPow, 15);
         
+        // 각도와 거리에 따른 세기 적용
+            LightPow *= spotFactor; // 각도에 따른 세기 적용
+        }
     }
       
     // 표면이 받는 빛 = 광원의 빛 * 표면이 받는 빛의 세기 * 거리에 따른 빛의 감소량
