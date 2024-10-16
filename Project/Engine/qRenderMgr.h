@@ -23,6 +23,8 @@ public:
 
 	void PostProcessCopy();
 
+	qCamera* GetPOVCam();
+
 private:
 	void RenderStart();
 	void Clear();

@@ -15,7 +15,7 @@
 //#include "qCollider3D.h"
 //#include "qAnimator3D.h"
 //#include "qStateMachine.h"
-
+#include "qSkyBox.h"
 //#include "qDecal.h"
 //#include "qLandScape.h"
 

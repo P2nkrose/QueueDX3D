@@ -38,6 +38,7 @@ public:
 	GET_OTHER_COMPONENT(ParticleSystem);
 	GET_OTHER_COMPONENT(RigidBody);
 	GET_OTHER_COMPONENT(FSM);
+	GET_OTHER_COMPONENT(SkyBox);
 	
 	
 

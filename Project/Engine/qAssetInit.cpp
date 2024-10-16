@@ -752,6 +752,19 @@ void qAssetMgr::CreateEngineGraphicShader()
 	AddAsset(L"Std3DShader", pShader);
 
 
+	// SkyBoxShader
+	pShader = new qGraphicShader;
+	pShader->CreateVertexShader(L"shader\\skybox.fx", "VS_SkyBox");
+	pShader->CreatePixelShader(L"shader\\skybox.fx", "PS_SkyBox");
+	pShader->SetRSType(RS_TYPE::CULL_FRONT);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_OPAQUE);
+
+	pShader->AddTexParam(TEX_0, "Albedo Texture");
+
+	AddAsset(L"SkyBoxShader", pShader);
+
 }
 
 #include "qParticleTickCS.h"
@@ -859,5 +872,10 @@ void qAssetMgr::CreateEngineMaterial()
 	pMtrl = new qMaterial(true);
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"Std3DShader"));
 	AddAsset(L"Std3DMtrl", pMtrl);
+
+	// SkyBoxMtrl
+	pMtrl = new qMaterial(true);
+	pMtrl->SetShader(FindAsset<qGraphicShader>(L"SkyBoxShader"));
+	AddAsset(L"SkyBoxMtrl", pMtrl);
 }
 

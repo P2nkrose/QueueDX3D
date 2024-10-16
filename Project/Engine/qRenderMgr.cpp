@@ -118,6 +118,26 @@ void qRenderMgr::PostProcessCopy()
 	CONTEXT->CopyResource(m_PostProcessTex->GetTex2D().Get(), pRTTex->GetTex2D().Get());
 }
 
+qCamera* qRenderMgr::GetPOVCam()
+{
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+
+	if (nullptr == pCurLevel)
+		return nullptr;
+
+	if (LEVEL_STATE::PLAY == pCurLevel->GetState())
+	{
+		if (m_vecCam.empty())
+			return nullptr;
+
+		return m_vecCam[0];
+	}
+	else
+	{
+		return m_EditorCamera;
+	}
+}
+
 void qRenderMgr::RenderStart()
 {
 	// ·»´õÅ¸°Ù ÁöÁ¤
