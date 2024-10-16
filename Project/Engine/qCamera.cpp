@@ -150,66 +150,6 @@ void qCamera::SortGameObject()
 	}
 }
 
-void qCamera::render_effect()
-{
-	//return;
-
-	// ·»´õÅ¸°Ù º¯°æ
-	Ptr<qTexture> pEffectTarget = qAssetMgr::GetInst()->FindAsset<qTexture>(L"EffectTargetTex");
-	Ptr<qTexture> pEffectDepth = qAssetMgr::GetInst()->FindAsset<qTexture>(L"EffectDepthStencilTex");
-
-	// Å¬¸®¾î
-	CONTEXT->ClearRenderTargetView(pEffectTarget->GetRTV().Get(), Vec4(0.f, 0.f, 0.f, 0.f));
-	CONTEXT->ClearDepthStencilView(pEffectDepth->GetDSV().Get(), D3D11_CLEAR_STENCIL | D3D11_CLEAR_DEPTH, 1.f, 0);
-
-	D3D11_VIEWPORT viewport = {};
-	viewport.Width = pEffectTarget->Width();
-	viewport.Height = pEffectTarget->Height();
-	viewport.MaxDepth = 1.f;
-
-	CONTEXT->RSSetViewports(1, &viewport);
-	CONTEXT->OMSetRenderTargets(1, pEffectTarget->GetRTV().GetAddressOf(), pEffectDepth->GetDSV().Get());
-
-	// Effect
-	for (size_t i = 0; i < m_vecEffect.size(); ++i)
-	{
-		m_vecEffect[i]->Render();
-	}
-
-	// BlurTarget À¸·Î º¯°æ
-	Ptr<qTexture> pEffectBlurTarget = qAssetMgr::GetInst()->FindAsset<qTexture>(L"EffectBlurTargetTex");
-	Ptr<qMaterial> pBlurMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"BlurMtrl");
-	Ptr<qMesh> pRectMesh = qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh");
-
-	CONTEXT->ClearRenderTargetView(pEffectBlurTarget->GetRTV().Get(), Vec4(0.f, 0.f, 0.f, 0.f));
-
-	CONTEXT->RSSetViewports(1, &viewport);
-	CONTEXT->OMSetRenderTargets(1, pEffectBlurTarget->GetRTV().GetAddressOf(), nullptr);
-
-	pBlurMtrl->SetTexParam(TEX_0, pEffectTarget);
-	pBlurMtrl->Binding();
-	pRectMesh->Render_Particle(2);
-
-
-	// ¿ø·¡ ·»´õÅ¸°ÙÀ¸·Î º¯°æ
-	Ptr<qTexture> pRTTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"RenderTargetTex");
-	Ptr<qTexture> pDSTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"DepthStencilTex");
-	Ptr<qMaterial> pEffectMergeMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"EffectMergeMtrl");
-
-	viewport.Width = pRTTex->Width();
-	viewport.Height = pRTTex->Height();
-	viewport.MinDepth = 0.f;
-	viewport.MaxDepth = 1.f;
-
-	CONTEXT->RSSetViewports(1, &viewport);
-	CONTEXT->OMSetRenderTargets(1, pRTTex->GetRTV().GetAddressOf(), pDSTex->GetDSV().Get());
-
-	pEffectMergeMtrl->SetTexParam(TEX_0, pEffectTarget);
-	pEffectMergeMtrl->SetTexParam(TEX_1, pEffectBlurTarget);
-	pEffectMergeMtrl->Binding();
-	pRectMesh->Render();
-}
-
 
 void qCamera::Render()
 {
@@ -270,6 +210,43 @@ void qCamera::Render()
 	m_vecPostProcess.clear();
 	m_vecUI.clear();
 }
+
+#include "qMRT.h"
+
+void qCamera::render_effect()
+{
+	// EffectMRT ·Î º¯°æ
+	qRenderMgr::GetInst()->GetMRT(MRT_TYPE::EFFECT)->Clear();
+	qRenderMgr::GetInst()->GetMRT(MRT_TYPE::EFFECT)->OMSet();
+
+	// Effect
+	for (size_t i = 0; i < m_vecEffect.size(); ++i)
+	{
+		m_vecEffect[i]->Render();
+	}
+
+	// EffectBlurMRT ·Î º¯°æ
+	qRenderMgr::GetInst()->GetMRT(MRT_TYPE::EFFECT_BLUR)->ClearRT();
+	qRenderMgr::GetInst()->GetMRT(MRT_TYPE::EFFECT_BLUR)->OMSet();
+
+	Ptr<qMaterial> pBlurMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"BlurMtrl");
+	Ptr<qMesh> pRectMesh = qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh");
+
+	pBlurMtrl->SetTexParam(TEX_0, qRenderMgr::GetInst()->GetMRT(MRT_TYPE::EFFECT)->GetRT(0));
+	pBlurMtrl->Binding();
+	pRectMesh->Render_Particle(2);
+
+	// ¿ø·¡ ·»´õÅ¸°Ù(SwapChainMRT) ·Î º¯°æ	
+	qRenderMgr::GetInst()->GetMRT(MRT_TYPE::SWAPCHAIN)->OMSet();
+	Ptr<qMaterial> pEffectMergeMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"EffectMergeMtrl");
+
+	pEffectMergeMtrl->SetTexParam(TEX_0, qRenderMgr::GetInst()->GetMRT(MRT_TYPE::EFFECT)->GetRT(0));
+	pEffectMergeMtrl->SetTexParam(TEX_1, qRenderMgr::GetInst()->GetMRT(MRT_TYPE::EFFECT_BLUR)->GetRT(0));
+	pEffectMergeMtrl->Binding();
+	pRectMesh->Render();
+
+}
+
 
 
 void qCamera::SaveToFile(FILE* _File)

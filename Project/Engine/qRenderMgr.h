@@ -6,6 +6,7 @@ class qGameObject;
 class qLight2D;
 class qLight3D;
 class qStructuredBuffer;
+class qMRT;
 
 class qRenderMgr : public qSingleton<qRenderMgr>
 {
@@ -23,6 +24,8 @@ public:
 
 	void PostProcessCopy();
 
+	qMRT* GetMRT(MRT_TYPE _Type) { return m_arrMRT[(UINT)_Type]; }
+
 	qCamera* GetPOVCam();
 
 private:
@@ -30,7 +33,7 @@ private:
 	void Clear();
 
 	void RenderDebugShape();
-
+	void CreateMRT();
 
 private:
 	vector<qCamera*>			m_vecCam;
@@ -54,5 +57,7 @@ private:
 
 	// Down Scale
 	Ptr<qTexture>				m_DownScaleTex;
+
+	qMRT*						m_arrMRT[(UINT)MRT_TYPE::END];
 };
 

@@ -20,11 +20,14 @@
 #include "qStructuredBuffer.h"
 
 #include "qKeyMgr.h"
+#include "qMRT.h"
 
 
 qRenderMgr::qRenderMgr()
 	: m_EditorCamera(nullptr)
 	, m_Light2DBuffer(nullptr)
+	, m_DebugObject(nullptr)
+	, m_arrMRT{}
 {
 	m_Light2DBuffer = new qStructuredBuffer;
 	m_Light3DBuffer = new qStructuredBuffer;
@@ -40,21 +43,13 @@ qRenderMgr::~qRenderMgr()
 
 	if (nullptr != m_Light3DBuffer)
 		delete m_Light3DBuffer;
+
+
+	Delete_Array(m_arrMRT);
 }
 
 
-void qRenderMgr::Init()
-{
-	// Asset Manager가 초기화뙬때 만들어둔 후처리용 텍스처를 참조한다.
-	m_PostProcessTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"PostProcessTex");
 
-
-	// 디버그 렌더링용 게임 오브젝트
-	m_DebugObject = new qGameObject;
-	m_DebugObject->AddComponent(new qTransform);
-	m_DebugObject->AddComponent(new qMeshRender);
-	m_DebugObject->MeshRender()->SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DebugShapeMtrl"));
-}
 
 void qRenderMgr::Tick()
 {
@@ -140,18 +135,15 @@ qCamera* qRenderMgr::GetPOVCam()
 
 void qRenderMgr::RenderStart()
 {
-	// 렌더타겟 지정
-	Ptr<qTexture> pRTTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"RenderTargetTex");
-	Ptr<qTexture> pDSTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"DepthStencilTex");
-	CONTEXT->OMSetRenderTargets(1, pRTTex->GetRTV().GetAddressOf(), pDSTex->GetDSV().Get());
+	// 렌더타겟 클리어 및 지정
+	m_arrMRT[(UINT)MRT_TYPE::SWAPCHAIN]->ClearRT();
+	m_arrMRT[(UINT)MRT_TYPE::SWAPCHAIN]->ClearDS();
+	m_arrMRT[(UINT)MRT_TYPE::SWAPCHAIN]->OMSet();
+
+	// GlobalData 설정
+	g_GlobalData.g_Resolution = qDevice::GetInst()->GetResolution();
 
 
-	// Target Clear
-	float color[4] = { 0.7f, 0.7f, 0.7f, 1.f };
-	CONTEXT->ClearRenderTargetView(pRTTex->GetRTV().Get(), color);
-	CONTEXT->ClearDepthStencilView(pDSTex->GetDSV().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
-
-	g_GlobalData.g_Resolution = Vec2((float)pRTTex->Width(), (float)pRTTex->Height());
 	g_GlobalData.g_Light2DCount = (int)m_vecLight2D.size();
 	g_GlobalData.g_Light3DCount = (int)m_vecLight3D.size();
 

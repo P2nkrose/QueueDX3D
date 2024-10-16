@@ -193,6 +193,9 @@
     <Filter Include="08. Component\09. Light3D">
       <UniqueIdentifier>{0f063462-7b18-42ab-aaf3-631676b113a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. Manager\06. RenderMgr\MRT">
+      <UniqueIdentifier>{b0327f42-3b7a-4f27-a8c7-0925c2a9e6dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -372,6 +375,9 @@
     <ClInclude Include="qSkyBox.h">
       <Filter>08. Component\10. RenderComponent\05. SkyBox</Filter>
     </ClInclude>
+    <ClInclude Include="qMRT.h">
+      <Filter>04. Manager\06. RenderMgr\MRT</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -529,6 +535,12 @@
     </ClCompile>
     <ClCompile Include="qSkyBox.cpp">
       <Filter>08. Component\10. RenderComponent\05. SkyBox</Filter>
+    </ClCompile>
+    <ClCompile Include="qMRT.cpp">
+      <Filter>04. Manager\06. RenderMgr\MRT</Filter>
+    </ClCompile>
+    <ClCompile Include="qRenderMgr_Init.cpp">
+      <Filter>04. Manager\06. RenderMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
