@@ -26,9 +26,9 @@ VS_OUT VS_SkyBox(VS_IN _in)
     return output;
 }
 
-float PS_SkyBox(VS_OUT _in) : SV_Target
+float4 PS_SkyBox(VS_OUT _in) : SV_Target
 {
-    float4 vColor = (float4) 0.f;
+    float4 vColor = float4(0.f, 0.f, 0.f, 1.f);
     
     if(g_btex_0)
         vColor = g_tex_0.Sample(g_sam_0, _in.vUV);

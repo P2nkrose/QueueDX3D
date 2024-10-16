@@ -205,6 +205,7 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qScript.h" />
     <ClInclude Include="qSetColorCS.h" />
     <ClInclude Include="qShader.h" />
+    <ClInclude Include="qSkyBox.h" />
     <ClInclude Include="qSound.h" />
     <ClInclude Include="qSprite.h" />
     <ClInclude Include="qState.h" />
@@ -273,6 +274,7 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qScript.cpp" />
     <ClCompile Include="qSetColorCS.cpp" />
     <ClCompile Include="qShader.cpp" />
+    <ClCompile Include="qSkyBox.cpp" />
     <ClCompile Include="qSound.cpp" />
     <ClCompile Include="qSprite.cpp" />
     <ClCompile Include="qState.cpp" />
@@ -318,6 +320,12 @@ call EngineHeaderCopy.bat</Command>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="setcolor.fx">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="skybox.fx">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>

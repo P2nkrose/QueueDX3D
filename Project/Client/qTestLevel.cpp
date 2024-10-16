@@ -102,7 +102,19 @@ void qTestLevel::CreateTestLevel()
 	//pLevel->AddObject(0, pObject);
 
 
+	// SkyBox Ãß°¡
+	qGameObject* pSkyBox = new qGameObject;
+	pSkyBox->SetName(L"SkyBox");
 
+	pSkyBox->AddComponent(new qTransform);
+	pSkyBox->AddComponent(new qSkyBox);
+
+	pSkyBox->Transform()->SetRelativePos(0.f, 0.f, 0.f);
+	pSkyBox->Transform()->SetRelativeScale(1000.f, 1000.f, 1000.f);
+	Ptr<qTexture> pSkyBoxTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\skybox\\Sky01.png");
+	pSkyBox->SkyBox()->GetMaterial()->SetTexParam(TEX_0, pSkyBoxTex);
+
+	pLevel->AddObject(0, pSkyBox);
 
 
 

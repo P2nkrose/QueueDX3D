@@ -369,6 +369,9 @@
     <ClInclude Include="qLight3D.h">
       <Filter>08. Component\09. Light3D</Filter>
     </ClInclude>
+    <ClInclude Include="qSkyBox.h">
+      <Filter>08. Component\10. RenderComponent\05. SkyBox</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -524,6 +527,9 @@
     <ClCompile Include="qLight3D.cpp">
       <Filter>08. Component\09. Light3D</Filter>
     </ClCompile>
+    <ClCompile Include="qSkyBox.cpp">
+      <Filter>08. Component\10. RenderComponent\05. SkyBox</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -562,6 +568,9 @@
       <Filter>HLSL\03. Compute\02. ParticleTick</Filter>
     </FxCompile>
     <FxCompile Include="std3d.fx">
+      <Filter>HLSL\02. Render\02. 3D</Filter>
+    </FxCompile>
+    <FxCompile Include="skybox.fx">
       <Filter>HLSL\02. Render\02. 3D</Filter>
     </FxCompile>
   </ItemGroup>

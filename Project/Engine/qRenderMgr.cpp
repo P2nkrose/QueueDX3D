@@ -147,7 +147,7 @@ void qRenderMgr::RenderStart()
 
 
 	// Target Clear
-	float color[4] = { 0.f, 0.f, 0.f, 1.f };
+	float color[4] = { 0.7f, 0.7f, 0.7f, 1.f };
 	CONTEXT->ClearRenderTargetView(pRTTex->GetRTV().Get(), color);
 	CONTEXT->ClearDepthStencilView(pDSTex->GetDSV().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
 

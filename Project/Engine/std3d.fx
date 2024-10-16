@@ -123,7 +123,7 @@ float4 PS_Std3D(VS_OUT _in) : SV_Target
     vOutColor.xyz = vOutColor.xyz * light.Color.rgb
                     + vOutColor.xyz * light.Ambient.rgb
                     + g_Light3D[0].light.Color.rgb * light.SpecCoef;
-        
+    
     return vOutColor;
 }
 

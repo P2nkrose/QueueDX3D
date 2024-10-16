@@ -26,9 +26,14 @@ void qSkyBox::FinalTick()
 
 void qSkyBox::Render()
 {
+	//Ptr<qTexture> Tex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\skybox\\Sky02.jpg");
+
 	Transform()->Binding();
 
+	//GetMaterial()->SetTexParam(TEX_0, Tex);
+
 	GetMaterial()->Binding();
+	
 
 	GetMesh()->Render();
 }

@@ -204,78 +204,78 @@ void qPlayerScript::Tick()
 		PlayCombo();
 	}
 
-	if (KEY_TAP(KEY::S))
-	{
-		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\player\\book.wav", L"sound\\player\\book.wav");
-		pSound->Play(1, 0.5, true);
-
-		// 왼쪽 책 발사
-		if (GetPlayerDir() == DIRECTION::LEFT)
-		{
-			//Instantiate(m_BookPref, 4, Transform()->GetWorldPos(), L"Book");
-			Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
-
-			qGameObject* pPlayer = qLevelMgr::GetInst()->FindObjectByName(L"Player");
-			Vec3 vPlayerPos = pPlayer->Transform()->GetRelativePos();
-
-			LeftBook = new qGameObject;
-			LeftBook->SetName(L"Book");
-			LeftBook->AddComponent(new qBookScript_Left);
-			LeftBook->AddComponent(new qTransform);
-			LeftBook->Transform()->SetRelativeScale(70.f, 70.f, 1.f);
-			LeftBook->Transform()->SetRelativePos(Vec3(vPlayerPos.x - 30.f, vPlayerPos.y, vPlayerPos.z));
-
-			LeftBook->AddComponent(new qMeshRender);
-			LeftBook->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-			LeftBook->MeshRender()->SetMaterial(pMtrl);
-
-			LeftBook->AddComponent(new qCollider2D);
-			LeftBook->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
-
-			LeftBook->AddComponent(new qFlipBookComponent);
-			
-			Ptr<qFlipBook> pBookFlip = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\book.flip");
-			LeftBook->FlipBookComponent()->AddFlipBook(18, pBookFlip);
-
-			LeftBook->FlipBookComponent()->Play(18, 15, true);
-
-			qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
-			pCurLevel->AddObject(4, LeftBook);
-		}
-
-		// 오른쪽 책 발사
-		else if (GetPlayerDir() == DIRECTION::RIGHT)
-		{
-			Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
-
-			qGameObject* pPlayer = qLevelMgr::GetInst()->FindObjectByName(L"Player");
-			Vec3 vPlayerPos = pPlayer->Transform()->GetRelativePos();
-
-			RightBook = new qGameObject;
-			RightBook->SetName(L"Book");
-			RightBook->AddComponent(new qBookScript_Right);
-			RightBook->AddComponent(new qTransform);
-			RightBook->Transform()->SetRelativeScale(70.f, 70.f, 1.f);
-			RightBook->Transform()->SetRelativePos(Vec3(vPlayerPos.x + 30.f, vPlayerPos.y, vPlayerPos.z));
-
-			RightBook->AddComponent(new qMeshRender);
-			RightBook->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-			RightBook->MeshRender()->SetMaterial(pMtrl);
-
-			RightBook->AddComponent(new qCollider2D);
-			RightBook->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
-
-			RightBook->AddComponent(new qFlipBookComponent);
-
-			Ptr<qFlipBook> pBookFlip = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\book.flip");
-			RightBook->FlipBookComponent()->AddFlipBook(18, pBookFlip);
-
-			RightBook->FlipBookComponent()->Play(18, 15, true);
-
-			qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
-			pCurLevel->AddObject(4, RightBook);
-		}
-	}
+	//if (KEY_TAP(KEY::S))
+	//{
+	//	Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\player\\book.wav", L"sound\\player\\book.wav");
+	//	pSound->Play(1, 0.5, true);
+	//
+	//	// 왼쪽 책 발사
+	//	if (GetPlayerDir() == DIRECTION::LEFT)
+	//	{
+	//		//Instantiate(m_BookPref, 4, Transform()->GetWorldPos(), L"Book");
+	//		Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
+	//
+	//		qGameObject* pPlayer = qLevelMgr::GetInst()->FindObjectByName(L"Player");
+	//		Vec3 vPlayerPos = pPlayer->Transform()->GetRelativePos();
+	//
+	//		LeftBook = new qGameObject;
+	//		LeftBook->SetName(L"Book");
+	//		LeftBook->AddComponent(new qBookScript_Left);
+	//		LeftBook->AddComponent(new qTransform);
+	//		LeftBook->Transform()->SetRelativeScale(70.f, 70.f, 1.f);
+	//		LeftBook->Transform()->SetRelativePos(Vec3(vPlayerPos.x - 30.f, vPlayerPos.y, vPlayerPos.z));
+	//
+	//		LeftBook->AddComponent(new qMeshRender);
+	//		LeftBook->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	//		LeftBook->MeshRender()->SetMaterial(pMtrl);
+	//
+	//		LeftBook->AddComponent(new qCollider2D);
+	//		LeftBook->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	//
+	//		LeftBook->AddComponent(new qFlipBookComponent);
+	//		
+	//		Ptr<qFlipBook> pBookFlip = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\book.flip");
+	//		LeftBook->FlipBookComponent()->AddFlipBook(18, pBookFlip);
+	//
+	//		LeftBook->FlipBookComponent()->Play(18, 15, true);
+	//
+	//		qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	//		pCurLevel->AddObject(4, LeftBook);
+	//	}
+	//
+	//	// 오른쪽 책 발사
+	//	else if (GetPlayerDir() == DIRECTION::RIGHT)
+	//	{
+	//		Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
+	//
+	//		qGameObject* pPlayer = qLevelMgr::GetInst()->FindObjectByName(L"Player");
+	//		Vec3 vPlayerPos = pPlayer->Transform()->GetRelativePos();
+	//
+	//		RightBook = new qGameObject;
+	//		RightBook->SetName(L"Book");
+	//		RightBook->AddComponent(new qBookScript_Right);
+	//		RightBook->AddComponent(new qTransform);
+	//		RightBook->Transform()->SetRelativeScale(70.f, 70.f, 1.f);
+	//		RightBook->Transform()->SetRelativePos(Vec3(vPlayerPos.x + 30.f, vPlayerPos.y, vPlayerPos.z));
+	//
+	//		RightBook->AddComponent(new qMeshRender);
+	//		RightBook->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	//		RightBook->MeshRender()->SetMaterial(pMtrl);
+	//
+	//		RightBook->AddComponent(new qCollider2D);
+	//		RightBook->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	//
+	//		RightBook->AddComponent(new qFlipBookComponent);
+	//
+	//		Ptr<qFlipBook> pBookFlip = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\book.flip");
+	//		RightBook->FlipBookComponent()->AddFlipBook(18, pBookFlip);
+	//
+	//		RightBook->FlipBookComponent()->Play(18, 15, true);
+	//
+	//		qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	//		pCurLevel->AddObject(4, RightBook);
+	//	}
+	//}
 
 
 
