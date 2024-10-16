@@ -6,14 +6,30 @@
 
 qSkyBox::qSkyBox()
 	: qRenderComponent(COMPONENT_TYPE::SKYBOX)
+	, m_Type(SPHERE)
 {
-	SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"SphereMesh"));
-	SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"SkyBoxMtrl"));
+	SetSkyBoxType(m_Type);
 }
 
 qSkyBox::~qSkyBox()
 {
 }
+
+
+void qSkyBox::SetSkyBoxType(SKYBOX_TYPE _Type)
+{
+	m_Type = _Type;
+
+	if (SKYBOX_TYPE::SPHERE == m_Type)
+		SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"SphereMesh"));
+	else if (SKYBOX_TYPE::CUBE == m_Type)
+		SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"CubeMesh"));
+
+	// Mesh 가 변경되면 재질을 다시 설정해야 한다.
+	SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"SkyBoxMtrl"));
+}
+
+
 
 void qSkyBox::FinalTick()
 {
@@ -26,15 +42,27 @@ void qSkyBox::FinalTick()
 
 void qSkyBox::Render()
 {
-	//Ptr<qTexture> Tex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\skybox\\Sky02.jpg");
-
 	Transform()->Binding();
 
-	//GetMaterial()->SetTexParam(TEX_0, Tex);
+	GetMaterial()->SetScalarParam(INT_0, (int)m_Type);
+
+	if (m_Type == SPHERE)
+	{
+		if (!m_SkyBoxTex->IsCubeMap())
+			GetMaterial()->SetTexParam(TEX_0, m_SkyBoxTex);
+		else
+			GetMaterial()->SetTexParam(TEX_0, nullptr);
+	}
+
+	else if (m_Type == CUBE)
+	{
+		if (m_SkyBoxTex->IsCubeMap())
+			GetMaterial()->SetTexParam(TEXCUBE_0, m_SkyBoxTex);
+		else
+			GetMaterial()->SetTexParam(TEXCUBE_0, nullptr);
+	}
 
 	GetMaterial()->Binding();
-	
-
 	GetMesh()->Render();
 }
 
@@ -45,3 +73,4 @@ void qSkyBox::SaveToFile(FILE* _File)
 void qSkyBox::LoadFromFile(FILE* _File)
 {
 }
+

@@ -1,6 +1,12 @@
 #pragma once
 #include "qRenderComponent.h"
 
+enum SKYBOX_TYPE
+{
+	SPHERE,
+	CUBE,
+};
+
 class qSkyBox : public qRenderComponent
 {
 public:
@@ -15,7 +21,15 @@ public:
 	virtual void SaveToFile(FILE* _File) override;   // 파일에 컴포넌트의 정보를 저장
 	virtual void LoadFromFile(FILE* _File) override; // 파일에 컴포넌트의 정보를 로드
 
-private:
 
+public:
+	void SetSkyBoxType(SKYBOX_TYPE _Type);
+	void SetSkyBoxTexture(Ptr<qTexture> _Tex) { m_SkyBoxTex = _Tex; }
+
+
+
+private:
+	SKYBOX_TYPE     m_Type;
+	Ptr<qTexture>   m_SkyBoxTex;
 };
 

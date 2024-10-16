@@ -757,7 +757,7 @@ void qAssetMgr::CreateEngineGraphicShader()
 	pShader->CreateVertexShader(L"shader\\skybox.fx", "VS_SkyBox");
 	pShader->CreatePixelShader(L"shader\\skybox.fx", "PS_SkyBox");
 	pShader->SetRSType(RS_TYPE::CULL_FRONT);
-	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetDSType(DS_TYPE::LESS_EQUAL);
 	pShader->SetBSType(BS_TYPE::DEFAULT);
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_OPAQUE);
 
