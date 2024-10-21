@@ -25,7 +25,8 @@
 void qTestLevel::CreateTestLevel()
 {
 	// Material
-	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std3DMtrl");
+	Ptr<qMaterial> pStd3DMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std3DMtrl");
+	Ptr<qMaterial> pStd3D_DeferredMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std3D_DeferredMtrl");
 	
 
 	// Level »ý¼º
@@ -136,7 +137,7 @@ void qTestLevel::CreateTestLevel()
 	pPlayer->Transform()->SetRelativeRotation(XM_PI / 2.f, 0.f, 0.f);
 
 	pPlayer->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pPlayer->MeshRender()->SetMaterial(pMtrl);
+	pPlayer->MeshRender()->SetMaterial(pStd3D_DeferredMtrl);
 	
 	Ptr<qTexture> pTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\LandScapeTexture\\gl1_ground_II_albedo.TGA");
 	Ptr<qTexture> pNTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\LandScapeTexture\\gl1_ground_II_normal.TGA");

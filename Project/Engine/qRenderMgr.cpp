@@ -250,17 +250,21 @@ void qRenderMgr::Render(qCamera* _Cam)
 	// ===============
 	m_arrMRT[(UINT)MRT_TYPE::LIGHT]->OMSet();
 
+	for (size_t i = 0; i < m_vecLight3D.size(); ++i)
+	{
+		//m_vecLight3D[i]->Render();
+	}
 
-	// =====================
-	// MERGE ALBEDO + LIGHTS 
-	// =====================
+	// ===================================
+	// MERGE ALBEDO + LIGHTS ==> SwapChain
+	// ===================================
+	m_arrMRT[(UINT)MRT_TYPE::SWAPCHAIN]->OMSet();
 
 
 	// =================
 	// FORWARD RENDERING
 	// =================
 	// 분류된 물체들 렌더링
-	m_arrMRT[(UINT)MRT_TYPE::SWAPCHAIN]->OMSet();
 
 	_Cam->render_opaque();
 	_Cam->render_masked();

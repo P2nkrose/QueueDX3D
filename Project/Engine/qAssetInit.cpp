@@ -886,6 +886,11 @@ void qAssetMgr::CreateEngineMaterial()
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"Std3DShader"));
 	AddAsset(L"Std3DMtrl", pMtrl);
 
+	// Std3D_DeferredMtrl
+	pMtrl = new qMaterial(true);
+	pMtrl->SetShader(FindAsset<qGraphicShader>(L"Std3D_DeferredShader"));
+	AddAsset(L"Std3D_DeferredMtrl", pMtrl);
+
 	// SkyBoxMtrl
 	pMtrl = new qMaterial(true);
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"SkyBoxShader"));
