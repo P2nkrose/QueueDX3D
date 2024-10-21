@@ -252,7 +252,7 @@ void qRenderMgr::Render(qCamera* _Cam)
 
 	for (size_t i = 0; i < m_vecLight3D.size(); ++i)
 	{
-		//m_vecLight3D[i]->Render();
+		m_vecLight3D[i]->Render();
 	}
 
 	// ===================================

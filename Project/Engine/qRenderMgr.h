@@ -20,7 +20,7 @@ public:
 	void RegisterEditorCamera(qCamera* _Cam) { m_EditorCamera = _Cam; }
 	void AddDebugShapeInfo(const tDebugShapeInfo& _Info) { m_DebugShapeList.push_back(_Info); }
 	void RegisterLight2D(qLight2D* _Light) { m_vecLight2D.push_back(_Light); }
-	void RegisterLight3D(qLight3D* _Light) { m_vecLight3D.push_back(_Light); }
+	int  RegisterLight3D(qLight3D* _Light) { m_vecLight3D.push_back(_Light); return m_vecLight3D.size() - 1; }
 
 	void PostProcessCopy();
 

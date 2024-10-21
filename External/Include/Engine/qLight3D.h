@@ -15,6 +15,7 @@ public:
 	virtual void SaveToFile(FILE* _File) override;
 	virtual void LoadFromFile(FILE* _File) override;
 
+    void Render();
 
 public:
     void SetLightType(LIGHT_TYPE _Type);
@@ -36,6 +37,9 @@ public:
 
 private:
 	tLightInfo		m_Info;
+    int             m_LightIdx;
 
+    Ptr<qMesh>      m_VolumeMesh;
+    Ptr<qMaterial>  m_LightMtrl;
 };
 

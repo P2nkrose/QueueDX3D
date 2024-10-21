@@ -778,6 +778,18 @@ void qAssetMgr::CreateEngineGraphicShader()
 
 	AddAsset(L"SkyBoxShader", pShader);
 
+
+	// DirLightShader
+	pShader = new qGraphicShader;
+	pShader->CreateVertexShader(L"shader\\light.fx", "VS_DirLight");
+	pShader->CreatePixelShader(L"shader\\light.fx", "PS_DirLight");
+	pShader->SetRSType(RS_TYPE::CULL_BACK);
+	pShader->SetBSType(BS_TYPE::ONE_ONE);
+	pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_LIGHT);
+
+	AddAsset(L"DirLightShader", pShader);
+
 }
 
 #include "qParticleTickCS.h"
@@ -895,5 +907,10 @@ void qAssetMgr::CreateEngineMaterial()
 	pMtrl = new qMaterial(true);
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"SkyBoxShader"));
 	AddAsset(L"SkyBoxMtrl", pMtrl);
+
+	// DirLightMtrl
+	pMtrl = new qMaterial(true);
+	pMtrl->SetShader(FindAsset<qGraphicShader>(L"DirLightShader"));
+	AddAsset(L"DirLightMtrl", pMtrl);
 }
 
