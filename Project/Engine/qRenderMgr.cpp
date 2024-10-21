@@ -259,6 +259,8 @@ void qRenderMgr::Render(qCamera* _Cam)
 	// MERGE ALBEDO + LIGHTS ==> SwapChain
 	// ===================================
 	m_arrMRT[(UINT)MRT_TYPE::SWAPCHAIN]->OMSet();
+	m_MergeMtrl->Binding();
+	m_RectMesh->Render();
 
 
 	// =================

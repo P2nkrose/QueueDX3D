@@ -37,6 +37,7 @@ private:
 	void RenderDebugShape();
 	void CreateMRT();
 	void ClearMRT();
+	void CreateMaterial();
 
 private:
 	vector<qCamera*>			m_vecCam;
@@ -61,6 +62,11 @@ private:
 	// Down Scale
 	Ptr<qTexture>				m_DownScaleTex;
 
+	// MRT
 	qMRT*						m_arrMRT[(UINT)MRT_TYPE::END];
+
+	// ∫¥«’ Ω¶¿Ã¥ı
+	Ptr<qMesh>					m_RectMesh;
+	Ptr<qMaterial>				m_MergeMtrl;
 };
 

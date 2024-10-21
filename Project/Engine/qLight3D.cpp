@@ -54,8 +54,7 @@ void qLight3D::FinalTick()
 void qLight3D::Render()
 {
 	m_LightMtrl->SetScalarParam(INT_0, m_LightIdx);
-	m_LightMtrl->SetTexParam(TEX_0, qAssetMgr::GetInst()->FindAsset<qTexture>(L"PositionTargetTex"));
-	m_LightMtrl->SetTexParam(TEX_1, qAssetMgr::GetInst()->FindAsset<qTexture>(L"NormalTargetTex"));
+	
 	m_LightMtrl->Binding();
 	m_VolumeMesh->Render();
 }

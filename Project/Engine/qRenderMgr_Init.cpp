@@ -23,6 +23,9 @@ void qRenderMgr::Init()
 
 	// MRT 积己
 	CreateMRT();
+
+	// RenderMgr 傈侩 犁龙 积己
+	CreateMaterial();
 }
 
 
@@ -148,4 +151,44 @@ void qRenderMgr::ClearMRT()
 	m_arrMRT[(UINT)MRT_TYPE::SWAPCHAIN]->Clear();
 	m_arrMRT[(UINT)MRT_TYPE::DEFERRED]->ClearRT();
 	m_arrMRT[(UINT)MRT_TYPE::LIGHT]->ClearRT();
+}
+
+void qRenderMgr::CreateMaterial()
+{
+	// DirLightShader
+	Ptr<qGraphicShader> pShader = new qGraphicShader;
+	pShader->CreateVertexShader(L"shader\\light.fx", "VS_DirLight");
+	pShader->CreatePixelShader(L"shader\\light.fx", "PS_DirLight");
+	pShader->SetRSType(RS_TYPE::CULL_BACK);
+	pShader->SetBSType(BS_TYPE::ONE_ONE);
+	pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_LIGHT);
+	qAssetMgr::GetInst()->AddAsset(L"DirLightShader", pShader);
+
+	// DirLightMtrl
+	Ptr<qMaterial> pMtrl = new qMaterial(true);
+	pMtrl->SetShader(pShader);
+	pMtrl->SetTexParam(TEX_0, qAssetMgr::GetInst()->FindAsset<qTexture>(L"PositionTargetTex"));
+	pMtrl->SetTexParam(TEX_1, qAssetMgr::GetInst()->FindAsset<qTexture>(L"NormalTargetTex"));
+	qAssetMgr::GetInst()->AddAsset(L"DirLightMtrl", pMtrl);
+
+
+	// MergeShader
+	pShader = new qGraphicShader;
+	pShader->CreateVertexShader(L"shader\\merge.fx", "VS_Merge");
+	pShader->CreatePixelShader(L"shader\\merge.fx", "PS_Merge");
+	pShader->SetRSType(RS_TYPE::CULL_BACK);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+	pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_NONE);
+
+	// MergeMtrl
+	m_MergeMtrl = new qMaterial(true);
+	m_MergeMtrl->SetShader(pShader);
+	m_MergeMtrl->SetTexParam(TEX_0, qAssetMgr::GetInst()->FindAsset<qTexture>(L"AlbedoTargetTex"));
+	m_MergeMtrl->SetTexParam(TEX_1, qAssetMgr::GetInst()->FindAsset<qTexture>(L"DiffuseTargetTex"));
+	m_MergeMtrl->SetTexParam(TEX_2, qAssetMgr::GetInst()->FindAsset<qTexture>(L"SpecularTargetTex"));
+
+	// RectMesh
+	m_RectMesh = qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh");
 }
