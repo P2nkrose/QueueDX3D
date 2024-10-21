@@ -62,12 +62,15 @@ void qRenderMgr::Tick()
 	// Level 이 Play 상태인 경우, Level 내에 있는 카메라 시점으로 렌더링하기
 	if (PLAY == pCurLevel->GetState())
 	{
+		if (nullptr != m_vecCam[0])
+			Render(m_vecCam[0]);
+		
 		for (size_t i = 0; i < m_vecCam.size(); ++i)
 		{
 			if (nullptr == m_vecCam[i])
 				continue;
 
-			m_vecCam[i]->Render();
+			Render_Sub(m_vecCam[1]);
 
 			if (0 == m_vecCam[i]->Camera()->GetPriority())
 			{
@@ -82,7 +85,7 @@ void qRenderMgr::Tick()
 	{
 		if (nullptr != m_EditorCamera)
 		{
-			m_EditorCamera->Render();
+			Render(m_EditorCamera);
 		}
 	}
 
@@ -221,6 +224,58 @@ void qRenderMgr::RenderStart()
 	pGlobalCB->SetData(&g_GlobalData);
 	pGlobalCB->Binding();
 	
+}
+
+void qRenderMgr::Render(qCamera* _Cam)
+{
+	// 오브젝트 분류
+	_Cam->SortGameObject();
+
+	// 카메라 변환행렬 설정
+// 물체가 렌더링될 때 사용할 View, Proj 행렬
+	g_Trans.matView = _Cam->GetViewMat();
+	g_Trans.matProj = _Cam->GetProjMat();
+
+	// MRT 모두 클리어
+	ClearMRT();
+
+	// ==================
+	// DEFERRED RENDERING
+	// ==================
+	m_arrMRT[(UINT)MRT_TYPE::DEFERRED]->OMSet();
+	_Cam->render_deferred();
+
+	// ===============
+	// LIGHT RENDERING
+	// ===============
+	m_arrMRT[(UINT)MRT_TYPE::LIGHT]->OMSet();
+
+
+	// =====================
+	// MERGE ALBEDO + LIGHTS 
+	// =====================
+
+
+	// =================
+	// FORWARD RENDERING
+	// =================
+	// 분류된 물체들 렌더링
+	m_arrMRT[(UINT)MRT_TYPE::SWAPCHAIN]->OMSet();
+
+	_Cam->render_opaque();
+	_Cam->render_masked();
+	_Cam->render_effect();
+	_Cam->render_transparent();
+	_Cam->render_particle();
+	_Cam->render_postprocess();
+	_Cam->render_ui();
+
+	// 정리
+	_Cam->clear();
+}
+
+void qRenderMgr::Render_Sub(qCamera* _Cam)
+{
 }
 
 void qRenderMgr::Clear()

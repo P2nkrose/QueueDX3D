@@ -30,10 +30,13 @@ public:
 
 private:
 	void RenderStart();
-	void Clear();
+	void Render(qCamera* _Cam);
+	void Render_Sub(qCamera* _Cam);
 
+	void Clear();
 	void RenderDebugShape();
 	void CreateMRT();
+	void ClearMRT();
 
 private:
 	vector<qCamera*>			m_vecCam;

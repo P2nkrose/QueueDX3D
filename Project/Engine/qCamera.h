@@ -13,6 +13,8 @@ enum PROJ_TYPE
 class qCamera : public qComponent
 {
 public:
+	friend class qRenderMgr;
+
 	CLONE(qCamera);
 	qCamera();
 	~qCamera();
@@ -27,10 +29,6 @@ public:
 	virtual void SaveToFile(FILE* _File) override;
 	virtual void LoadFromFile(FILE* _File) override;
 	int GetPriority() { return m_Priority; }
-
-private:
-	void SortGameObject();
-	void render_effect();
 
 
 public:
@@ -75,6 +73,24 @@ public:
 	void SetScale(float _Scale) { m_ProjectionScale = _Scale; }
 	float GetScale() { return m_ProjectionScale; }
 
+	const Matrix& GetViewMat() { return m_matView; }
+	const Matrix& GetProjMat() { return m_matProj; }
+
+private:
+	void SortGameObject();
+
+	void render_deferred();
+
+	void render_opaque();
+	void render_masked();
+	void render_effect();
+	void render_transparent();
+	void render_particle();
+	void render_postprocess();
+	void render_ui();
+
+	void clear();
+
 
 private:
 	int						m_Priority;				// 우선순위
@@ -92,7 +108,7 @@ private:
 	Matrix					m_matView;
 	Matrix					m_matProj;
 	
-
+	vector<qGameObject*>	m_vecDeferred;			// Deferred
 	vector<qGameObject*>	m_vecOpaque;			// 불투명
 	vector<qGameObject*>	m_vecMasked;			// 불투명, 투명
 	vector<qGameObject*>	m_vecTransparent;		// 투명, 반투명

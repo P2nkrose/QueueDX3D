@@ -16,6 +16,7 @@
 #include "qTransform.h"
 
 #include "qAssetMgr.h"
+#include "qMRT.h"
 
 
 qCamera::qCamera()
@@ -122,6 +123,9 @@ void qCamera::SortGameObject()
 
 			switch (Domain)
 			{
+			case DOMAIN_DEFERRED:
+				m_vecDeferred.push_back(vecObjects[j]);
+				break;
 			case DOMAIN_OPAQUE:
 				m_vecOpaque.push_back(vecObjects[j]);
 				break;
@@ -150,68 +154,42 @@ void qCamera::SortGameObject()
 	}
 }
 
-
-void qCamera::Render()
+void qCamera::render_deferred()
 {
-	// 오브젝트 분류
-	SortGameObject();
+	// Deferred
+	for (size_t i = 0; i < m_vecDeferred.size(); ++i)
+	{
+		m_vecDeferred[i]->Render();
+	}
+}
 
-
-	// 물체가 렌더링 될때 사용할 View, Proj 행렬
-	g_Trans.matView = m_matView;
-	g_Trans.matProj = m_matProj;
-
+void qCamera::render_opaque()
+{
 	// Opaque
 	for (size_t i = 0; i < m_vecOpaque.size(); ++i)
 	{
 		m_vecOpaque[i]->Render();
 	}
+}
 
+void qCamera::render_masked()
+{
 	// Masked
 	for (size_t i = 0; i < m_vecMasked.size(); ++i)
 	{
 		m_vecMasked[i]->Render();
 	}
+}
 
-
+void qCamera::render_transparent()
+{
 	// Transparent
 	for (size_t i = 0; i < m_vecTransparent.size(); ++i)
 	{
 		m_vecTransparent[i]->Render();
 	}
-
-	// Particles
-	for (size_t i = 0; i < m_vecParticles.size(); ++i)
-	{
-		m_vecParticles[i]->Render();
-	}
-
-	render_effect();
-
-	// Post Process
-	for (size_t i = 0; i < m_vecPostProcess.size(); ++i)
-	{
-		qRenderMgr::GetInst()->PostProcessCopy();
-		m_vecPostProcess[i]->Render();
-	}
-
-	// UI
-	for (size_t i = 0; i < m_vecUI.size(); ++i)
-	{
-		m_vecUI[i]->Render();
-	}
-
-
-	m_vecOpaque.clear();
-	m_vecMasked.clear();
-	m_vecTransparent.clear();
-	m_vecEffect.clear();
-	m_vecParticles.clear();
-	m_vecPostProcess.clear();
-	m_vecUI.clear();
 }
 
-#include "qMRT.h"
 
 void qCamera::render_effect()
 {
@@ -245,6 +223,45 @@ void qCamera::render_effect()
 	pEffectMergeMtrl->Binding();
 	pRectMesh->Render();
 
+}
+
+void qCamera::render_particle()
+{
+	// Particles
+	for (size_t i = 0; i < m_vecParticles.size(); ++i)
+	{
+		m_vecParticles[i]->Render();
+	}
+}
+
+void qCamera::render_postprocess()
+{
+	// PostProcess 
+	for (size_t i = 0; i < m_vecPostProcess.size(); ++i)
+	{
+		qRenderMgr::GetInst()->PostProcessCopy();
+		m_vecPostProcess[i]->Render();
+	}
+}
+
+void qCamera::render_ui()
+{
+	// UI
+	for (size_t i = 0; i < m_vecUI.size(); ++i)
+	{
+		m_vecUI[i]->Render();
+	}
+}
+
+void qCamera::clear()
+{
+	m_vecOpaque.clear();
+	m_vecMasked.clear();
+	m_vecTransparent.clear();
+	m_vecEffect.clear();
+	m_vecParticles.clear();
+	m_vecPostProcess.clear();
+	m_vecUI.clear();
 }
 
 

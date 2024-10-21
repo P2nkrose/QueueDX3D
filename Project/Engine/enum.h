@@ -137,6 +137,10 @@ enum TEX_PARAM
 
 enum SHADER_DOMAIN
 {
+	DOMAIN_DEFERRED,	// Deferred 
+	DOMAIN_LIGHT,		// Light
+	DOMAIN_DECAL,		// Decal
+
 	DOMAIN_OPAQUE,		// 불투명
 	DOMAIN_MASKED,		// 투명, 불투명
 	DOMAIN_TRANSPARENT, // 반투명
@@ -268,7 +272,7 @@ enum class MRT_TYPE
 	EFFECT_BLUR,
 
 	DEFERRED,	// 5개
-	LIGHT,		// 3개
+	LIGHT,		// 2개
 	SHADOWMAP,  // 1개
 
 	END,

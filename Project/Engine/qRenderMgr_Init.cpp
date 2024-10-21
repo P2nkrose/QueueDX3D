@@ -6,6 +6,7 @@
 #include "components.h"
 #include "assets.h"
 
+#include "qDevice.h"
 #include "qMRT.h"
 
 void qRenderMgr::Init()
@@ -27,7 +28,6 @@ void qRenderMgr::Init()
 
 void qRenderMgr::CreateMRT()
 {
-	qMRT* pMRT = nullptr;
 
 	// =============
 	// SwapChain MRT
@@ -37,12 +37,11 @@ void qRenderMgr::CreateMRT()
 		Ptr<qTexture> pDSTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"DepthStencilTex");
 		Vec4		  arrClearColor[8] = { Vec4(0.f, 0.f, 0.f, 0.f), };
 
-		pMRT = new qMRT;
-		pMRT->SetName(L"SwapChain");
-		pMRT->Create(1, arrRT, pDSTex);
-		pMRT->SetClearColor(arrClearColor, false);
-
-		m_arrMRT[(UINT)MRT_TYPE::SWAPCHAIN] = pMRT;
+		
+		m_arrMRT[(UINT)MRT_TYPE::SWAPCHAIN] = new qMRT;
+		m_arrMRT[(UINT)MRT_TYPE::SWAPCHAIN]->SetName(L"SwapChain");
+		m_arrMRT[(UINT)MRT_TYPE::SWAPCHAIN]->Create(1, arrRT, pDSTex);
+		m_arrMRT[(UINT)MRT_TYPE::SWAPCHAIN]->SetClearColor(arrClearColor, false);
 	}
 
 	// =============
@@ -53,12 +52,10 @@ void qRenderMgr::CreateMRT()
 		Ptr<qTexture> pDSTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"EffectDepthStencilTex");
 		Vec4		  arrClearColor[8] = { Vec4(0.f, 0.f, 0.f, 0.f), };
 
-		pMRT = new qMRT;
-		pMRT->SetName(L"Effect");
-		pMRT->Create(1, arrRT, pDSTex);
-		pMRT->SetClearColor(arrClearColor, false);
-
-		m_arrMRT[(UINT)MRT_TYPE::EFFECT] = pMRT;
+		m_arrMRT[(UINT)MRT_TYPE::EFFECT] = new qMRT;
+		m_arrMRT[(UINT)MRT_TYPE::EFFECT]->SetName(L"Effect");
+		m_arrMRT[(UINT)MRT_TYPE::EFFECT]->Create(1, arrRT, pDSTex);
+		m_arrMRT[(UINT)MRT_TYPE::EFFECT]->SetClearColor(arrClearColor, false);
 	}
 
 	// ===============
@@ -69,11 +66,86 @@ void qRenderMgr::CreateMRT()
 		Ptr<qTexture> pDSTex = nullptr;
 		Vec4		  arrClearColor[8] = { Vec4(0.f, 0.f, 0.f, 0.f), };
 
-		pMRT = new qMRT;
-		pMRT->SetName(L"EffectBlur");
-		pMRT->Create(1, arrRT, nullptr);
-		pMRT->SetClearColor(arrClearColor, false);
-
-		m_arrMRT[(UINT)MRT_TYPE::EFFECT_BLUR] = pMRT;
+		m_arrMRT[(UINT)MRT_TYPE::EFFECT_BLUR] = new qMRT;
+		m_arrMRT[(UINT)MRT_TYPE::EFFECT_BLUR]->SetName(L"EffectBlur");
+		m_arrMRT[(UINT)MRT_TYPE::EFFECT_BLUR]->Create(1, arrRT, nullptr);
+		m_arrMRT[(UINT)MRT_TYPE::EFFECT_BLUR]->SetClearColor(arrClearColor, false);
 	}
+
+	// ============
+	//   Deferred
+	// ============
+
+	{
+		Vec2 vResolution = qDevice::GetInst()->GetResolution();
+
+		Ptr<qTexture> arrRT[8] =
+		{
+			qAssetMgr::GetInst()->CreateTexture(L"AlbedoTargetTex"
+											, (UINT)vResolution.x, (UINT)vResolution.y
+											, DXGI_FORMAT_R8G8B8A8_UNORM
+											, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE),
+			qAssetMgr::GetInst()->CreateTexture(L"NormalTargetTex"
+											, (UINT)vResolution.x, (UINT)vResolution.y
+											, DXGI_FORMAT_R32G32B32A32_FLOAT
+											, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE),
+			qAssetMgr::GetInst()->CreateTexture(L"PositionTargetTex"
+											, (UINT)vResolution.x, (UINT)vResolution.y
+											, DXGI_FORMAT_R32G32B32A32_FLOAT
+											, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE),
+			qAssetMgr::GetInst()->CreateTexture(L"EmissiveTargetTex"
+											, (UINT)vResolution.x, (UINT)vResolution.y
+											, DXGI_FORMAT_R32G32B32A32_FLOAT
+											, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE),
+			qAssetMgr::GetInst()->CreateTexture(L"DataTargetTex"
+											, (UINT)vResolution.x, (UINT)vResolution.y
+											, DXGI_FORMAT_R32G32B32A32_FLOAT
+											, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE),
+		};
+
+		Ptr<qTexture> pDSTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"DepthStencilTex");
+		Vec4		  arrClearColor[8] = { Vec4(0.f, 0.f, 0.f, 0.f), };
+
+		m_arrMRT[(UINT)MRT_TYPE::DEFERRED] = new qMRT;
+		m_arrMRT[(UINT)MRT_TYPE::DEFERRED]->SetName(L"Deferred");
+		m_arrMRT[(UINT)MRT_TYPE::DEFERRED]->Create(5, arrRT, pDSTex);
+		m_arrMRT[(UINT)MRT_TYPE::DEFERRED]->SetClearColor(arrClearColor, false);
+
+	}
+
+	// ==============
+	//     LIGHT
+	// ==============
+
+	{
+		Vec2 vResolution = qDevice::GetInst()->GetResolution();
+
+		Ptr<qTexture> arrRT[8] =
+		{
+			qAssetMgr::GetInst()->CreateTexture(L"DiffuseTargetTex"
+											, (UINT)vResolution.x, (UINT)vResolution.y
+											, DXGI_FORMAT_R32G32B32A32_FLOAT
+											, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE),
+			qAssetMgr::GetInst()->CreateTexture(L"SpecularTargetTex"
+											, (UINT)vResolution.x, (UINT)vResolution.y
+											, DXGI_FORMAT_R32G32B32A32_FLOAT
+											, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE),
+		};
+		Ptr<qTexture> pDSTex = nullptr;
+		Vec4		  arrClearColor[8] = { Vec4(0.f, 0.f, 0.f, 0.f), };
+
+		m_arrMRT[(UINT)MRT_TYPE::LIGHT] = new qMRT;
+		m_arrMRT[(UINT)MRT_TYPE::LIGHT]->SetName(L"Light");
+		m_arrMRT[(UINT)MRT_TYPE::LIGHT]->Create(2, arrRT, pDSTex);
+		m_arrMRT[(UINT)MRT_TYPE::LIGHT]->SetClearColor(arrClearColor, false);
+	}
+
+}
+
+
+void qRenderMgr::ClearMRT()
+{
+	m_arrMRT[(UINT)MRT_TYPE::SWAPCHAIN]->Clear();
+	m_arrMRT[(UINT)MRT_TYPE::DEFERRED]->ClearRT();
+	m_arrMRT[(UINT)MRT_TYPE::LIGHT]->ClearRT();
 }

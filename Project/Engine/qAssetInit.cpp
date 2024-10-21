@@ -752,6 +752,19 @@ void qAssetMgr::CreateEngineGraphicShader()
 	AddAsset(L"Std3DShader", pShader);
 
 
+	// Std3D_DeferredShader
+	pShader = new qGraphicShader;
+	pShader->CreateVertexShader(L"shader\\std3d_deferred.fx", "VS_Std3D_Deferred");
+	pShader->CreatePixelShader(L"shader\\std3d_deferred.fx", "PS_Std3D_Deferred");
+	pShader->SetRSType(RS_TYPE::CULL_BACK);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_DEFERRED);
+	pShader->AddTexParam(TEX_0, "Albedo Texture");
+	pShader->AddTexParam(TEX_1, "Normal Texture");
+	AddAsset(L"Std3D_DeferredShader", pShader);
+
+
 	// SkyBoxShader
 	pShader = new qGraphicShader;
 	pShader->CreateVertexShader(L"shader\\skybox.fx", "VS_SkyBox");
