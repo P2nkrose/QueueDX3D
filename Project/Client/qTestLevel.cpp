@@ -70,14 +70,14 @@ void qTestLevel::CreateTestLevel()
 
 	// 3D 광원 추가
 	pObject = new qGameObject;
-	pObject->SetName(L"Point Light");
+	pObject->SetName(L"Directional Light");
 	pObject->AddComponent(new qTransform);
 	pObject->AddComponent(new qLight3D);
 
 	pObject->Transform()->SetRelativePos(-100.f, -300.f, 0.f);
 	pObject->Transform()->SetRelativeRotation(XM_PI / 4.f, XM_PI / 4.f, 0.f);
 
-	pObject->Light3D()->SetLightType(LIGHT_TYPE::POINT);
+	pObject->Light3D()->SetLightType(LIGHT_TYPE::DIRECTIONAL);
 	pObject->Light3D()->SetLightColor(Vec3(0.9f, 0.9f, 0.9f));
 	pObject->Light3D()->SetLightAmbient(Vec3(0.f, 0.f, 0.f));
 	pObject->Light3D()->SetSpecularCoefficient(0.3f);
@@ -134,26 +134,56 @@ void qTestLevel::CreateTestLevel()
 
 
 
-	// 플레이어 오브젝트
+	// 평면 오브젝트
+	qGameObject* pPlane = new qGameObject;
+	pPlane->SetName(L"Plane");
+	pPlane->AddComponent(new qTransform);
+	pPlane->AddComponent(new qMeshRender);
+
+	pPlane->Transform()->SetRelativePos(0.f, -500.f, 0.f);
+	pPlane->Transform()->SetRelativeScale(4000.f, 4000.f, 1.f);
+	pPlane->Transform()->SetRelativeRotation(XM_PI / 2.f, 0.f, 0.f);
+
+	pPlane->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pPlane->MeshRender()->SetMaterial(pStd3D_DeferredMtrl);
+
+	Ptr<qTexture> pTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\LandScapeTexture\\gl1_ground_II_albedo.TGA");
+	Ptr<qTexture> pNTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\LandScapeTexture\\gl1_ground_II_normal.TGA");
+
+	pPlane->MeshRender()->GetMaterial()->SetTexParam(TEX_0, pTex);
+	pPlane->MeshRender()->GetMaterial()->SetTexParam(TEX_1, pNTex);
+	pLevel->AddObject(3, pPlane);
+
+
+
+	// Player 추가
 	qGameObject* pPlayer = new qGameObject;
 	pPlayer->SetName(L"Player");
 	pPlayer->AddComponent(new qTransform);
 	pPlayer->AddComponent(new qMeshRender);
 
-	pPlayer->Transform()->SetRelativePos(0.f, -500.0f, 0.f);
-	pPlayer->Transform()->SetRelativeScale(1000.f, 1000.f, 1.f);
-	pPlayer->Transform()->SetRelativeRotation(XM_PI / 2.f, 0.f, 0.f);
+	pPlayer->Transform()->SetRelativePos(0.f, 0.f, 0.f);
+	pPlayer->Transform()->SetRelativeScale(500.f, 500.f, 500.f);
+	pPlayer->Transform()->SetRelativeRotation(0.f, 0.f, 0.f);
 
-	pPlayer->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pPlayer->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"SphereMesh"));
 	pPlayer->MeshRender()->SetMaterial(pStd3D_DeferredMtrl);
-	
-	Ptr<qTexture> pTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\LandScapeTexture\\gl1_ground_II_albedo.TGA");
-	Ptr<qTexture> pNTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\LandScapeTexture\\gl1_ground_II_normal.TGA");
 
 	pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEX_0, pTex);
-	//pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEX_1, pNTex);
+	pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEX_1, pNTex);
 
 	pLevel->AddObject(3, pPlayer);
+
+
+	// Decal Object 추가
+	qGameObject* pDecal = new qGameObject;
+	pDecal->SetName(L"Decal");
+	pDecal->AddComponent(new qTransform);
+	pDecal->AddComponent(new qDecal);
+	pLevel->AddObject(3, pDecal);
+
+
+
 
 
 	// 충돌 지정

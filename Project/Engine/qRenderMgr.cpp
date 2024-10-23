@@ -312,10 +312,10 @@ void qRenderMgr::RenderDebugShape()
 
 			break;
 		case DEBUG_SHAPE::CUBE:
-
+			m_DebugObject->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"CubeMesh_Debug"));
 			break;
 		case DEBUG_SHAPE::SPHERE:
-
+			m_DebugObject->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"SphereMesh"));
 			break;
 		}
 
