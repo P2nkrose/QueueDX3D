@@ -70,18 +70,18 @@ void qTestLevel::CreateTestLevel()
 
 	// 3D ±¤¿ø Ãß°¡
 	pObject = new qGameObject;
-	pObject->SetName(L"Directional Ligth");
+	pObject->SetName(L"Point Light");
 	pObject->AddComponent(new qTransform);
 	pObject->AddComponent(new qLight3D);
 
-	pObject->Transform()->SetRelativePos(300.f, 0.f, 0.f);
+	pObject->Transform()->SetRelativePos(0.f, 0.f, 0.f);
 	pObject->Transform()->SetRelativeRotation(XM_PI / 4.f, XM_PI / 4.f, 0.f);
 
-	pObject->Light3D()->SetLightType(LIGHT_TYPE::DIRECTIONAL);
+	pObject->Light3D()->SetLightType(LIGHT_TYPE::POINT);
 	pObject->Light3D()->SetLightColor(Vec3(0.9f, 0.9f, 0.9f));
 	pObject->Light3D()->SetLightAmbient(Vec3(0.1f, 0.1f, 0.1f));
 	pObject->Light3D()->SetSpecularCoefficient(0.3f);
-	pObject->Light3D()->SetRadius(800.f);
+	pObject->Light3D()->SetRadius(700.f);
 
 	pLevel->AddObject(0, pObject);
 
@@ -118,7 +118,7 @@ void qTestLevel::CreateTestLevel()
 	//pSkyBox->SkyBox()->SetSkyBoxTexture(pSkyBoxTex);
 	//pSkyBox->SkyBox()->SetSkyBoxType(CUBE);		
 
-	Ptr<qTexture> pSkyBoxTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\skybox\\Sky01.png");
+	Ptr<qTexture> pSkyBoxTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\skybox\\Sky02.jpg");
 	pSkyBox->SkyBox()->SetSkyBoxTexture(pSkyBoxTex);
 	pSkyBox->SkyBox()->SetSkyBoxType(SPHERE);
 

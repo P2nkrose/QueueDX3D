@@ -53,6 +53,7 @@ private:
 	Vec3		m_WorldDir[3];		// 부모의 이동을 더한 월드에서의 방향
 
 	Matrix		m_matWorld;			// 이동, 크기, 회전
+	Matrix		m_matWorldInv;		// 월드행렬 역행렬
 	bool		m_IndependentScale;	// 부모의 크기에 영향받지 않음
 };
 

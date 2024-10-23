@@ -90,6 +90,9 @@ enum class DS_TYPE
 	NO_WRITE,				// 깊이판정은 하고, 자신의 깊이 기록을 하지 않는다. (파티클 시 사용)
 	NO_TEST_NO_WRITE,		// 깊이판정도 항상 통과시키고, 자신의 깊이 기록도 안함
 
+	INNER,
+	OUTER,
+
 	END,
 };
 

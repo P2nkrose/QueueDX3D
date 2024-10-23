@@ -42,6 +42,7 @@ void qLight3D::SetLightType(LIGHT_TYPE _Type)
 }
 
 
+
 void qLight3D::FinalTick()
 {
 	m_Info.WorldPos = Transform()->GetWorldPos();
@@ -53,10 +54,22 @@ void qLight3D::FinalTick()
 
 void qLight3D::Render()
 {
+	Transform()->Binding();
+
 	m_LightMtrl->SetScalarParam(INT_0, m_LightIdx);
 	
 	m_LightMtrl->Binding();
 	m_VolumeMesh->Render();
+}
+
+
+
+void qLight3D::SetRadius(float _Radius)
+{
+	m_Info.Radius = _Radius;
+
+	// PointLight, SphereMesh, r = 0.5f
+	Transform()->SetRelativeScale(_Radius * 2.f, _Radius * 2.f, _Radius * 2.f);
 }
 
 

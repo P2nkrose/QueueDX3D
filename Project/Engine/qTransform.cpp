@@ -82,6 +82,9 @@ void qTransform::FinalTick()
 		}
 	}
 
+	// 월드 역행렬 계산
+	m_matWorldInv = XMMatrixInverse(nullptr, m_matWorld);
+
 }
 
 void qTransform::Binding()
@@ -90,6 +93,8 @@ void qTransform::Binding()
 	// HLSL 에서 행렬 변수를 선언할 때 row_major 를 붙여주어야 한다.
 	
 	g_Trans.matWorld = m_matWorld;
+	g_Trans.matWorldInv = m_matWorldInv;
+
 	g_Trans.matWV = g_Trans.matWorld * g_Trans.matView;
 	g_Trans.matWVP = g_Trans.matWV * g_Trans.matProj;
 

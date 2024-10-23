@@ -93,6 +93,10 @@ void qCamera::FinalTick()
 		// 2. 원근 투영 (Perspective)
 		m_matProj = XMMatrixPerspectiveFovLH(m_FOV, m_AspectRatio, 1.f, m_Far);
 	}
+
+	// 역행렬 계산
+	m_matViewInv = XMMatrixInverse(nullptr, m_matView);
+	m_matProjInv = XMMatrixInverse(nullptr, m_matProj);
 }
 
 // 렌더링 분류하기
@@ -255,6 +259,7 @@ void qCamera::render_ui()
 
 void qCamera::clear()
 {
+	m_vecDeferred.clear();
 	m_vecOpaque.clear();
 	m_vecMasked.clear();
 	m_vecTransparent.clear();

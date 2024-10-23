@@ -173,6 +173,24 @@ void qRenderMgr::CreateMaterial()
 	qAssetMgr::GetInst()->AddAsset(L"DirLightMtrl", pMtrl);
 
 
+	// PointLightShader
+	pShader = new qGraphicShader;
+	pShader->CreateVertexShader(L"shader\\light.fx", "VS_PointLight");
+	pShader->CreatePixelShader(L"shader\\light.fx", "PS_PointLight");
+	pShader->SetRSType(RS_TYPE::CULL_FRONT);
+	pShader->SetBSType(BS_TYPE::ONE_ONE);
+	pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_LIGHT);
+	qAssetMgr::GetInst()->AddAsset(L"PointLightShader", pShader);
+
+	// PointLightMtrl
+	pMtrl = new qMaterial(true);
+	pMtrl->SetShader(pShader);
+	pMtrl->SetTexParam(TEX_0, qAssetMgr::GetInst()->FindAsset<qTexture>(L"PositionTargetTex"));
+	pMtrl->SetTexParam(TEX_1, qAssetMgr::GetInst()->FindAsset<qTexture>(L"NormalTargetTex"));
+	qAssetMgr::GetInst()->AddAsset(L"PointLightMtrl", pMtrl);
+
+
 	// MergeShader
 	pShader = new qGraphicShader;
 	pShader->CreateVertexShader(L"shader\\merge.fx", "VS_Merge");
