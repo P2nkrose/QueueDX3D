@@ -11,6 +11,14 @@ qSkyBox::qSkyBox()
 	SetSkyBoxType(m_Type);
 }
 
+qSkyBox::qSkyBox(const qSkyBox& _Origin)
+	: qRenderComponent(_Origin)
+	, m_Type(_Origin.m_Type)
+	, m_SkyBoxTex(_Origin.m_SkyBoxTex)
+{
+	SetSkyBoxType(m_Type);
+}
+
 qSkyBox::~qSkyBox()
 {
 }

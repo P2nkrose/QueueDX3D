@@ -169,6 +169,7 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="global.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Ptr.h" />
+    <ClInclude Include="qDecal.h" />
     <ClInclude Include="qFlipBookComponent.h" />
     <ClInclude Include="qAsset.h" />
     <ClInclude Include="qAssetMgr.h" />
@@ -234,6 +235,7 @@ call EngineHeaderCopy.bat</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="qDecal.cpp" />
     <ClCompile Include="qFlipBookComponent.cpp" />
     <ClCompile Include="qAsset.cpp" />
     <ClCompile Include="qAssetInit.cpp" />

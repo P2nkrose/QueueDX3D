@@ -14,6 +14,14 @@ qLight3D::qLight3D()
 	SetLightType(LIGHT_TYPE::DIRECTIONAL);
 }
 
+qLight3D::qLight3D(const qLight3D& _Origin)
+	: qComponent(_Origin)
+	, m_Info(_Origin.m_Info)
+	, m_LightIdx(-1)
+{
+	SetLightType(m_Info.Type);
+}
+
 qLight3D::~qLight3D()
 {
 }
@@ -48,6 +56,9 @@ void qLight3D::FinalTick()
 	m_Info.WorldPos = Transform()->GetWorldPos();
 	m_Info.WorldDir = Transform()->GetWorldDir(DIR::FRONT);
 
+	// PointLight, SphereMesh, r = 0.5f
+	Transform()->SetRelativeScale(m_Info.Radius * 2.f, m_Info.Radius * 2.f, m_Info.Radius * 2.f);
+
 	// 자신을 Render Manager 에 등록시킴
 	m_LightIdx = qRenderMgr::GetInst()->RegisterLight3D(this);
 }
@@ -68,8 +79,7 @@ void qLight3D::SetRadius(float _Radius)
 {
 	m_Info.Radius = _Radius;
 
-	// PointLight, SphereMesh, r = 0.5f
-	Transform()->SetRelativeScale(_Radius * 2.f, _Radius * 2.f, _Radius * 2.f);
+	m_Info.Radius = _Radius;
 }
 
 

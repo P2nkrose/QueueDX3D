@@ -12,6 +12,7 @@ class qSkyBox : public qRenderComponent
 public:
 	CLONE(qSkyBox);
 	qSkyBox();
+	qSkyBox(const qSkyBox& _Origin);
 	~qSkyBox();
 
 public:

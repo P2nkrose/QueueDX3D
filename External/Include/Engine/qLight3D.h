@@ -6,6 +6,7 @@ class qLight3D : public qComponent
 public:
 	CLONE(qLight3D);
 	qLight3D();
+	qLight3D(const qLight3D& _Origin);
 	~qLight3D();
 
 public:

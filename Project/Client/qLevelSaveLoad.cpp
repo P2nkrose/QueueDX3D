@@ -215,7 +215,7 @@ qComponent* qLevelSaveLoad::GetComponent(COMPONENT_TYPE _Type)
 		return  new qLight2D;
 
 	case COMPONENT_TYPE::LIGHT3D:
-		break;
+		return new qLight3D;
 
 	case COMPONENT_TYPE::FLIPBOOKCOMPONENT:
 		return new qFlipBookComponent;
@@ -242,11 +242,11 @@ qComponent* qLevelSaveLoad::GetComponent(COMPONENT_TYPE _Type)
 		return new qParticleSystem;
 		
 
-	case COMPONENT_TYPE::DECAl:
-		break;
+	case COMPONENT_TYPE::DECAL:
+		return new qDecal;
 
 	case COMPONENT_TYPE::SKYBOX:
-		break;
+		return new qSkyBox;
 
 	case COMPONENT_TYPE::LANDSCAPE:
 		break;

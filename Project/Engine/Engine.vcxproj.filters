@@ -378,6 +378,9 @@
     <ClInclude Include="qMRT.h">
       <Filter>04. Manager\06. RenderMgr\MRT</Filter>
     </ClInclude>
+    <ClInclude Include="qDecal.h">
+      <Filter>08. Component\10. RenderComponent\04. Decal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -541,6 +544,9 @@
     </ClCompile>
     <ClCompile Include="qRenderMgr_Init.cpp">
       <Filter>04. Manager\06. RenderMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="qDecal.cpp">
+      <Filter>08. Component\10. RenderComponent\04. Decal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
