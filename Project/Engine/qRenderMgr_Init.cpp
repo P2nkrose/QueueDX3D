@@ -143,6 +143,29 @@ void qRenderMgr::CreateMRT()
 		m_arrMRT[(UINT)MRT_TYPE::LIGHT]->SetClearColor(arrClearColor, false);
 	}
 
+
+	// =====
+	// DECAL
+	// =====
+	{
+		Vec2 vResolution = qDevice::GetInst()->GetResolution();
+
+		Ptr<qTexture> arrRT[8] =
+		{
+			qAssetMgr::GetInst()->FindAsset<qTexture>(L"AlbedoTargetTex"),
+			qAssetMgr::GetInst()->FindAsset<qTexture>(L"EmissiveTargetTex"),
+		};
+
+		Ptr<qTexture> pDSTex = nullptr;
+		Vec4		  arrClearColor[8] = { Vec4(0.f, 0.f, 0.f, 0.f), };
+
+		m_arrMRT[(UINT)MRT_TYPE::DECAL] = new qMRT;
+		m_arrMRT[(UINT)MRT_TYPE::DECAL]->SetName(L"Decal");
+		m_arrMRT[(UINT)MRT_TYPE::DECAL]->Create(2, arrRT, pDSTex);
+		m_arrMRT[(UINT)MRT_TYPE::DECAL]->SetClearColor(arrClearColor, false);
+	}
+
+
 }
 
 
@@ -206,7 +229,12 @@ void qRenderMgr::CreateMaterial()
 	m_MergeMtrl->SetTexParam(TEX_0, qAssetMgr::GetInst()->FindAsset<qTexture>(L"AlbedoTargetTex"));
 	m_MergeMtrl->SetTexParam(TEX_1, qAssetMgr::GetInst()->FindAsset<qTexture>(L"DiffuseTargetTex"));
 	m_MergeMtrl->SetTexParam(TEX_2, qAssetMgr::GetInst()->FindAsset<qTexture>(L"SpecularTargetTex"));
+	m_MergeMtrl->SetTexParam(TEX_3, qAssetMgr::GetInst()->FindAsset<qTexture>(L"EmissiveTargetTex"));
 
 	// RectMesh
 	m_RectMesh = qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh");
+
+	// DecalMtrl
+	Ptr<qMaterial> pDecalMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DecalMtrl");
+	pDecalMtrl->SetTexParam(TEX_0, qAssetMgr::GetInst()->FindAsset<qTexture>(L"PositionTargetTex"));
 }

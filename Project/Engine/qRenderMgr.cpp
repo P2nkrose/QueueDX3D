@@ -248,6 +248,14 @@ void qRenderMgr::Render(qCamera* _Cam)
 	m_arrMRT[(UINT)MRT_TYPE::DEFERRED]->OMSet();
 	_Cam->render_deferred();
 
+
+	// ===============
+	// DECAL RENDERING
+	// ===============
+	m_arrMRT[(UINT)MRT_TYPE::DECAL]->OMSet();
+	_Cam->render_decal();
+
+
 	// ===============
 	// LIGHT RENDERING
 	// ===============

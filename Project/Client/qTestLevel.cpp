@@ -199,6 +199,8 @@ void qTestLevel::CreateTestLevel()
 	pDecal->Transform()->SetRelativePos(0.f, 0.f, 1000.f);
 	pDecal->Transform()->SetRelativeScale(100.f, 100.f, 100.f);
 
+	pDecal->Decal()->SetDecalTexture(qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\MagicCircle.png"));
+
 	pLevel->AddObject(3, pDecal);
 
 	// 충돌 지정

@@ -103,6 +103,7 @@ enum class BS_TYPE
 	ALPHABLEND_COVERAGE,
 	ALPHABLEND,		// 알파값을 적용시키는 알파블랜드
 	ONE_ONE,		// 1:1로 합산출력함
+	DECAL,
 	END,
 };
 
@@ -276,6 +277,7 @@ enum class MRT_TYPE
 
 	DEFERRED,	// 5개
 	LIGHT,		// 2개
+	DECAL,		// 2개
 	SHADOWMAP,  // 1개
 
 	END,

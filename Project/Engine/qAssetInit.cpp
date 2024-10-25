@@ -807,7 +807,18 @@ void qAssetMgr::CreateEngineGraphicShader()
 	AddAsset(L"SkyBoxShader", pShader);
 
 
-	
+	// DecalShader
+	pShader = new qGraphicShader;
+	pShader->CreateVertexShader(L"shader\\decal.fx", "VS_Decal");
+	pShader->CreatePixelShader(L"shader\\decal.fx", "PS_Decal");
+	pShader->SetRSType(RS_TYPE::CULL_FRONT);
+	pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
+	pShader->SetBSType(BS_TYPE::DECAL);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_DECAL);
+
+	pShader->AddTexParam(TEX_0, "Decal Texture");
+
+	AddAsset(L"DecalShader", pShader);
 
 }
 
@@ -927,6 +938,9 @@ void qAssetMgr::CreateEngineMaterial()
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"SkyBoxShader"));
 	AddAsset(L"SkyBoxMtrl", pMtrl);
 
-
+	// DecalMtrl
+	pMtrl = new qMaterial(true);
+	pMtrl->SetShader(FindAsset<qGraphicShader>(L"DecalShader"));
+	AddAsset(L"DecalMtrl", pMtrl);
 }
 

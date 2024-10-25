@@ -130,6 +130,9 @@ void qCamera::SortGameObject()
 			case DOMAIN_DEFERRED:
 				m_vecDeferred.push_back(vecObjects[j]);
 				break;
+			case DOMAIN_DECAL:
+				m_vecDecal.push_back(vecObjects[j]);
+				break;
 			case DOMAIN_OPAQUE:
 				m_vecOpaque.push_back(vecObjects[j]);
 				break;
@@ -173,6 +176,15 @@ void qCamera::render_opaque()
 	for (size_t i = 0; i < m_vecOpaque.size(); ++i)
 	{
 		m_vecOpaque[i]->Render();
+	}
+}
+
+void qCamera::render_decal()
+{
+	// Decal
+	for (size_t i = 0; i < m_vecDecal.size(); ++i)
+	{
+		m_vecDecal[i]->Render();
 	}
 }
 
@@ -260,6 +272,7 @@ void qCamera::render_ui()
 void qCamera::clear()
 {
 	m_vecDeferred.clear();
+	m_vecDecal.clear();
 	m_vecOpaque.clear();
 	m_vecMasked.clear();
 	m_vecTransparent.clear();

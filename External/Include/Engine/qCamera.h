@@ -82,8 +82,8 @@ private:
 	void SortGameObject();
 
 	void render_deferred();
-
 	void render_opaque();
+	void render_decal();
 	void render_masked();
 	void render_effect();
 	void render_transparent();
@@ -113,6 +113,7 @@ private:
 	Matrix                  m_matProjInv;
 	
 	vector<qGameObject*>	m_vecDeferred;			// Deferred
+	vector<qGameObject*>    m_vecDecal;				// Decal
 	vector<qGameObject*>	m_vecOpaque;			// 불투명
 	vector<qGameObject*>	m_vecMasked;			// 불투명, 투명
 	vector<qGameObject*>	m_vecTransparent;		// 투명, 반투명
