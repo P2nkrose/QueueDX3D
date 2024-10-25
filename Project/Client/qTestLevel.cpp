@@ -69,21 +69,21 @@ void qTestLevel::CreateTestLevel()
 	qGameObject* pObject = nullptr;
 
 	// 3D ±¤¿ø Ãß°¡
-	pObject = new qGameObject;
-	pObject->SetName(L"Point Light");
-	pObject->AddComponent(new qTransform);
-	pObject->AddComponent(new qLight3D);
-
-	pObject->Transform()->SetRelativePos(-100.f, -300.f, 0.f);
-	pObject->Transform()->SetRelativeRotation(XM_PI / 4.f, XM_PI / 4.f, 0.f);
-
-	pObject->Light3D()->SetLightType(LIGHT_TYPE::POINT);
-	pObject->Light3D()->SetLightColor(Vec3(0.9f, 0.9f, 0.9f));
-	pObject->Light3D()->SetLightAmbient(Vec3(0.f, 0.f, 0.f));
-	pObject->Light3D()->SetSpecularCoefficient(0.3f);
-	pObject->Light3D()->SetRadius(500.f);
-
-	pLevel->AddObject(0, pObject);
+	//pObject = new qGameObject;
+	//pObject->SetName(L"Point Light");
+	//pObject->AddComponent(new qTransform);
+	//pObject->AddComponent(new qLight3D);
+	//
+	//pObject->Transform()->SetRelativePos(-100.f, -300.f, 0.f);
+	//pObject->Transform()->SetRelativeRotation(XM_PI / 4.f, XM_PI / 4.f, 0.f);
+	//
+	//pObject->Light3D()->SetLightType(LIGHT_TYPE::POINT);
+	//pObject->Light3D()->SetLightColor(Vec3(0.9f, 0.9f, 0.9f));
+	//pObject->Light3D()->SetLightAmbient(Vec3(0.f, 0.f, 0.f));
+	//pObject->Light3D()->SetSpecularCoefficient(0.3f);
+	//pObject->Light3D()->SetRadius(500.f);
+	//
+	//pLevel->AddObject(0, pObject);
 
 	pObject = new qGameObject;
 	pObject->SetName(L"Directional Light");

@@ -675,6 +675,23 @@ void qAssetMgr::CreateEngineGraphicShader()
 
 	AddAsset(L"DebugShapeShader", pShader);
 
+
+	// DebugLineShader
+	pShader = new qGraphicShader;
+	pShader->CreateVertexShader(L"shader\\debug.fx", "VS_DebugLine");
+	pShader->CreateGeometryShader(L"shader\\debug.fx", "GS_DebugLine");
+	pShader->CreatePixelShader(L"shader\\debug.fx", "PS_DebugLine");
+
+	pShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_POINTLIST);
+
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::ALPHABLEND);
+
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_DEBUG);
+
+	AddAsset(L"DebugLineShader", pShader);
+
 	
 	// TileMapShader
 	pShader = new qGraphicShader;

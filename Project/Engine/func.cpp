@@ -186,6 +186,20 @@ void DrawDebugSphere(const Matrix& _matWorld, Vec4 _Color, float _Life, bool _De
 	qRenderMgr::GetInst()->AddDebugShapeInfo(Info);
 }
 
+void DrawDebugLine(Vec3 _Start, Vec3 _End, Vec4 _Color, float _Life, bool _DepthTest)
+{
+	tDebugShapeInfo Info = {};
+
+	Info.Shape = DEBUG_SHAPE::LINE;
+	Info.vPos = _Start;
+	Info.vScale = _End;
+	Info.LifeTime = _Life;
+	Info.vColor = _Color;
+	Info.DepthTest = _DepthTest;
+
+	qRenderMgr::GetInst()->AddDebugShapeInfo(Info);
+}
+
 
 
 string ToString(const wstring& _str)
