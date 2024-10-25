@@ -241,7 +241,6 @@ qComponent* qLevelSaveLoad::GetComponent(COMPONENT_TYPE _Type)
 	case COMPONENT_TYPE::PARTICLESYSTEM:
 		return new qParticleSystem;
 		
-
 	case COMPONENT_TYPE::DECAL:
 		return new qDecal;
 

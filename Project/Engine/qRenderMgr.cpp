@@ -72,10 +72,10 @@ void qRenderMgr::Tick()
 
 			Render_Sub(m_vecCam[1]);
 
-			if (0 == m_vecCam[i]->Camera()->GetPriority())
-			{
-				RenderDebugShape();
-			}
+			//if (0 == m_vecCam[i]->Camera()->GetPriority())
+			//{
+			//	RenderDebugShape();
+			//}
 		}
 	}
 
@@ -93,7 +93,7 @@ void qRenderMgr::Tick()
 
 	// Time 정보 출력
 	qTimeMgr::GetInst()->Render();
-
+	RenderDebugShape();
 	// Clear
 	Clear();
 }
@@ -299,6 +299,9 @@ void qRenderMgr::RenderDebugShape()
 
 	for (; iter != m_DebugShapeList.end(); )
 	{
+		m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);
+		m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetRSType(RS_TYPE::CULL_NONE);
+
 		// 디버그 요청 모양에 맞는 메시를 가져옴
 		switch ((*iter).Shape)
 		{
@@ -316,6 +319,8 @@ void qRenderMgr::RenderDebugShape()
 			break;
 		case DEBUG_SHAPE::SPHERE:
 			m_DebugObject->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"SphereMesh"));
+			m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+			m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetRSType(RS_TYPE::CULL_FRONT);
 			break;
 		}
 
@@ -323,11 +328,12 @@ void qRenderMgr::RenderDebugShape()
 		m_DebugObject->Transform()->SetWorldMatrix((*iter).matWorld);
 
 		// 재질 세팅
+		m_DebugObject->MeshRender()->GetMaterial()->SetScalarParam(INT_0, (int)(*iter).Shape);
 		m_DebugObject->MeshRender()->GetMaterial()->SetScalarParam(VEC4_0, (*iter).vColor);
 
 		// 깊이판정 여부에 따라서, 쉐이더의 깊이판정 방식을 결정한다.
 		if ((*iter).DepthTest)
-			m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetDSType(DS_TYPE::LESS);
+			m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetDSType(DS_TYPE::NO_WRITE);
 		else
 			m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
 

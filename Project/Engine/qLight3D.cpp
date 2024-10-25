@@ -61,6 +61,12 @@ void qLight3D::FinalTick()
 
 	// 자신을 Render Manager 에 등록시킴
 	m_LightIdx = qRenderMgr::GetInst()->RegisterLight3D(this);
+
+	// Debug Shape
+	if (m_Info.Type == LIGHT_TYPE::POINT)
+	{
+		DrawDebugSphere(Transform()->GetWorldMat(), Vec4(0.f, 1.f, 0.f, 1.f), 0.f, true);
+	}
 }
 
 void qLight3D::Render()
