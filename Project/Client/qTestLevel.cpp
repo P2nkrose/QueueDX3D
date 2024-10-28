@@ -137,13 +137,14 @@ void qTestLevel::CreateTestLevel()
 	pSkyBox->Transform()->SetRelativeScale(1000.f, 1000.f, 1000.f);
 
 
-	//Ptr<CTexture> pSkyBoxTex = CAssetMgr::GetInst()->FindAsset<CTexture>(L"texture\\skybox\\SkyWater.dds");
-	//pSkyBox->SkyBox()->SetSkyBoxTexture(pSkyBoxTex);
-	//pSkyBox->SkyBox()->SetSkyBoxType(CUBE);		
-
-	Ptr<qTexture> pSkyBoxTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\skybox\\Sky02.jpg");
+	Ptr<qTexture> pSkyBoxTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\skybox\\SkyWater.dds");
 	pSkyBox->SkyBox()->SetSkyBoxTexture(pSkyBoxTex);
-	pSkyBox->SkyBox()->SetSkyBoxType(SPHERE);
+	pSkyBox->SkyBox()->SetSkyBoxType(CUBE);		
+
+
+	//Ptr<qTexture> pSkyBoxTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\skybox\\Sky02.jpg");
+	//pSkyBox->SkyBox()->SetSkyBoxTexture(pSkyBoxTex);
+	//pSkyBox->SkyBox()->SetSkyBoxType(SPHERE);
 
 	pLevel->AddObject(0, pSkyBox);
 
@@ -186,6 +187,7 @@ void qTestLevel::CreateTestLevel()
 
 	pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEX_0, pTex);
 	pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEX_1, pNTex);
+	pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEXCUBE_0, pSkyBoxTex);
 
 	pLevel->AddObject(3, pPlayer);
 
@@ -200,6 +202,7 @@ void qTestLevel::CreateTestLevel()
 	pDecal->Transform()->SetRelativeScale(100.f, 100.f, 100.f);
 
 	pDecal->Decal()->SetDecalTexture(qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\MagicCircle.png"));
+	pDecal->Decal()->SetEmissiveTexture(qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\MagicCircle.png"));
 
 	pLevel->AddObject(3, pDecal);
 

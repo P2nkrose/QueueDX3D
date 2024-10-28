@@ -30,6 +30,7 @@ void qDecal::Render()
 	Transform()->Binding();
 
 	GetMaterial()->SetTexParam(TEX_1, m_DecalTex);
+	GetMaterial()->SetTexParam(TEX_2, m_EmissiveTex);
 	GetMaterial()->Binding();
 
 	GetMesh()->Render();

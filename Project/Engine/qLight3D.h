@@ -37,10 +37,13 @@ public:
 
 
 private:
-	tLightInfo		m_Info;
-    int             m_LightIdx;
+	tLightInfo		    m_Info;
+    int                 m_LightIdx;
 
-    Ptr<qMesh>      m_VolumeMesh;
-    Ptr<qMaterial>  m_LightMtrl;
+    Ptr<qMesh>          m_VolumeMesh;
+    Ptr<qMaterial>      m_LightMtrl;
+
+    // 광원 시점에서 찍은 주변 사물의 깊이
+    Ptr<qTexture>       m_ShadowMapTex;
 };
 

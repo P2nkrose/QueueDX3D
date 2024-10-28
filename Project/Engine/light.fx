@@ -133,6 +133,9 @@ PS_OUT PS_PointLight(VS_OUT _in)
     
     float3 vViewNormal = NORMAL_TARGET.Sample(g_sam_0, vScreenUV).xyz;
     
+    // 그림자 판정
+    
+    
     
     
     // 해당 지점이 받을 빛의 세기를 계산한다.

@@ -17,10 +17,11 @@ public:
 
 public:
 	void SetDecalTexture(Ptr<qTexture> _Tex) { m_DecalTex = _Tex; }
-
+	void SetEmissiveTexture(Ptr<qTexture> _Tex) { m_EmissiveTex = _Tex; }
 
 
 private:
 	Ptr<qTexture>		m_DecalTex;
+	Ptr<qTexture>		m_EmissiveTex;
 };
 
