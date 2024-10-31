@@ -79,7 +79,7 @@ public:
 	const Matrix& GetProjMat() { return m_matProj; }
 	const Matrix& GetProjMatInv() { return m_matProjInv; }
 
-private:
+public:
 	void SortGameObject();
 
 	void render_deferred();

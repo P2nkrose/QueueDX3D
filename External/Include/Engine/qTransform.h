@@ -38,6 +38,8 @@ public:
 
 	const Matrix& GetWorldMat() { return m_matWorld; }
 
+public:
+	qTransform& operator= (const qTransform& _Other);
 
 public:
 	virtual void SaveToFile(FILE* _File) override;

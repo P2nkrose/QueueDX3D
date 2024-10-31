@@ -153,6 +153,9 @@ enum SHADER_DOMAIN
 	DOMAIN_POSTPROCESS,	// 후처리
 	DOMAIN_UI,			// UI
 	DOMAIN_DEBUG,		// 디버그
+
+	DOMAIN_SHADOWMAP,	// 쉐도우맵
+
 	DOMAIN_NONE,		// 미설정
 };
 

@@ -44,8 +44,11 @@ private:
     Ptr<qMesh>          m_VolumeMesh;
     Ptr<qMaterial>      m_LightMtrl;
 
-    // 광원 시점에서 찍은 주변 사물의 깊이
-    Ptr<qTexture>       m_ShadowMapTex;
+    // ShadowMap MRT
+    class qMRT*         m_ShadowMapMRT;
+
+    // ShadowMap 재질
+    Ptr<qMaterial>      m_ShadowMapMtrl;
 
     // 광원이 보유한 카메라
     qGameObject*        m_Cam;

@@ -6,12 +6,14 @@
 
 #include "qAssetMgr.h"
 #include "qCamera.h"
+#include "qMRT.h"
 
 qLight3D::qLight3D()
 	: qComponent(COMPONENT_TYPE::LIGHT3D)
 	, m_Info{}
 	, m_LightIdx(-1)
 	, m_Cam(nullptr)
+	, m_ShadowMapMRT(nullptr)
 {
 	SetLightType(LIGHT_TYPE::DIRECTIONAL);
 
@@ -46,6 +48,34 @@ void qLight3D::SetLightType(LIGHT_TYPE _Type)
 	{
 		m_VolumeMesh = qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh");
 		m_LightMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DirLightMtrl");
+
+		// ShadowMap Mtrl
+		m_ShadowMapMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DirLightShadowMapMtrl");
+
+		// 광원 카메라 옵션 설정
+		m_Cam->Camera()->SetProjType(ORTHOGRAPHIC);
+		m_Cam->Camera()->SetWidth(8192);
+		m_Cam->Camera()->SetHeight(8192);
+		m_Cam->Camera()->SetLayerAll();
+		m_Cam->Camera()->SetLayer(31, false);
+		m_Cam->Camera()->SetScale(1.f);
+
+		// 8192, 8192 해상도 ShadowMap 생성
+		Ptr<qTexture> pShadowMap = new qTexture;
+		pShadowMap->Create(8192, 8192, DXGI_FORMAT_R32_FLOAT, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE);
+
+		Ptr<qTexture> pShdowMapDepth = new qTexture;
+		pShdowMapDepth->Create(8192, 8192, DXGI_FORMAT_D24_UNORM_S8_UINT, D3D11_BIND_DEPTH_STENCIL);
+
+		// MRT 생성
+		if (nullptr != m_ShadowMapMRT)
+			m_ShadowMapMRT = new qMRT;
+
+		m_ShadowMapMRT->Create(1, &pShadowMap, pShdowMapDepth);
+		Vec4 vClearColor = Vec4(-1.f, 0.f, 0.f, 0.f);
+		m_ShadowMapMRT->SetClearColor(&vClearColor, true);
+
+
 	}
 
 	else if (m_Info.Type == LIGHT_TYPE::POINT)
@@ -93,6 +123,18 @@ void qLight3D::Render()
 
 void qLight3D::CreateShadowMap()
 {
+	// 카메라의 Transform 에 Light3D 의 Transform 정보를 복사
+	*m_Cam->Transform() = *Transform();
+
+	// MRT 설정
+	m_ShadowMapMRT->Clear();
+	m_ShadowMapMRT->OMSet();
+
+	// ShdowMap Mtrl Binding
+	m_ShadowMapMtrl->Binding();
+
+	//m_Cam->Camera()->SortGameObject();
+	//m_Cam->Camera()->render_shadowmap();
 }
 
 
