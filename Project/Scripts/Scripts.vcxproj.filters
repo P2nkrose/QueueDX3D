@@ -112,6 +112,9 @@
     <Filter Include="Scripts\4. ETC\04. HUD\02. BossHUD">
       <UniqueIdentifier>{dacae5d5-debd-40b8-9ada-ea1103397b1a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TestScript">
+      <UniqueIdentifier>{cae15e81-c02c-4870-b9e6-acb8a30a8dc3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -219,6 +222,9 @@
     <ClInclude Include="qBossHUDScript.h">
       <Filter>Scripts\4. ETC\04. HUD\02. BossHUD</Filter>
     </ClInclude>
+    <ClInclude Include="qTestScript.h">
+      <Filter>TestScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -325,6 +331,9 @@
     </ClCompile>
     <ClCompile Include="qBossHUDScript.cpp">
       <Filter>Scripts\4. ETC\04. HUD\02. BossHUD</Filter>
+    </ClCompile>
+    <ClCompile Include="qTestScript.cpp">
+      <Filter>TestScript</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

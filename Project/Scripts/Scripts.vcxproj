@@ -198,6 +198,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="qSkeletonAttackScript.h" />
     <ClInclude Include="qSkeletonScript.h" />
     <ClInclude Include="qSlamScript.h" />
+    <ClInclude Include="qTestScript.h" />
     <ClInclude Include="qWallScript.h" />
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +240,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="qSkeletonAttackScript.cpp" />
     <ClCompile Include="qSkeletonScript.cpp" />
     <ClCompile Include="qSlamScript.cpp" />
+    <ClCompile Include="qTestScript.cpp" />
     <ClCompile Include="qWallScript.cpp" />
     <ClCompile Include="Scripts.cpp" />
   </ItemGroup>

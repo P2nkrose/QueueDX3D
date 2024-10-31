@@ -196,6 +196,9 @@
     <Filter Include="04. Manager\06. RenderMgr\MRT">
       <UniqueIdentifier>{b0327f42-3b7a-4f27-a8c7-0925c2a9e6dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="08. Component\07. Camera\Frustum">
+      <UniqueIdentifier>{99c9f912-54b6-4edc-9256-a10154067021}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -381,6 +384,9 @@
     <ClInclude Include="qDecal.h">
       <Filter>08. Component\10. RenderComponent\04. Decal</Filter>
     </ClInclude>
+    <ClInclude Include="qFrustum.h">
+      <Filter>08. Component\07. Camera\Frustum</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -547,6 +553,9 @@
     </ClCompile>
     <ClCompile Include="qDecal.cpp">
       <Filter>08. Component\10. RenderComponent\04. Decal</Filter>
+    </ClCompile>
+    <ClCompile Include="qFrustum.cpp">
+      <Filter>08. Component\07. Camera\Frustum</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

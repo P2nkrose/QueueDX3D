@@ -29,4 +29,5 @@ qRangeScript
 qSkeletonAttackScript
 qSkeletonScript
 qSlamScript
+qTestScript
 qWallScript

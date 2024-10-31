@@ -18,12 +18,15 @@
 #include "qAssetMgr.h"
 #include "qMRT.h"
 
+#include "qFrustum.h"
+
 
 qCamera::qCamera()
 	: qComponent(COMPONENT_TYPE::CAMERA)
 	, m_Priority(-1)
 	, m_LayerCheck(0)
 	, m_ProjType(PROJ_TYPE::ORTHOGRAPHIC)
+	, m_Frustum(nullptr)
 	, m_Width(0)
 	, m_Height(0)
 	, m_Far(100000.f)
@@ -34,10 +37,30 @@ qCamera::qCamera()
 	m_Width = vResolution.x;
 	m_Height = vResolution.y;
 	m_AspectRatio = m_Width / m_Height;
+
+	// Frustum 생성
+	m_Frustum = new qFrustum(this);
+}
+
+qCamera::qCamera(const qCamera& _Other)
+	: qComponent(_Other)
+	, m_Priority(-1)
+	, m_LayerCheck(_Other.m_LayerCheck)
+	, m_ProjType(_Other.m_ProjType)
+	, m_Frustum(nullptr)
+	, m_Width(_Other.m_Width)
+	, m_Height(_Other.m_Height)
+	, m_Far(_Other.m_Far)
+	, m_FOV(_Other.m_FOV)
+	, m_ProjectionScale(_Other.m_ProjectionScale)
+{
+	m_Frustum = _Other.m_Frustum->Clone();
 }
 
 qCamera::~qCamera()
 {
+	if (nullptr != m_Frustum)
+		delete m_Frustum;
 }
 
 void qCamera::Begin()
@@ -97,6 +120,9 @@ void qCamera::FinalTick()
 	// 역행렬 계산
 	m_matViewInv = XMMatrixInverse(nullptr, m_matView);
 	m_matProjInv = XMMatrixInverse(nullptr, m_matProj);
+
+	// Frustum Update
+	m_Frustum->FinalTick();
 }
 
 // 렌더링 분류하기
@@ -121,6 +147,14 @@ void qCamera::SortGameObject()
 			{
 				continue;
 			}
+
+			// 절두체 검사를 진행 함, 실패 함
+			//if ( vecObjects[j]->GetRenderComponent()->IsFrustumCheck()
+			//		&& false == m_Frustum->FrustumCheck(vecObjects[j]->Transform()->GetWorldPos()
+			//						  , vecObjects[j]->Transform()->GetWorldScale().x / 2.f))
+			//		{
+			//			continue;
+			//		}
 
 			Ptr<qGraphicShader> pShader = vecObjects[j]->GetRenderComponent()->GetMaterial()->GetShader();
 			SHADER_DOMAIN Domain = pShader->GetDomain();

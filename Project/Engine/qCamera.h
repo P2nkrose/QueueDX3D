@@ -2,6 +2,7 @@
 #include "qComponent.h"
 
 class qGameObject;
+class qFrustum;
 
 enum PROJ_TYPE
 {
@@ -17,12 +18,12 @@ public:
 
 	CLONE(qCamera);
 	qCamera();
+	qCamera(const qCamera& _Other);
 	~qCamera();
 
 public:
 	virtual void Begin() override;
 	virtual void FinalTick() override;
-	void Render();
 
 
 public:
@@ -99,6 +100,7 @@ private:
 	UINT					m_LayerCheck;			// 원하는 레이어만 카메라에 찍히도록 설정
 
 	PROJ_TYPE				m_ProjType;
+	qFrustum*				m_Frustum;
 
 	float					m_Width;
 	float					m_Height;

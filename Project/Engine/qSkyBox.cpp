@@ -9,6 +9,8 @@ qSkyBox::qSkyBox()
 	, m_Type(SPHERE)
 {
 	SetSkyBoxType(m_Type);
+
+	SetFrustumCheck(false);
 }
 
 qSkyBox::qSkyBox(const qSkyBox& _Origin)

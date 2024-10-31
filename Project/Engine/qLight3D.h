@@ -11,12 +11,13 @@ public:
 
 public:
 	virtual void FinalTick() override;
-
-public:
 	virtual void SaveToFile(FILE* _File) override;
 	virtual void LoadFromFile(FILE* _File) override;
 
+
+public:
     void Render();
+    void CreateShadowMap();
 
 public:
     void SetLightType(LIGHT_TYPE _Type);
@@ -45,5 +46,8 @@ private:
 
     // 광원 시점에서 찍은 주변 사물의 깊이
     Ptr<qTexture>       m_ShadowMapTex;
+
+    // 광원이 보유한 카메라
+    qGameObject*        m_Cam;
 };
 

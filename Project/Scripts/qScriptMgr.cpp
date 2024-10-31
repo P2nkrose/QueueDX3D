@@ -32,6 +32,7 @@
 #include "qSkeletonAttackScript.h"
 #include "qSkeletonScript.h"
 #include "qSlamScript.h"
+#include "qTestScript.h"
 #include "qWallScript.h"
 
 void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
@@ -67,6 +68,7 @@ void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qSkeletonAttackScript");
 	_vec.push_back(L"qSkeletonScript");
 	_vec.push_back(L"qSlamScript");
+	_vec.push_back(L"qTestScript");
 	_vec.push_back(L"qWallScript");
 }
 
@@ -134,6 +136,8 @@ qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
 		return new qSkeletonScript;
 	if (L"qSlamScript" == _strScriptName)
 		return new qSlamScript;
+	if (L"qTestScript" == _strScriptName)
+		return new qTestScript;
 	if (L"qWallScript" == _strScriptName)
 		return new qWallScript;
 	return nullptr;
@@ -235,6 +239,9 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::SLAMSCRIPT:
 		return new qSlamScript;
+		break;
+	case (UINT)SCRIPT_TYPE::TESTSCRIPT:
+		return new qTestScript;
 		break;
 	case (UINT)SCRIPT_TYPE::WALLSCRIPT:
 		return new qWallScript;
@@ -369,6 +376,10 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 
 	case SCRIPT_TYPE::SLAMSCRIPT:
 		return L"qSlamScript";
+		break;
+
+	case SCRIPT_TYPE::TESTSCRIPT:
+		return L"qTestScript";
 		break;
 
 	case SCRIPT_TYPE::WALLSCRIPT:

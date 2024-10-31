@@ -5,13 +5,20 @@
 #include "qTransform.h"
 
 #include "qAssetMgr.h"
+#include "qCamera.h"
 
 qLight3D::qLight3D()
 	: qComponent(COMPONENT_TYPE::LIGHT3D)
 	, m_Info{}
 	, m_LightIdx(-1)
+	, m_Cam(nullptr)
 {
 	SetLightType(LIGHT_TYPE::DIRECTIONAL);
+
+	// 광원 전용 카메라
+	m_Cam = new qGameObject;
+	m_Cam->AddComponent(new qCamera);
+	m_Cam->AddComponent(new qTransform);
 }
 
 qLight3D::qLight3D(const qLight3D& _Origin)
@@ -20,10 +27,15 @@ qLight3D::qLight3D(const qLight3D& _Origin)
 	, m_LightIdx(-1)
 {
 	SetLightType(m_Info.Type);
+
+	// 카메라 복사
+	m_Cam = _Origin.m_Cam->Clone();
 }
 
 qLight3D::~qLight3D()
 {
+	if (nullptr != m_Cam)
+		delete m_Cam;
 }
 
 void qLight3D::SetLightType(LIGHT_TYPE _Type)
@@ -77,6 +89,10 @@ void qLight3D::Render()
 	
 	m_LightMtrl->Binding();
 	m_VolumeMesh->Render();
+}
+
+void qLight3D::CreateShadowMap()
+{
 }
 
 
