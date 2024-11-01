@@ -97,7 +97,7 @@ void qTestLevel::CreateTestLevel()
 	pObject->Light3D()->SetLightColor(Vec3(0.9f, 0.9f, 0.9f));
 	pObject->Light3D()->SetLightAmbient(Vec3(0.f, 0.f, 0.f));
 	pObject->Light3D()->SetSpecularCoefficient(0.3f);
-	pObject->Light3D()->SetRadius(500.f);
+	pObject->Light3D()->SetRadius(400.f);
 
 	pLevel->AddObject(0, pObject);
 
