@@ -37,6 +37,8 @@ struct PS_OUT
 #define LIGHT_IDX       g_int_0
 #define POS_TARGET      g_tex_0
 #define NORMAL_TARGET   g_tex_1
+#define SHADOW_MAP      g_tex_2
+#define LIGHT_VP        g_mat_0
 // ================================
 
 
@@ -134,7 +136,7 @@ PS_OUT PS_PointLight(VS_OUT _in)
     float3 vViewNormal = NORMAL_TARGET.Sample(g_sam_0, vScreenUV).xyz;
     
     // 그림자 판정
-    
+    g_tex_2;
     
     
     

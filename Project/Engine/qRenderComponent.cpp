@@ -5,6 +5,7 @@
 #include "qLevelMgr.h"
 #include "qLevel.h"
 
+#include "qTransform.h"
 
 qRenderComponent::qRenderComponent(COMPONENT_TYPE _Type)
 	: qComponent(_Type)
@@ -36,6 +37,14 @@ qRenderComponent::qRenderComponent(const qRenderComponent& _Origin)
 
 qRenderComponent::~qRenderComponent()
 {
+}
+
+void qRenderComponent::render_shadowmap()
+{
+	// 재질은 ShadowMapMtrl 로 이미 Binding 되어 있는 걸 사용할 것
+	// 자신이 선택한 Mesh 로 렌더링 요청을 하면 된다.
+	Transform()->Binding();
+	GetMesh()->Render();
 }
 
 void qRenderComponent::SetMaterial(Ptr<qMaterial> _Mtrl)

@@ -36,6 +36,10 @@ void qDecal::Render()
 	GetMesh()->Render();
 }
 
+void qDecal::render_shadowmap()
+{
+}
+
 void qDecal::SaveToFile(FILE* _File)
 {
 }

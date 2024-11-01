@@ -125,6 +125,8 @@ void qCamera::FinalTick()
 	m_Frustum->FinalTick();
 }
 
+
+
 // 렌더링 분류하기
 void qCamera::SortGameObject()
 {
@@ -315,6 +317,57 @@ void qCamera::clear()
 	m_vecPostProcess.clear();
 	m_vecUI.clear();
 }
+
+
+void qCamera::SortGameObject_ShadowMap()
+{
+	qLevel* pLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+
+	for (UINT i = 0; i < MAX_LAYER; ++i)
+	{
+		if (false == (m_LayerCheck & (1 << i)))
+		{
+			continue;
+		}
+
+		qLayer* pLayer = pLevel->GetLayer(i);
+
+		const vector<qGameObject*>& vecObjects = pLayer->GetObjects();
+		for (size_t j = 0; j < vecObjects.size(); ++j)
+		{
+			if (nullptr == vecObjects[j]->GetRenderComponent()
+				|| nullptr == vecObjects[j]->GetRenderComponent()->GetMesh()
+				|| nullptr == vecObjects[j]->GetRenderComponent()->GetMaterial()
+				|| nullptr == vecObjects[j]->GetRenderComponent()->GetMaterial()->GetShader())
+			{
+				continue;
+			}
+
+			// 절두체 검사를 진행 함, 실패 함
+			//if ( vecObjects[j]->GetRenderComponent()->IsFrustumCheck()
+			//	&& false == m_Frustum->FrustumCheck(vecObjects[j]->Transform()->GetWorldPos()
+			//									  , vecObjects[j]->Transform()->GetWorldScale().x / 2.f))
+			//{
+			//	continue;
+			//}
+
+			m_vecShadowMap.push_back(vecObjects[j]);
+		}
+	}
+}
+
+
+void qCamera::render_shadowmap()
+{
+	for (size_t i = 0; i < m_vecShadowMap.size(); ++i)
+	{
+		m_vecShadowMap[i]->GetRenderComponent()->render_shadowmap();
+	}
+
+	m_vecShadowMap.clear();
+}
+
+
 
 
 

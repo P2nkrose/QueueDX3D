@@ -52,5 +52,8 @@ private:
 
     // 광원이 보유한 카메라
     qGameObject*        m_Cam;
+
+    // 타겟 포지션
+    Vec3                m_TargetPos;
 };
 

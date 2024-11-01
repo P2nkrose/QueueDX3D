@@ -158,6 +158,10 @@ void qParticleSystem::Render()
 
 }
 
+void qParticleSystem::render_shadowmap()
+{
+}
+
 void qParticleSystem::CaculateSpawnCount()
 {
 	m_Time += EngineDT;

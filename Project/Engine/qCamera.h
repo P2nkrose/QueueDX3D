@@ -25,6 +25,10 @@ public:
 	virtual void Begin() override;
 	virtual void FinalTick() override;
 
+public:
+	void SortGameObject_ShadowMap();
+	void render_shadowmap();
+
 
 public:
 	virtual void SaveToFile(FILE* _File) override;
@@ -95,6 +99,7 @@ public:
 	void clear();
 
 
+
 private:
 	int						m_Priority;				// 우선순위
 	UINT					m_LayerCheck;			// 원하는 레이어만 카메라에 찍히도록 설정
@@ -124,6 +129,7 @@ private:
 	vector<qGameObject*>	m_vecPostProcess;		// 후처리 오브젝트
 
 	vector<qGameObject*>	m_vecUI;				// UI 오브젝트
-
+	 
+	vector<qGameObject*>	m_vecShadowMap;			// 광원 시점에서 렌더링할 물체들
 };
 

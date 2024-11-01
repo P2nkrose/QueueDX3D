@@ -76,6 +76,10 @@ void qSkyBox::Render()
 	GetMesh()->Render();
 }
 
+void qSkyBox::render_shadowmap()
+{
+}
+
 void qSkyBox::SaveToFile(FILE* _File)
 {
 }

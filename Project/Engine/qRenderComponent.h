@@ -9,9 +9,11 @@ public:
 	~qRenderComponent();
 
 public:
+	virtual qRenderComponent* Clone() PURE;
 	virtual void FinalTick() PURE;
 	virtual void Render() PURE;
-	virtual qRenderComponent* Clone() PURE;
+	
+	virtual void render_shadowmap();
 
 public:
 	void SetMesh(Ptr<qMesh> _Mesh) { m_Mesh = _Mesh; }

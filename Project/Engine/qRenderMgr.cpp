@@ -228,6 +228,16 @@ void qRenderMgr::RenderStart()
 
 void qRenderMgr::Render(qCamera* _Cam)
 {
+	// ================
+	// Create ShadowMap
+	// ================
+	// 광원 시점에서 물체들의 깊이를 기록
+	for (size_t i = 0; i < m_vecLight3D.size(); ++i)
+	{
+		m_vecLight3D[i]->CreateShadowMap();
+	}
+
+
 	// 오브젝트 분류
 	_Cam->SortGameObject();
 
@@ -242,14 +252,7 @@ void qRenderMgr::Render(qCamera* _Cam)
 	// MRT 모두 클리어
 	ClearMRT();
 
-	// ================
-	// Create ShadowMap
-	// ================
-	// 광원 시점에서 물체들의 깊이를 기록
-	for (size_t i = 0; i < m_vecLight3D.size(); ++i)
-	{
-		m_vecLight3D[i]->CreateShadowMap();
-	}
+
 
 
 	// ==================
