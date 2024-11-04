@@ -113,6 +113,70 @@ int qGraphicShader::CreateVertexShader(const wstring& _RelativePath, const strin
 	return S_OK;
 }
 
+int qGraphicShader::CreateHullShader(const wstring& _RelativePath, const string& _FuncName)
+{
+	wstring strFilePath = qPathMgr::GetInst()->GetContentPath();
+	strFilePath += _RelativePath;
+
+	HRESULT hr = D3DCompileFromFile(strFilePath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
+		, _FuncName.c_str(), "hs_5_0", D3DCOMPILE_DEBUG, 0
+		, m_HSBlob.GetAddressOf(), m_ErrBlob.GetAddressOf());
+
+	if (FAILED(hr))
+	{
+		if (nullptr != m_ErrBlob)
+		{
+			MessageBoxA(nullptr, (char*)m_ErrBlob->GetBufferPointer(), "쉐이더 컴파일 실패", MB_OK);
+		}
+		else
+		{
+			errno_t err = GetLastError();
+			wchar_t szErrMsg[255] = {};
+			swprintf_s(szErrMsg, 255, L"Error Code : %d", err);
+			MessageBox(nullptr, szErrMsg, L"쉐이더 컴파일 실패", MB_OK);
+		}
+
+		return E_FAIL;
+	}
+
+	DEVICE->CreateHullShader(m_HSBlob->GetBufferPointer()
+		, m_HSBlob->GetBufferSize(), nullptr, m_HS.GetAddressOf());
+
+	return S_OK;
+}
+
+int qGraphicShader::CreateDomainShader(const wstring& _RelativePath, const string& _FuncName)
+{
+	wstring strFilePath = qPathMgr::GetInst()->GetContentPath();
+	strFilePath += _RelativePath;
+
+	HRESULT hr = D3DCompileFromFile(strFilePath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
+		, _FuncName.c_str(), "ds_5_0", D3DCOMPILE_DEBUG, 0
+		, m_DSBlob.GetAddressOf(), m_ErrBlob.GetAddressOf());
+
+	if (FAILED(hr))
+	{
+		if (nullptr != m_ErrBlob)
+		{
+			MessageBoxA(nullptr, (char*)m_ErrBlob->GetBufferPointer(), "쉐이더 컴파일 실패", MB_OK);
+		}
+		else
+		{
+			errno_t err = GetLastError();
+			wchar_t szErrMsg[255] = {};
+			swprintf_s(szErrMsg, 255, L"Error Code : %d", err);
+			MessageBox(nullptr, szErrMsg, L"쉐이더 컴파일 실패", MB_OK);
+		}
+
+		return E_FAIL;
+	}
+
+	DEVICE->CreateDomainShader(m_DSBlob->GetBufferPointer()
+		, m_DSBlob->GetBufferSize(), nullptr, m_DS.GetAddressOf());
+
+	return S_OK;
+}
+
 int qGraphicShader::CreateGeometryShader(const wstring& _RelativePath, const string& _FuncName)
 {
 	wstring strFilePath = qPathMgr::GetInst()->GetContentPath();
@@ -184,6 +248,8 @@ void qGraphicShader::Binding()
 	CONTEXT->IASetInputLayout(m_Layout.Get());
 
 	CONTEXT->VSSetShader(m_VS.Get(), nullptr, 0);
+	CONTEXT->HSSetShader(m_HS.Get(), nullptr, 0);
+	CONTEXT->DSSetShader(m_DS.Get(), nullptr, 0);
 	CONTEXT->GSSetShader(m_GS.Get(), nullptr, 0);
 	CONTEXT->PSSetShader(m_PS.Get(), nullptr, 0);
 

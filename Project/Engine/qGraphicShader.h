@@ -24,6 +24,8 @@ public:
 
 public:
 	int CreateVertexShader(const wstring& _RelativePath, const string& _FuncName);
+	int CreateHullShader(const wstring& _RelativePath, const string& _FuncName);
+	int CreateDomainShader(const wstring& _RelativePath, const string& _FuncName);
 	int CreateGeometryShader(const wstring& _RelativePath, const string& _FuncName);
 	int CreatePixelShader(const wstring& _RelativePath, const string& _FuncName);
 
@@ -64,6 +66,14 @@ private:
 	// ¡ˆø¿∏ﬁ∆Æ∏Æ Ω¶¿Ã¥ı (Geometry Shader)
 	ComPtr<ID3DBlob>				m_GSBlob;
 	ComPtr<ID3D11GeometryShader>	m_GS;
+
+	// «Ê Ω¶¿Ã¥ı (Hull Shader)
+	ComPtr<ID3DBlob>			    m_HSBlob;
+	ComPtr<ID3D11HullShader>        m_HS;
+
+	// µµ∏ﬁ¿Œ Ω¶¿Ã¥ı (Domain Shader)
+	ComPtr<ID3DBlob>			    m_DSBlob;
+	ComPtr<ID3D11DomainShader>      m_DS;
 
 	ComPtr<ID3D11InputLayout>		m_Layout;
 

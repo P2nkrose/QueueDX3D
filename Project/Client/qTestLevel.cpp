@@ -137,14 +137,14 @@ void qTestLevel::CreateTestLevel()
 	pSkyBox->Transform()->SetRelativeScale(1000.f, 1000.f, 1000.f);
 
 
-	Ptr<qTexture> pSkyBoxTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\skybox\\SkyWater.dds");
-	pSkyBox->SkyBox()->SetSkyBoxTexture(pSkyBoxTex);
-	pSkyBox->SkyBox()->SetSkyBoxType(CUBE);		
-
-
-	//Ptr<qTexture> pSkyBoxTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\skybox\\Sky02.jpg");
+	//Ptr<qTexture> pSkyBoxTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\skybox\\SkyWater.dds");
 	//pSkyBox->SkyBox()->SetSkyBoxTexture(pSkyBoxTex);
-	//pSkyBox->SkyBox()->SetSkyBoxType(SPHERE);
+	//pSkyBox->SkyBox()->SetSkyBoxType(CUBE);		
+
+
+	Ptr<qTexture> pSkyBoxTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\skybox\\Sky02.jpg");
+	pSkyBox->SkyBox()->SetSkyBoxTexture(pSkyBoxTex);
+	pSkyBox->SkyBox()->SetSkyBoxType(SPHERE);
 
 	pLevel->AddObject(0, pSkyBox);
 
@@ -187,7 +187,7 @@ void qTestLevel::CreateTestLevel()
 
 	pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEX_0, pTex);
 	pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEX_1, pNTex);
-	pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEXCUBE_0, pSkyBoxTex);
+	//pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEXCUBE_0, pSkyBoxTex);
 
 	pLevel->AddObject(3, pPlayer);
 
@@ -205,6 +205,24 @@ void qTestLevel::CreateTestLevel()
 	pDecal->Decal()->SetEmissiveTexture(qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\MagicCircle.png"));
 
 	pLevel->AddObject(3, pDecal);
+
+
+
+	// Tesselation 추가
+	qGameObject* pTestObj = new qGameObject;
+	pTestObj->SetName(L"TessTest");
+	pTestObj->AddComponent(new qTransform);
+	pTestObj->AddComponent(new qMeshRender);
+
+	pTestObj->Transform()->SetRelativePos(-500.f, 1000.f, 0.f);
+	pTestObj->Transform()->SetRelativeScale(500.f, 500.f, 1.f);
+	pTestObj->Transform()->SetRelativeRotation(0.f, 0.f, 0.f);
+
+	pTestObj->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pTestObj->MeshRender()->SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"TessTestMtrl"));
+	pLevel->AddObject(3, pTestObj);
+
+
 
 	// 충돌 지정
 	qCollisionMgr::GetInst()->CollisionCheck(3, 4);		// Player vs Monster

@@ -830,6 +830,24 @@ void qAssetMgr::CreateEngineGraphicShader()
 	pShader->SetBSType(BS_TYPE::DEFAULT);
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_SHADOWMAP);
 	AddAsset(L"DirLightShadowMap", pShader);
+
+	// Tessellation Test Shader
+	pShader = new qGraphicShader;
+	pShader->CreateVertexShader(L"shader\\tess_test.fx", "VS_Tess");
+	pShader->CreateHullShader(L"shader\\tess_test.fx", "HS_Tess");
+	pShader->CreateDomainShader(L"shader\\tess_test.fx", "DS_Tess");
+	pShader->CreatePixelShader(L"shader\\tess_test.fx", "PS_Tess");
+
+	pShader->SetRSType(RS_TYPE::WIRE_FRAME);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+	pShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_3_CONTROL_POINT_PATCHLIST);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_OPAQUE);
+
+	pShader->AddScalarParam(FLOAT_0, "TessFactor");
+	//pShader->AddScalarParam(INT_0, "TessFactor");
+
+	AddAsset(L"TessTestShader", pShader);
 }
 
 #include "qParticleTickCS.h"
@@ -957,5 +975,10 @@ void qAssetMgr::CreateEngineMaterial()
 	pMtrl = new qMaterial(true);
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"DirLightShadowMap"));
 	AddAsset(L"DirLightShadowMapMtrl", pMtrl);
+
+	// TessTestMtrl
+	pMtrl = new qMaterial(true);
+	pMtrl->SetShader(FindAsset<qGraphicShader>(L"TessTestShader"));
+	AddAsset(L"TessTestMtrl", pMtrl);
 }
 
