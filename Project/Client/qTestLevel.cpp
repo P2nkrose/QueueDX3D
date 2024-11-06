@@ -149,26 +149,28 @@ void qTestLevel::CreateTestLevel()
 	pLevel->AddObject(0, pSkyBox);
 
 
-
-	// 평면 오브젝트
-	qGameObject* pPlane = new qGameObject;
-	pPlane->SetName(L"Plane");
-	pPlane->AddComponent(new qTransform);
-	pPlane->AddComponent(new qMeshRender);
-
-	pPlane->Transform()->SetRelativePos(0.f, -500.f, 0.f);
-	pPlane->Transform()->SetRelativeScale(4000.f, 4000.f, 1.f);
-	pPlane->Transform()->SetRelativeRotation(XM_PI / 2.f, 0.f, 0.f);
-
-	pPlane->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pPlane->MeshRender()->SetMaterial(pStd3D_DeferredMtrl);
-
 	Ptr<qTexture> pTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\LandScapeTexture\\gl1_ground_II_albedo.TGA");
 	Ptr<qTexture> pNTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\LandScapeTexture\\gl1_ground_II_normal.TGA");
 
-	pPlane->MeshRender()->GetMaterial()->SetTexParam(TEX_0, pTex);
-	pPlane->MeshRender()->GetMaterial()->SetTexParam(TEX_1, pNTex);
-	pLevel->AddObject(3, pPlane);
+
+	// 평면 오브젝트
+	//qGameObject* pPlane = new qGameObject;
+	//pPlane->SetName(L"Plane");
+	//pPlane->AddComponent(new qTransform);
+	//pPlane->AddComponent(new qMeshRender);
+	//
+	//pPlane->Transform()->SetRelativePos(0.f, -500.f, 0.f);
+	//pPlane->Transform()->SetRelativeScale(4000.f, 4000.f, 1.f);
+	//pPlane->Transform()->SetRelativeRotation(XM_PI / 2.f, 0.f, 0.f);
+	//
+	//pPlane->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	//pPlane->MeshRender()->SetMaterial(pStd3D_DeferredMtrl);
+	//
+	//
+	//
+	//pPlane->MeshRender()->GetMaterial()->SetTexParam(TEX_0, pTex);
+	//pPlane->MeshRender()->GetMaterial()->SetTexParam(TEX_1, pNTex);
+	//pLevel->AddObject(3, pPlane);
 
 
 
@@ -208,19 +210,18 @@ void qTestLevel::CreateTestLevel()
 
 
 
-	// Tesselation 추가
-	qGameObject* pTestObj = new qGameObject;
-	pTestObj->SetName(L"TessTest");
-	pTestObj->AddComponent(new qTransform);
-	pTestObj->AddComponent(new qMeshRender);
+	// LandScape 추가
+	qGameObject* pLandScape = new qGameObject;
+	pLandScape->SetName(L"LandScape");
+	pLandScape->AddComponent(new qTransform);
+	pLandScape->AddComponent(new qLandScape);
 
-	pTestObj->Transform()->SetRelativePos(-500.f, 1000.f, 0.f);
-	pTestObj->Transform()->SetRelativeScale(500.f, 500.f, 1.f);
-	pTestObj->Transform()->SetRelativeRotation(0.f, 0.f, 0.f);
+	pLandScape->Transform()->SetRelativePos(0, 0.f, 0.f);
+	pLandScape->Transform()->SetRelativeScale(1000.f, 1000.f, 1000.f);
 
-	pTestObj->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pTestObj->MeshRender()->SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"TessTestMtrl"));
-	pLevel->AddObject(3, pTestObj);
+	pLandScape->LandScape()->SetFace(2, 2);
+
+	pLevel->AddObject(3, pLandScape);
 
 
 

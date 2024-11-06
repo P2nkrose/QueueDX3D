@@ -10,6 +10,8 @@
 #include <Engine/qGameObject.h>
 #include <Engine/qScript.h>
 
+#include <Engine/qRenderMgr.h>
+
 #include "qEditorMgr.h"
 #include "Inspector.h"
 #include "qLevelSaveLoad.h"
@@ -47,6 +49,8 @@ void MenuUI::Update()
 	Assets();
 
 	Editor();
+
+	RenderTarget();
 }
 
 void MenuUI::File()
@@ -293,6 +297,55 @@ void MenuUI::Editor()
 		}
 
 
+
+		ImGui::EndMenu();
+	}
+}
+
+void MenuUI::RenderTarget()
+{
+	if (ImGui::BeginMenu("RenderTarget"))
+	{
+		Ptr<qTexture> pTarget = qRenderMgr::GetInst()->GetSpecifiedTarget();
+
+		bool IsAlbedo = pTarget == qAssetMgr::GetInst()->FindAsset<qTexture>(L"AlbedoTargetTex");
+		bool IsNormal = pTarget == qAssetMgr::GetInst()->FindAsset<qTexture>(L"NormalTargetTex");
+		bool IsPosition = pTarget == qAssetMgr::GetInst()->FindAsset<qTexture>(L"PositionTargetTex");
+		bool IsDiffuse = pTarget == qAssetMgr::GetInst()->FindAsset<qTexture>(L"DiffuseTargetTex");
+		bool IsSpecular = pTarget == qAssetMgr::GetInst()->FindAsset<qTexture>(L"SpecularTargetTex");
+
+		if (ImGui::MenuItem("Albedo Target", nullptr, &IsAlbedo))
+		{
+			if (!IsAlbedo)
+				qRenderMgr::GetInst()->SetSpecifiedTarget(nullptr);
+			else
+				qRenderMgr::GetInst()->SetSpecifiedTarget(qAssetMgr::GetInst()->FindAsset<qTexture>(L"AlbedoTargetTex"));
+		}
+
+		//if (ImGui::MenuItem("Normal Target"))
+		//{
+
+		//}
+
+		//if (ImGui::MenuItem("Position Target"))
+		//{
+
+		//}
+
+		//if (ImGui::MenuItem("Emissive Target"))
+		//{
+
+		//}
+
+		//if (ImGui::MenuItem("Diffuse Target"))
+		//{
+
+		//}
+
+		//if (ImGui::MenuItem("Specular Target"))
+		//{
+
+		//}
 
 		ImGui::EndMenu();
 	}

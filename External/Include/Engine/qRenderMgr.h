@@ -24,6 +24,9 @@ public:
 
 	void PostProcessCopy();
 
+	void SetSpecifiedTarget(Ptr<qTexture> _TargetTex) { m_SpecfiedTarget = _TargetTex; }
+	Ptr<qTexture> GetSpecifiedTarget() { return m_SpecfiedTarget; }
+
 	qMRT* GetMRT(MRT_TYPE _Type) { return m_arrMRT[(UINT)_Type]; }
 
 	qCamera* GetPOVCam();
@@ -68,5 +71,6 @@ private:
 	// ∫¥«’ Ω¶¿Ã¥ı
 	Ptr<qMesh>					m_RectMesh;
 	Ptr<qMaterial>				m_MergeMtrl;
+	Ptr<qTexture>				m_SpecfiedTarget;
 };
 

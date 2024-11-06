@@ -17,6 +17,7 @@ private:
 	void GameObject();
 	void Assets();
 	void Editor();
+	void RenderTarget();
 
 private:
 	void AddScript();

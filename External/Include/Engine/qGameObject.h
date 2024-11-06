@@ -84,7 +84,7 @@ public:
 	GET_COMPONENT(Script, SCRIPT);
 	GET_COMPONENT(SkyBox, SKYBOX);
 	GET_COMPONENT(Decal, DECAL);
-
+	GET_COMPONENT(LandScape, LANDSCAPE);
 
 
 private:

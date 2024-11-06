@@ -17,6 +17,6 @@
 //#include "qStateMachine.h"
 #include "qSkyBox.h"
 #include "qDecal.h"
-//#include "qLandScape.h"
+#include "qLandScape.h"
 
 #include "qScript.h"
