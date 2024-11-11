@@ -15,13 +15,18 @@ public:
 	virtual void LoadFromFile(FILE* _File) override;
 
 public:
-	void SetFace(UINT _X, UINT _Z);
+	void SetFace(int _X, int _Z);
+	void SetHeightMap(Ptr<qTexture> _HeightMap) { m_HeightMap = _HeightMap; }
 
 private:
 	void CreateMesh();
 
 private:
-	UINT			m_FaceX;
-	UINT			m_FaceZ;
+	int					m_FaceX;
+	int					m_FaceZ;
+	Ptr<qTexture>		m_HeightMap;
+
+	float				m_TessLevel;
+
 };
 

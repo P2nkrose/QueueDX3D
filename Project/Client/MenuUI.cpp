@@ -311,6 +311,7 @@ void MenuUI::RenderTarget()
 		bool IsAlbedo = pTarget == qAssetMgr::GetInst()->FindAsset<qTexture>(L"AlbedoTargetTex");
 		bool IsNormal = pTarget == qAssetMgr::GetInst()->FindAsset<qTexture>(L"NormalTargetTex");
 		bool IsPosition = pTarget == qAssetMgr::GetInst()->FindAsset<qTexture>(L"PositionTargetTex");
+		bool IsEmissive = pTarget == qAssetMgr::GetInst()->FindAsset<qTexture>(L"EmissiveTargetTex");
 		bool IsDiffuse = pTarget == qAssetMgr::GetInst()->FindAsset<qTexture>(L"DiffuseTargetTex");
 		bool IsSpecular = pTarget == qAssetMgr::GetInst()->FindAsset<qTexture>(L"SpecularTargetTex");
 
@@ -322,30 +323,55 @@ void MenuUI::RenderTarget()
 				qRenderMgr::GetInst()->SetSpecifiedTarget(qAssetMgr::GetInst()->FindAsset<qTexture>(L"AlbedoTargetTex"));
 		}
 
-		//if (ImGui::MenuItem("Normal Target"))
-		//{
+		if (ImGui::MenuItem("Normal Target", nullptr, &IsNormal))
+		{
+			if (!IsNormal)
+				qRenderMgr::GetInst()->SetSpecifiedTarget(nullptr);
+			else
+				qRenderMgr::GetInst()->SetSpecifiedTarget(
+					qAssetMgr::GetInst()->FindAsset<qTexture>(L"NormalTargetTex")
+				);
+		}
 
-		//}
+		if (ImGui::MenuItem("Position Target", nullptr, &IsPosition))
+		{
+			if (!IsPosition)
+				qRenderMgr::GetInst()->SetSpecifiedTarget(nullptr);
+			else
+				qRenderMgr::GetInst()->SetSpecifiedTarget(
+					qAssetMgr::GetInst()->FindAsset<qTexture>(L"PositionTargetTex")
+				);
+		}
 
-		//if (ImGui::MenuItem("Position Target"))
-		//{
+		if (ImGui::MenuItem("Emissive Target", nullptr, &IsEmissive))
+		{
+			if (!IsEmissive)
+				qRenderMgr::GetInst()->SetSpecifiedTarget(nullptr);
+			else
+				qRenderMgr::GetInst()->SetSpecifiedTarget(
+					qAssetMgr::GetInst()->FindAsset<qTexture>(L"EmissiveTargetTex")
+				);
+		}
 
-		//}
+		if (ImGui::MenuItem("Diffuse Target", nullptr, &IsDiffuse))
+		{
+			if (!IsDiffuse)
+				qRenderMgr::GetInst()->SetSpecifiedTarget(nullptr);
+			else
+				qRenderMgr::GetInst()->SetSpecifiedTarget(
+					qAssetMgr::GetInst()->FindAsset<qTexture>(L"DiffuseTargetTex")
+				);
+		}
 
-		//if (ImGui::MenuItem("Emissive Target"))
-		//{
-
-		//}
-
-		//if (ImGui::MenuItem("Diffuse Target"))
-		//{
-
-		//}
-
-		//if (ImGui::MenuItem("Specular Target"))
-		//{
-
-		//}
+		if (ImGui::MenuItem("Specular Target", nullptr, &IsSpecular))
+		{
+			if (!IsSpecular)
+				qRenderMgr::GetInst()->SetSpecifiedTarget(nullptr);
+			else
+				qRenderMgr::GetInst()->SetSpecifiedTarget(
+					qAssetMgr::GetInst()->FindAsset<qTexture>(L"SpecularTargetTex")
+				);
+		}
 
 		ImGui::EndMenu();
 	}

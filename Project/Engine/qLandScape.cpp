@@ -9,6 +9,7 @@ qLandScape::qLandScape()
 	: qRenderComponent(COMPONENT_TYPE::LANDSCAPE)
 	, m_FaceX(1)
 	, m_FaceZ(1)
+	, m_TessLevel(8.f)
 {
 	SetFace(m_FaceX, m_FaceZ);
 }
@@ -26,12 +27,23 @@ void qLandScape::Render()
 	Transform()->Binding();
 
 	GetMaterial()->GetShader()->SetRSType(RS_TYPE::WIRE_FRAME);
+
+	// 지형의 면 개수
+	GetMaterial()->SetScalarParam(INT_0, m_FaceX);
+	GetMaterial()->SetScalarParam(INT_1, m_FaceZ);
+	GetMaterial()->SetScalarParam(FLOAT_0, m_TessLevel);
+
+	// 지형에 적용시킬 높이맵
+	GetMaterial()->SetTexParam(TEX_0, m_HeightMap);
+
+	// 재질 바인딩
 	GetMaterial()->Binding();
 
+	// 렌더링
 	GetMesh()->Render();
 }
 
-void qLandScape::SetFace(UINT _X, UINT _Z)
+void qLandScape::SetFace(int _X, int _Z)
 {
 	m_FaceX = _X;
 	m_FaceZ = _Z;

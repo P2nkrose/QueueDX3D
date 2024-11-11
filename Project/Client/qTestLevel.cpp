@@ -132,7 +132,7 @@ void qTestLevel::CreateTestLevel()
 
 	pSkyBox->AddComponent(new qTransform);
 	pSkyBox->AddComponent(new qSkyBox);
-
+	
 	pSkyBox->Transform()->SetRelativePos(0.f, 0.f, 0.f);
 	pSkyBox->Transform()->SetRelativeScale(1000.f, 1000.f, 1000.f);
 
@@ -217,9 +217,10 @@ void qTestLevel::CreateTestLevel()
 	pLandScape->AddComponent(new qLandScape);
 
 	pLandScape->Transform()->SetRelativePos(0, 0.f, 0.f);
-	pLandScape->Transform()->SetRelativeScale(1000.f, 1000.f, 1000.f);
+	pLandScape->Transform()->SetRelativeScale(1000.f, 3000.f, 1000.f);
 
-	pLandScape->LandScape()->SetFace(2, 2);
+	pLandScape->LandScape()->SetFace(32, 32);
+	pLandScape->LandScape()->SetHeightMap(qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\HeightMap_01.jpg"));
 
 	pLevel->AddObject(3, pLandScape);
 
