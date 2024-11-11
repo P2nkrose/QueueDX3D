@@ -26,7 +26,7 @@ void qLandScape::Render()
 {
 	Transform()->Binding();
 
-	GetMaterial()->GetShader()->SetRSType(RS_TYPE::WIRE_FRAME);
+	//GetMaterial()->GetShader()->SetRSType(RS_TYPE::WIRE_FRAME);
 
 	// 지형의 면 개수
 	GetMaterial()->SetScalarParam(INT_0, m_FaceX);
@@ -87,9 +87,9 @@ void qLandScape::CreateMesh()
 			// 1--2 
 			//  \ |
 			//    0
+			vecIdx.push_back((Row * (m_FaceX + 1)) + Col + 1);
 			vecIdx.push_back((Row * (m_FaceX + 1)) + Col + m_FaceX + 1);
 			vecIdx.push_back((Row * (m_FaceX + 1)) + Col + m_FaceX + 1 + 1);
-			vecIdx.push_back((Row * (m_FaceX + 1)) + Col + 1);
 		}
 	}
 
