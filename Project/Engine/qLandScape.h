@@ -1,6 +1,8 @@
 #pragma once
 #include "qRenderComponent.h"
 
+#include "qHeightMapCS.h"
+
 class qLandScape : public qRenderComponent
 {
 public:
@@ -9,6 +11,7 @@ public:
 	~qLandScape();
 
 public:
+	virtual void Init() override;
 	virtual void FinalTick() override;
 	virtual void Render() override;
 	virtual void SaveToFile(FILE* _File) override;
@@ -16,17 +19,28 @@ public:
 
 public:
 	void SetFace(int _X, int _Z);
-	void SetHeightMap(Ptr<qTexture> _HeightMap) { m_HeightMap = _HeightMap; }
+	void AddBrushTexture(Ptr<qTexture> _BrushTex) { m_vecBrush.push_back(_BrushTex); }
+	void SetHeightMap(Ptr<qTexture> _HeightMap) { m_HeightMap = _HeightMap; m_IsHeightMapCreated = false; }
+	void CreateHeightMap(UINT _Width, UINT _Height);
 
 private:
 	void CreateMesh();
+	void CreateComputeShader();
+	void CreateTextureAndStructuredBuffer();
 
 private:
-	int					m_FaceX;
-	int					m_FaceZ;
-	Ptr<qTexture>		m_HeightMap;
+	int							m_FaceX;
+	int							m_FaceZ;
 
-	float				m_TessLevel;
+	// Brush
+	Vec2						m_BrushScale;
+	vector<Ptr<qTexture>>		m_vecBrush;
+	UINT						m_BrushIdx;
+
+	// HeightMap
+	Ptr<qTexture>				m_HeightMap;
+	bool						m_IsHeightMapCreated;
+	Ptr<qHeightMapCS>			m_HeightMapCS;
 
 };
 

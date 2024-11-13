@@ -199,6 +199,9 @@
     <Filter Include="08. Component\07. Camera\Frustum">
       <UniqueIdentifier>{99c9f912-54b6-4edc-9256-a10154067021}</UniqueIdentifier>
     </Filter>
+    <Filter Include="HLSL\03. Compute\03. LandScape">
+      <UniqueIdentifier>{bf15a6f5-a04a-45ea-b866-fb2b8c9bb04d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -390,6 +393,9 @@
     <ClInclude Include="qLandScape.h">
       <Filter>08. Component\10. RenderComponent\06. LandScape</Filter>
     </ClInclude>
+    <ClInclude Include="qHeightMapCS.h">
+      <Filter>HLSL\03. Compute\03. LandScape</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -563,6 +569,12 @@
     <ClCompile Include="qLandScape.cpp">
       <Filter>08. Component\10. RenderComponent\06. LandScape</Filter>
     </ClCompile>
+    <ClCompile Include="qRandScape_Init.cpp">
+      <Filter>08. Component\10. RenderComponent\06. LandScape</Filter>
+    </ClCompile>
+    <ClCompile Include="qHeightMapCS.cpp">
+      <Filter>HLSL\03. Compute\03. LandScape</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -626,6 +638,9 @@
     </FxCompile>
     <FxCompile Include="landscape.fx">
       <Filter>HLSL\02. Render\02. 3D</Filter>
+    </FxCompile>
+    <FxCompile Include="heightmap.fx">
+      <Filter>HLSL\03. Compute\03. LandScape</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

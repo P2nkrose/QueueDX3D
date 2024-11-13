@@ -188,6 +188,7 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qFSM.h" />
     <ClInclude Include="qGameObject.h" />
     <ClInclude Include="qGraphicShader.h" />
+    <ClInclude Include="qHeightMapCS.h" />
     <ClInclude Include="qKeyMgr.h" />
     <ClInclude Include="qLandScape.h" />
     <ClInclude Include="qLayer.h" />
@@ -257,6 +258,7 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qFSM.cpp" />
     <ClCompile Include="qGameObject.cpp" />
     <ClCompile Include="qGraphicShader.cpp" />
+    <ClCompile Include="qHeightMapCS.cpp" />
     <ClCompile Include="qKeyMgr.cpp" />
     <ClCompile Include="qLandScape.cpp" />
     <ClCompile Include="qLayer.cpp" />
@@ -273,6 +275,7 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qParticleTickCS.cpp" />
     <ClCompile Include="qPathMgr.cpp" />
     <ClCompile Include="qPrefab.cpp" />
+    <ClCompile Include="qRandScape_Init.cpp" />
     <ClCompile Include="qRenderComponent.cpp" />
     <ClCompile Include="qRenderMgr.cpp" />
     <ClCompile Include="qRenderMgr_Init.cpp" />
@@ -311,6 +314,12 @@ call EngineHeaderCopy.bat</Command>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="func.fx">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="heightmap.fx">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
