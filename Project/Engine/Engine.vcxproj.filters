@@ -202,6 +202,12 @@
     <Filter Include="HLSL\03. Compute\03. LandScape">
       <UniqueIdentifier>{bf15a6f5-a04a-45ea-b866-fb2b8c9bb04d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="HLSL\03. Compute\03. LandScape\01. RayCasting">
+      <UniqueIdentifier>{c6cb7aaf-b27d-4273-a635-de06b9c27867}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HLSL\03. Compute\03. LandScape\02. HeightMap">
+      <UniqueIdentifier>{92932c39-9ae3-45df-a4ab-ea26fbb92e72}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -394,7 +400,10 @@
       <Filter>08. Component\10. RenderComponent\06. LandScape</Filter>
     </ClInclude>
     <ClInclude Include="qHeightMapCS.h">
-      <Filter>HLSL\03. Compute\03. LandScape</Filter>
+      <Filter>HLSL\03. Compute\03. LandScape\02. HeightMap</Filter>
+    </ClInclude>
+    <ClInclude Include="qRaycastCS.h">
+      <Filter>HLSL\03. Compute\03. LandScape\01. RayCasting</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -573,7 +582,10 @@
       <Filter>08. Component\10. RenderComponent\06. LandScape</Filter>
     </ClCompile>
     <ClCompile Include="qHeightMapCS.cpp">
-      <Filter>HLSL\03. Compute\03. LandScape</Filter>
+      <Filter>HLSL\03. Compute\03. LandScape\02. HeightMap</Filter>
+    </ClCompile>
+    <ClCompile Include="qRaycastCS.cpp">
+      <Filter>HLSL\03. Compute\03. LandScape\01. RayCasting</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -640,7 +652,10 @@
       <Filter>HLSL\02. Render\02. 3D</Filter>
     </FxCompile>
     <FxCompile Include="heightmap.fx">
-      <Filter>HLSL\03. Compute\03. LandScape</Filter>
+      <Filter>HLSL\03. Compute\03. LandScape\02. HeightMap</Filter>
+    </FxCompile>
+    <FxCompile Include="raycast.fx">
+      <Filter>HLSL\03. Compute\03. LandScape\01. RayCasting</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

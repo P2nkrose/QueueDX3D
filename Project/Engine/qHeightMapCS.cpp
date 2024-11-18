@@ -18,12 +18,12 @@ int qHeightMapCS::Binding()
         return E_FAIL;
 
     m_HeightMapTex->Binding_CS_UAV(0);
+    m_RaycastOut->Binding_CS_SRV(20);
 
     m_Const.iArr[0] = (UINT)m_HeightMapTex->Width();
     m_Const.iArr[1] = (UINT)m_HeightMapTex->Height();
 
     m_Const.v2Arr[0] = m_BrushScale;
-    m_Const.v2Arr[1] = m_BrushPos;
 
     if (nullptr != m_BrushTex)
     {
@@ -57,6 +57,9 @@ void qHeightMapCS::Clear()
 {
     m_HeightMapTex->Clear_CS_UAV();
     m_HeightMapTex = nullptr;
+
+    m_RaycastOut->Clear_CS_SRV();
+    m_RaycastOut = nullptr;
 
     if (nullptr != m_BrushTex)
     {

@@ -3,15 +3,6 @@
 
 class qStructuredBuffer;
 
-struct tRaycastOut
-{
-	Vec2	Location;
-	UINT	Distance;
-	int		Success;
-};
-
-class qStructuredBuffer;
-
 class qHeightMapCS : public qComputeShader
 {
 public:
@@ -25,7 +16,7 @@ public:
 
 
 public:
-	void SetBrushPos(Vec2 _BrushPos) { m_BrushPos = _BrushPos; }
+	void SetBrushPos(qStructuredBuffer* _Buffer) { m_RaycastOut = _Buffer; }
 	void SetBrushScale(Vec2 _BrushScale) { m_BrushScale = _BrushScale; }
 
 	void SetHeightMap(Ptr<qTexture> _HeightMap) { m_HeightMapTex = _HeightMap; }
@@ -36,7 +27,7 @@ private:
 	Ptr<qTexture>		m_HeightMapTex;
 	Ptr<qTexture>		m_BrushTex;
 
-	Vec2				m_BrushPos;
+	qStructuredBuffer*  m_RaycastOut;
 	Vec2				m_BrushScale;
 };
 

@@ -147,6 +147,12 @@ struct tParticleModule
 };
 
 
+struct tRay
+{
+	Vec3		vStart;
+	Vec3		vDir;
+};
+
 
 
 // ======================

@@ -86,12 +86,24 @@ void qLandScape::CreateComputeShader()
 		m_HeightMapCS = new qHeightMapCS;
 		qAssetMgr::GetInst()->AddAsset<qComputeShader>(L"HeightMapCS", m_HeightMapCS.Get());
 	}
+
+	// RaycastCS 생성
+	m_RaycastCS = (qRaycastCS*)qAssetMgr::GetInst()->FindAsset<qComputeShader>(L"RaycastCS").Get();
+	if (nullptr == m_RaycastCS)
+	{
+		m_RaycastCS = new qRaycastCS;
+		qAssetMgr::GetInst()->AddAsset<qComputeShader>(L"RaycastCS", m_RaycastCS.Get());
+	}
 }
 
 void qLandScape::CreateTextureAndStructuredBuffer()
 {
-
+	// Raycasting 결과를 받는 용도의 구조화버퍼
+	m_RaycastOut = new qStructuredBuffer;
+	m_RaycastOut->Create(sizeof(tRaycastOut), 1, SB_TYPE::SRV_UAV, true);
 }
+
+
 
 
 void qLandScape::CreateHeightMap(UINT _Width, UINT _Height)

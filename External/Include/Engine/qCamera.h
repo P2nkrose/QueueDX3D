@@ -78,6 +78,8 @@ public:
 	void SetScale(float _Scale) { m_ProjectionScale = _Scale; }
 	float GetScale() { return m_ProjectionScale; }
 
+	const tRay& GetRay() { return m_Ray; }
+
 	const Matrix& GetViewMat() { return m_matView; }
 	const Matrix& GetViewMatInv() { return m_matViewInv; }
 	const Matrix& GetProjMat() { return m_matProj; }
@@ -99,6 +101,9 @@ public:
 	void clear();
 
 
+private:
+	void CalcRay();
+
 
 private:
 	int						m_Priority;				// 우선순위
@@ -113,6 +118,8 @@ private:
 	float					m_Far;					// 카메라가 볼수 있는 시야 거리 (ex : 10000.f)
 	float					m_FOV;					// Field Of View (시야 범위, 시야 각)
 	float					m_ProjectionScale;
+
+	tRay					m_Ray;
 
 	Matrix                  m_matView;
 	Matrix                  m_matViewInv;

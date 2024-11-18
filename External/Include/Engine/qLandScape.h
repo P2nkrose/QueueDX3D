@@ -2,6 +2,14 @@
 #include "qRenderComponent.h"
 
 #include "qHeightMapCS.h"
+#include "qRaycastCS.h"
+
+struct tRaycastOut
+{
+	Vec2    Location;
+	UINT    Distance;
+	int     Success;
+};
 
 class qLandScape : public qRenderComponent
 {
@@ -27,6 +35,7 @@ private:
 	void CreateMesh();
 	void CreateComputeShader();
 	void CreateTextureAndStructuredBuffer();
+	int Raycasting();
 
 private:
 	int							m_FaceX;
@@ -41,6 +50,11 @@ private:
 	Ptr<qTexture>				m_HeightMap;
 	bool						m_IsHeightMapCreated;
 	Ptr<qHeightMapCS>			m_HeightMapCS;
+
+	// Raycasting
+	Ptr<qRaycastCS>				m_RaycastCS;
+	qStructuredBuffer*			m_RaycastOut;
+	tRaycastOut					m_Out;
 
 };
 
