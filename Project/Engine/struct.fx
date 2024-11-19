@@ -113,5 +113,11 @@ struct tRaycastOut
 };
 
 
+struct tWeight8
+{
+    float arrWeight[8];
+};
+
+
 
 #endif

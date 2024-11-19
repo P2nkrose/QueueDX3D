@@ -208,6 +208,9 @@
     <Filter Include="HLSL\03. Compute\03. LandScape\02. HeightMap">
       <UniqueIdentifier>{92932c39-9ae3-45df-a4ab-ea26fbb92e72}</UniqueIdentifier>
     </Filter>
+    <Filter Include="HLSL\03. Compute\03. LandScape\03. Weightmap">
+      <UniqueIdentifier>{6c534c40-1e03-4f35-b6d4-0713536390fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -405,6 +408,9 @@
     <ClInclude Include="qRaycastCS.h">
       <Filter>HLSL\03. Compute\03. LandScape\01. RayCasting</Filter>
     </ClInclude>
+    <ClInclude Include="qWeightMapCS.h">
+      <Filter>HLSL\03. Compute\03. LandScape\03. Weightmap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -587,6 +593,9 @@
     <ClCompile Include="qRaycastCS.cpp">
       <Filter>HLSL\03. Compute\03. LandScape\01. RayCasting</Filter>
     </ClCompile>
+    <ClCompile Include="qWeightMapCS.cpp">
+      <Filter>HLSL\03. Compute\03. LandScape\03. Weightmap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -656,6 +665,9 @@
     </FxCompile>
     <FxCompile Include="raycast.fx">
       <Filter>HLSL\03. Compute\03. LandScape\01. RayCasting</Filter>
+    </FxCompile>
+    <FxCompile Include="weightmap.fx">
+      <Filter>HLSL\03. Compute\03. LandScape\03. Weightmap</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>
