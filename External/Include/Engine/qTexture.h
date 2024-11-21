@@ -28,6 +28,11 @@ public:
 	// _Flags : D3D11_BIND_FLAG
 	int Create(UINT _Width, UINT _Height, DXGI_FORMAT _PixelFormat, UINT _Flags, D3D11_USAGE _Usage = D3D11_USAGE_DEFAULT);
 	int Create(ComPtr<ID3D11Texture2D> _Tex2D);
+
+public:
+	// 어레이 텍스처 만들기
+	int CreateArrayTexture(const vector<Ptr<qTexture>>& _vecTex);
+	int GenerateMip(UINT _Level);
 	
 
 public:
@@ -38,7 +43,12 @@ public:
 	ComPtr<ID3D11UnorderedAccessView>	GetUAV()   { return m_UAV; }
 	const D3D11_TEXTURE2D_DESC&			GetDesc()  { return m_Desc; }
 
+
+	const TexMetadata& GetMetaData() { return m_Image.GetMetadata(); }
 	tPixel* GetPixels() { return (tPixel*)m_Image.GetPixels(); }
+	size_t GetRowPitch() { return m_Image.GetImages()->rowPitch; }
+	size_t GetSlicePitch() { return m_Image.GetImages()->slicePitch; }
+
 
 public:
 	UINT Width() { return m_Desc.Width; }

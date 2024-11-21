@@ -10,6 +10,7 @@ FMOD_RESULT CHANNEL_CALLBACK(FMOD_CHANNELCONTROL* channelcontrol, FMOD_CHANNELCO
 
 qSound::qSound()
 	: qAsset(ASSET_TYPE::SOUND)
+	, m_Sound(nullptr)
 {
 }
 

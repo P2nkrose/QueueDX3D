@@ -62,21 +62,7 @@ void qLandScape::FinalTick()
 			m_BrushIdx = 0;
 	}
 
-	if (m_IsHeightMapCreated && KEY_PRESSED(KEY::LBTN))
-	{
-		Raycasting();
-
-		if (m_Out.Success)
-		{
-			// 높이맵 설정
-			m_HeightMapCS->SetBrushPos(m_RaycastOut);
-			m_HeightMapCS->SetBrushScale(m_BrushScale);
-			m_HeightMapCS->SetHeightMap(m_HeightMap);
-			m_HeightMapCS->SetBrushTex(m_vecBrush[m_BrushIdx]);
-			m_HeightMapCS->Execute();
-		}
-	}
-
+	
 	// 가중치 인덱스 바꾸기
 	if (KEY_TAP(KEY::_8))
 	{
