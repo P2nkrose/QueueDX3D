@@ -73,13 +73,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>$(ProjectName)_D</TargetName>
     <OutDir>$(SolutionDir)External\Library\Engine\</OutDir>
-    <IncludePath>$(SolutionDir)External\Include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)External\Library\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)External\Include\;$(SolutionDir)External\Include\FBXLoader\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)External\Library\;$(SolutionDir)External\Library\FBXLoader\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)External\Library\Engine\</OutDir>
-    <IncludePath>$(SolutionDir)External\Include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)External\Library\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)External\Include\;$(SolutionDir)External\Include\FBXLoader\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)External\Library\;$(SolutionDir)External\Library\FBXLoader\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -170,6 +170,7 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Ptr.h" />
     <ClInclude Include="qDecal.h" />
+    <ClInclude Include="qFBXLoader.h" />
     <ClInclude Include="qFlipBookComponent.h" />
     <ClInclude Include="qAsset.h" />
     <ClInclude Include="qAssetMgr.h" />
@@ -185,7 +186,6 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qFlipBook.h" />
     <ClInclude Include="qFontMgr.h" />
     <ClInclude Include="qFrustum.h" />
-    <ClInclude Include="qFSM.h" />
     <ClInclude Include="qGameObject.h" />
     <ClInclude Include="qGraphicShader.h" />
     <ClInclude Include="qHeightMapCS.h" />
@@ -199,6 +199,7 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qLight3D.h" />
     <ClInclude Include="qMaterial.h" />
     <ClInclude Include="qMesh.h" />
+    <ClInclude Include="qMeshData.h" />
     <ClInclude Include="qMeshRender.h" />
     <ClInclude Include="qMRT.h" />
     <ClInclude Include="qParticleSystem.h" />
@@ -214,7 +215,6 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qSkyBox.h" />
     <ClInclude Include="qSound.h" />
     <ClInclude Include="qSprite.h" />
-    <ClInclude Include="qState.h" />
     <ClInclude Include="qStructuredBuffer.h" />
     <ClInclude Include="qTaskMgr.h" />
     <ClInclude Include="qTexture.h" />
@@ -241,6 +241,7 @@ call EngineHeaderCopy.bat</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="qDecal.cpp" />
+    <ClCompile Include="qFBXLoader.cpp" />
     <ClCompile Include="qFlipBookComponent.cpp" />
     <ClCompile Include="qAsset.cpp" />
     <ClCompile Include="qAssetInit.cpp" />
@@ -257,7 +258,6 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qFlipBook.cpp" />
     <ClCompile Include="qFontMgr.cpp" />
     <ClCompile Include="qFrustum.cpp" />
-    <ClCompile Include="qFSM.cpp" />
     <ClCompile Include="qGameObject.cpp" />
     <ClCompile Include="qGraphicShader.cpp" />
     <ClCompile Include="qHeightMapCS.cpp" />
@@ -271,6 +271,7 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qLight3D.cpp" />
     <ClCompile Include="qMaterial.cpp" />
     <ClCompile Include="qMesh.cpp" />
+    <ClCompile Include="qMeshData.cpp" />
     <ClCompile Include="qMeshRender.cpp" />
     <ClCompile Include="qMRT.cpp" />
     <ClCompile Include="qParticleSystem.cpp" />
@@ -292,7 +293,6 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qSkyBox.cpp" />
     <ClCompile Include="qSound.cpp" />
     <ClCompile Include="qSprite.cpp" />
-    <ClCompile Include="qState.cpp" />
     <ClCompile Include="qStructuredBuffer.cpp" />
     <ClCompile Include="qTaskMgr.cpp" />
     <ClCompile Include="qTexture.cpp" />

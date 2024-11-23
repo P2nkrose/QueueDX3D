@@ -79,6 +79,30 @@ Ptr<qTexture> qAssetMgr::CreateTexture(wstring _strKey, ComPtr<ID3D11Texture2D> 
 	return pTexture;
 }
 
+Ptr<qMeshData> qAssetMgr::LoadFBX(const wstring& _strPath)
+{
+	wstring strFileName = path(_strPath).stem();
+
+	wstring strName = L"meshdata\\";
+	strName += strFileName + L".mdat";
+
+	Ptr<qMeshData> pMeshData = FindAsset<qMeshData>(strName);
+
+	if (nullptr != pMeshData)
+		return pMeshData;
+
+	pMeshData = qMeshData::LoadFromFBX(_strPath);
+	pMeshData->SetKey(strName);
+	pMeshData->SetRelativePath(strName);
+
+	m_mapAsset[(UINT)ASSET_TYPE::MESH_DATA].insert(make_pair(strName, pMeshData.Get()));
+
+	// meshdata 를 실제파일로 저장
+	//pMeshData->Save(strName);
+
+	return pMeshData;
+}
+
 void qAssetMgr::GetAssetNames(ASSET_TYPE _Type, vector<string>& _vecOut)
 {
 	for (const auto& pair : m_mapAsset[(UINT)_Type])

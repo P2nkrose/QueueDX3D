@@ -175,12 +175,6 @@
     <Filter Include="08. Component\11. Script">
       <UniqueIdentifier>{60632b66-931b-4f9c-ad8a-451e4011454b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="08. Component\00. FSM">
-      <UniqueIdentifier>{54d1f6aa-0338-4bec-89a2-a7ecbd13399c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="08. Component\00. FSM\State">
-      <UniqueIdentifier>{9f2a991e-bd85-4b6d-aad2-3e7a0012e28e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="05. Level\01. stage1">
       <UniqueIdentifier>{23ed4445-d66c-47a6-a76a-db1c2035b852}</UniqueIdentifier>
     </Filter>
@@ -375,12 +369,6 @@
     <ClInclude Include="qEntity.h">
       <Filter>Entity</Filter>
     </ClInclude>
-    <ClInclude Include="qState.h">
-      <Filter>08. Component\00. FSM\State</Filter>
-    </ClInclude>
-    <ClInclude Include="qFSM.h">
-      <Filter>08. Component\00. FSM</Filter>
-    </ClInclude>
     <ClInclude Include="qLevel_stage1.h">
       <Filter>05. Level\01. stage1</Filter>
     </ClInclude>
@@ -410,6 +398,12 @@
     </ClInclude>
     <ClInclude Include="qWeightMapCS.h">
       <Filter>HLSL\03. Compute\03. LandScape\03. Weightmap</Filter>
+    </ClInclude>
+    <ClInclude Include="qMeshData.h">
+      <Filter>06. Asset\02. MeshData</Filter>
+    </ClInclude>
+    <ClInclude Include="qFBXLoader.h">
+      <Filter>Module</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -554,12 +548,6 @@
     <ClCompile Include="qEntity.cpp">
       <Filter>Entity</Filter>
     </ClCompile>
-    <ClCompile Include="qState.cpp">
-      <Filter>08. Component\00. FSM\State</Filter>
-    </ClCompile>
-    <ClCompile Include="qFSM.cpp">
-      <Filter>08. Component\00. FSM</Filter>
-    </ClCompile>
     <ClCompile Include="qLevel_stage1.cpp">
       <Filter>05. Level\01. stage1</Filter>
     </ClCompile>
@@ -595,6 +583,12 @@
     </ClCompile>
     <ClCompile Include="qWeightMapCS.cpp">
       <Filter>HLSL\03. Compute\03. LandScape\03. Weightmap</Filter>
+    </ClCompile>
+    <ClCompile Include="qMeshData.cpp">
+      <Filter>06. Asset\02. MeshData</Filter>
+    </ClCompile>
+    <ClCompile Include="qFBXLoader.cpp">
+      <Filter>Module</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

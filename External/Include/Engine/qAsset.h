@@ -10,6 +10,7 @@ public:
 	friend class Ptr;
 
 	friend class qAssetMgr;
+	friend class qFBXLoader;
 
 public:
 	qAsset(ASSET_TYPE _Type);

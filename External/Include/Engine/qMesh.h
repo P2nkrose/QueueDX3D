@@ -1,6 +1,18 @@
 #pragma once
 #include "qAsset.h"
 
+#include "qFBXLoader.h"
+
+
+struct tIndexInfo
+{
+	ComPtr<ID3D11Buffer>    pIB;
+	D3D11_BUFFER_DESC       tIBDesc;
+	UINT				    iIdxCount;
+	void*					pIdxSysMem;
+};
+
+
 class qMesh : public qAsset
 {
 public:
@@ -8,10 +20,15 @@ public:
 	~qMesh();
 
 public:
+	static qMesh* CreateFromContainer(qFBXLoader& _loader);
 	int Create(Vtx* _VtxSysMem, UINT _VtxCount, UINT* _IdxSysMem, UINT _IdxCount);
-	void Binding();
-	void Render();
+
+	void Binding(UINT _Subset);
+	void Render(UINT _Subset);
 	void Render_Particle(UINT _Count);
+
+	UINT GetVertexCount() { return m_VtxCount; }
+	UINT GetSubsetCount() { return (UINT)m_vecIdxInfo.size(); }
 
 	void* GetVtxSysMem() { return m_VtxSysMem; }
 
@@ -20,16 +37,12 @@ public:
 
 
 private:
-	ComPtr<ID3D11Buffer>	m_VB = nullptr;			// Vertex Buffer 버텍스 버퍼
-	ComPtr<ID3D11Buffer>	m_IB = nullptr;			// Index Buffer  인덱스 버퍼
+	ComPtr<ID3D11Buffer>    m_VB;
+	D3D11_BUFFER_DESC       m_VBDesc;
+	UINT                    m_VtxCount;
+	Vtx* m_VtxSysMem;
 
-	UINT					m_VtxCount;
-	UINT					m_IdxCount;
-
-	D3D11_BUFFER_DESC		m_VBDesc;
-	D3D11_BUFFER_DESC		m_IBDesc;
-
-	void*					m_VtxSysMem;
-	void*					m_IdxSysMem;
+	// 하나의 버텍스버퍼에 여러개의 인덱스버퍼가 연결
+	vector<tIndexInfo>		m_vecIdxInfo;
 };
 

@@ -8,7 +8,7 @@ qDecal::qDecal()
 	: qRenderComponent(COMPONENT_TYPE::DECAL)
 {
 	SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"CubeMesh"));
-	SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DecalMtrl"));
+	SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DecalMtrl"), 0);
 }
 
 qDecal::~qDecal()
@@ -29,11 +29,11 @@ void qDecal::Render()
 {
 	Transform()->Binding();
 
-	GetMaterial()->SetTexParam(TEX_1, m_DecalTex);
-	GetMaterial()->SetTexParam(TEX_2, m_EmissiveTex);
-	GetMaterial()->Binding();
+	GetMaterial(0)->SetTexParam(TEX_1, m_DecalTex);
+	GetMaterial(0)->SetTexParam(TEX_2, m_EmissiveTex);
+	GetMaterial(0)->Binding();
 
-	GetMesh()->Render();
+	GetMesh()->Render(0);
 }
 
 void qDecal::render_shadowmap()

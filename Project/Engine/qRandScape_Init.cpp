@@ -14,7 +14,7 @@ void qLandScape::Init()
 
 	// LandScape 전용 재질 참조
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"LandScapeMtrl");
-	SetMaterial(pMtrl);
+	SetMaterial(pMtrl, 0);
 
 	// LandScape 전용 컴퓨트 쉐이더 제작
 	CreateComputeShader();

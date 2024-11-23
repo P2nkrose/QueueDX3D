@@ -22,7 +22,7 @@ qParticleSystem::qParticleSystem()
 {
 	// Mesh / Material 
 	SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"PointMesh"));
-	SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"ParticleRenderMtrl"));
+	SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"ParticleRenderMtrl"), 0);
 
 	// ParticleTick ComputeShader
 	m_TickCS = (qParticleTickCS*)qAssetMgr::GetInst()->FindAsset<qComputeShader>(L"ParticleTickCS").Get();
@@ -145,8 +145,8 @@ void qParticleSystem::Render()
 	m_ModuleBuffer->Binding(21);	// t21
 
 	// 재질정보 바인딩
-	GetMaterial()->SetTexParam(TEX_0, m_ParticleTex);
-	GetMaterial()->Binding();
+	GetMaterial(0)->SetTexParam(TEX_0, m_ParticleTex);
+	GetMaterial(0)->Binding();
 
 
 	// 렌더링

@@ -77,7 +77,7 @@ void MeshRenderUI::Update()
 
 
 	// 머티리얼 정보
-	Ptr<qMaterial> pMtrl = pMeshRender->GetMaterial();
+	Ptr<qMaterial> pMtrl = pMeshRender->GetMaterial(0);
 	
 	// Mtrl 이 있을때, Name에 받아올수있도록 예외처리
 	string MtrlName;
@@ -114,7 +114,7 @@ void MeshRenderUI::Update()
 			Ptr<qAsset> pAsset = (qAsset*)pNode->GetData();
 			if (ASSET_TYPE::MATERIAL == pAsset->GetAssetType())
 			{
-				pMeshRender->SetMaterial((qMaterial*)pAsset.Get());
+				pMeshRender->SetMaterial((qMaterial*)pAsset.Get(), 0);
 			}
 		}
 
@@ -167,7 +167,7 @@ void MeshRenderUI::SelectMaterial(DWORD_PTR _ListUI)
 
 	if ("None" == strName)
 	{
-		pMeshRender->SetMaterial(nullptr);
+		pMeshRender->SetMaterial(nullptr, 0);
 		return;
 	}
 
@@ -177,5 +177,5 @@ void MeshRenderUI::SelectMaterial(DWORD_PTR _ListUI)
 
 	assert(pMtrl.Get());
 
-	pMeshRender->SetMaterial(pMtrl);
+	pMeshRender->SetMaterial(pMtrl, 0);
 }

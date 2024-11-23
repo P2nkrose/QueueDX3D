@@ -107,15 +107,6 @@ void qTaskMgr::ExecuteTask()
 		}
 		break;
 
-		case TASK_TYPE::CHANGE_STATE:
-		{
-			// Param1: Parent Object    |   Param2: Next State
-			qGameObject* pObj = (qGameObject*)m_vecTask[i].Param_0;
-			qState* pNextState = (qState*)m_vecTask[i].Param_1;
-			pObj->FSM()->ChangeState_proc(pNextState);
-		}
-		break;
-
 		case TASK_TYPE::COLLIDER2D_SEMI_DEACTIVE:
 		{
 			qCollider2D* pCollider = (qCollider2D*)m_vecTask[i].Param_0;

@@ -3,6 +3,7 @@
 
 #include "Ptr.h"
 #include "qTexture.h"
+#include "qGraphicShader.h"
 
 class qMaterial : public qAsset
 {
@@ -12,7 +13,7 @@ public:
 	~qMaterial();
 
 public:
-	virtual int Save(const wstring& _RelativePath) override;
+	virtual int Save(const wstring& _FilePath) override;
 	virtual int Load(const wstring& _FilePath) override;
 
 public:
@@ -29,6 +30,31 @@ public:
 
 	void* GetScalarParam(SCALAR_PARAM _Param);
 	Ptr<qTexture> GetTexParam(TEX_PARAM _Param) { return m_arrTex[(UINT)_Param]; }
+
+
+public:
+	void SetMaterialCoefficient(Vec4 _vDiff, Vec4 _vSpec, Vec4 _vAmb, Vec4 _vEmis)
+	{
+		m_Const.mtrl.vDiff = _vDiff;
+		m_Const.mtrl.vAmb = _vAmb;
+		m_Const.mtrl.vSpec = _vSpec;
+		m_Const.mtrl.vEmv = _vEmis;
+	}
+
+	void operator = (const qMaterial& _OtherMtrl)
+	{
+		SetName(_OtherMtrl.GetName());
+
+		m_Const = _OtherMtrl.m_Const;
+
+		for (UINT i = 0; i < (UINT)TEX_PARAM::END; ++i)
+		{
+			m_arrTex[i] = _OtherMtrl.m_arrTex[i];
+		}
+
+		m_Shader = _OtherMtrl.m_Shader;
+	}
+
 
 
 private:

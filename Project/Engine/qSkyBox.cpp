@@ -36,7 +36,7 @@ void qSkyBox::SetSkyBoxType(SKYBOX_TYPE _Type)
 		SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"CubeMesh"));
 
 	// Mesh 가 변경되면 재질을 다시 설정해야 한다.
-	SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"SkyBoxMtrl"));
+	SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"SkyBoxMtrl"), 0);
 }
 
 
@@ -54,26 +54,26 @@ void qSkyBox::Render()
 {
 	Transform()->Binding();
 
-	GetMaterial()->SetScalarParam(INT_0, (int)m_Type);
+	GetMaterial(0)->SetScalarParam(INT_0, (int)m_Type);
 
 	if (m_Type == SPHERE)
 	{
 		if (!m_SkyBoxTex->IsCubeMap())
-			GetMaterial()->SetTexParam(TEX_0, m_SkyBoxTex);
+			GetMaterial(0)->SetTexParam(TEX_0, m_SkyBoxTex);
 		else
-			GetMaterial()->SetTexParam(TEX_0, nullptr);
+			GetMaterial(0)->SetTexParam(TEX_0, nullptr);
 	}
 
 	else if (m_Type == CUBE)
 	{
 		if (m_SkyBoxTex->IsCubeMap())
-			GetMaterial()->SetTexParam(TEXCUBE_0, m_SkyBoxTex);
+			GetMaterial(0)->SetTexParam(TEXCUBE_0, m_SkyBoxTex);
 		else
-			GetMaterial()->SetTexParam(TEXCUBE_0, nullptr);
+			GetMaterial(0)->SetTexParam(TEXCUBE_0, nullptr);
 	}
 
-	GetMaterial()->Binding();
-	GetMesh()->Render();
+	GetMaterial(0)->Binding();
+	GetMesh()->Render(0);
 }
 
 void qSkyBox::render_shadowmap()

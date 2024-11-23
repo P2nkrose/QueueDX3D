@@ -19,7 +19,7 @@ void qRenderMgr::Init()
 	m_DebugObject = new qGameObject;
 	m_DebugObject->AddComponent(new qTransform);
 	m_DebugObject->AddComponent(new qMeshRender);
-	m_DebugObject->MeshRender()->SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DebugShapeMtrl"));
+	//m_DebugObject->MeshRender()->SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DebugShapeMtrl"), 0);
 
 	// MRT »ý¼º
 	CreateMRT();

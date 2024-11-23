@@ -9,8 +9,6 @@
 
 qRenderComponent::qRenderComponent(COMPONENT_TYPE _Type)
 	: qComponent(_Type)
-	, m_Mesh(nullptr)
-	, m_Mtrl(nullptr)
 	, m_FrustumCheck(true)
 {
 }
@@ -18,20 +16,30 @@ qRenderComponent::qRenderComponent(COMPONENT_TYPE _Type)
 qRenderComponent::qRenderComponent(const qRenderComponent& _Origin)
 	: qComponent(_Origin)
 	, m_Mesh(_Origin.m_Mesh)
-	, m_Mtrl(_Origin.m_Mtrl)
-	, m_SharedMtrl(_Origin.m_Mtrl)
 	, m_FrustumCheck(_Origin.m_FrustumCheck)
 {
-	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
-	if (nullptr != pCurLevel)
-	{
-		assert(!(pCurLevel->GetState() != LEVEL_STATE::PLAY
-			&& nullptr != _Origin.m_DynamicMtrl));
-	}
+	m_vecMtrls.resize(_Origin.m_vecMtrls.size());
 
-	if (nullptr != _Origin.m_DynamicMtrl)
+	for (size_t i = 0; i < _Origin.m_vecMtrls.size(); ++i)
 	{
-		GetDynamicMaterial();
+		m_vecMtrls[i].pCurMtrl = _Origin.m_vecMtrls[i].pCurMtrl;
+		m_vecMtrls[i].pSharedMtrl = _Origin.m_vecMtrls[i].pSharedMtrl;
+
+		// 원본 오브젝트가 공유재질을 참조하고 있고, 현재 사용재질은 공유재질이 아닌경우
+		if (_Origin.m_vecMtrls[i].pSharedMtrl != _Origin.m_vecMtrls[i].pCurMtrl)
+		{
+			assert(_Origin.m_vecMtrls[i].pDynamicMtrl.Get());
+
+			// 복사 렌더 컴포넌트도 별도의 동적재질을 생성한다.
+			GetDynamicMaterial(i);
+
+			// 원본 렌더컴포넌트의 동적재질 값을 현재 생성한 동적재질로 복사한다.
+			*m_vecMtrls[i].pDynamicMtrl.Get() = *_Origin.m_vecMtrls[i].pDynamicMtrl.Get();
+		}
+		else
+		{
+			m_vecMtrls[i].pCurMtrl = m_vecMtrls[i].pSharedMtrl;
+		}
 	}
 }
 
@@ -44,43 +52,106 @@ void qRenderComponent::render_shadowmap()
 	// 재질은 ShadowMapMtrl 로 이미 Binding 되어 있는 걸 사용할 것
 	// 자신이 선택한 Mesh 로 렌더링 요청을 하면 된다.
 	Transform()->Binding();
-	GetMesh()->Render();
+	
+	// 모든 서브셋 메쉬의 깊이를 저장한다.
+	for (int i = 0; i < GetMesh()->GetSubsetCount(); ++i)
+	{
+		GetMesh()->Render(i);
+	}
 }
 
-void qRenderComponent::SetMaterial(Ptr<qMaterial> _Mtrl)
+void qRenderComponent::SetMesh(Ptr<qMesh> _Mesh)
 {
-	m_Mtrl = m_SharedMtrl = _Mtrl;
+	m_Mesh = _Mesh;
+
+	if (!m_vecMtrls.empty())
+	{
+		m_vecMtrls.clear();
+		vector<tMtrlSet> vecMtrls;
+		m_vecMtrls.swap(vecMtrls);
+	}
+
+	if (nullptr != m_Mesh)
+		m_vecMtrls.resize(m_Mesh->GetSubsetCount());
 }
 
-Ptr<qMaterial> qRenderComponent::GetSharedMtrl()
+void qRenderComponent::SetMaterial(Ptr<qMaterial> _Mtrl, UINT _idx)
 {
-	m_Mtrl = m_SharedMtrl;
-	return m_Mtrl;
+	// 재질이 변경되면 기존에 복사본 받아둔 DynamicMaterial 을 삭제한다.
+	m_vecMtrls[_idx].pSharedMtrl = _Mtrl;
+	m_vecMtrls[_idx].pCurMtrl = _Mtrl;
+	m_vecMtrls[_idx].pDynamicMtrl = nullptr;
 }
 
-Ptr<qMaterial> qRenderComponent::GetDynamicMaterial()
+Ptr<qMaterial> qRenderComponent::GetMaterial(UINT _idx)
 {
-	// 동적 재질 생성 및 반환은 게임(레벨) 이 Play 모드인 경우에만 호출이 되어야 한다.
-	assert(qLevelMgr::GetInst()->GetCurrentLevel()->GetState() == LEVEL_STATE::PLAY);
+	return m_vecMtrls[_idx].pCurMtrl;
+}
 
-	if (nullptr != m_DynamicMtrl)
-		return m_Mtrl = m_DynamicMtrl;
 
-	m_Mtrl = m_DynamicMtrl = m_SharedMtrl->Clone();
+Ptr<qMaterial> qRenderComponent::GetSharedMaterial(UINT _idx)
+{
+	// 공유재질을 가져오는것으로 현재 사용재질을 동적재질에서 회복하도록 한다
+	m_vecMtrls[_idx].pCurMtrl = m_vecMtrls[_idx].pSharedMtrl;
 
-	return m_Mtrl;
+	if (m_vecMtrls[_idx].pDynamicMtrl.Get())
+	{
+		m_vecMtrls[_idx].pDynamicMtrl = nullptr;
+	}
+
+	return m_vecMtrls[_idx].pSharedMtrl;
+}
+
+Ptr<qMaterial> qRenderComponent::GetDynamicMaterial(UINT _idx)
+{
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	if (pCurLevel->GetState() != LEVEL_STATE::PLAY)
+		return nullptr;
+
+	// 원본 재질이 없다 -> Nullptr 반환
+	if (nullptr == m_vecMtrls[_idx].pSharedMtrl)
+	{
+		m_vecMtrls[_idx].pCurMtrl = nullptr;
+		m_vecMtrls[_idx].pDynamicMtrl = nullptr;
+		return m_vecMtrls[_idx].pCurMtrl;
+	}
+
+	if (nullptr == m_vecMtrls[_idx].pDynamicMtrl)
+	{
+		m_vecMtrls[_idx].pDynamicMtrl = m_vecMtrls[_idx].pSharedMtrl->Clone();
+		m_vecMtrls[_idx].pDynamicMtrl->SetName(m_vecMtrls[_idx].pSharedMtrl->GetName() + L"_Clone");
+		m_vecMtrls[_idx].pCurMtrl = m_vecMtrls[_idx].pDynamicMtrl;
+	}
+
+	return m_vecMtrls[_idx].pCurMtrl;
 }
 
 void qRenderComponent::SaveDataToFile(FILE* _File)
 {
+	// 메쉬 참조정보 저장
 	SaveAssetRef(m_Mesh, _File);
-	SaveAssetRef(m_Mtrl, _File);
-	SaveAssetRef(m_SharedMtrl, _File);
+
+	// 재질 참조정보 저장
+	UINT iMtrlCount = GetMaterialCount();
+	fwrite(&iMtrlCount, sizeof(UINT), 1, _File);
+
+	for (UINT i = 0; i < iMtrlCount; ++i)
+	{
+		SaveAssetRef(m_vecMtrls[i].pSharedMtrl, _File);
+	}
 }
 
 void qRenderComponent::LoadDataFromFile(FILE* _File)
 {
+	// 메쉬 참조정보 불러오기
 	LoadAssetRef(m_Mesh, _File);
-	LoadAssetRef(m_Mtrl, _File);
-	LoadAssetRef(m_SharedMtrl, _File);
+
+	// 재질 참조정보 불러오기
+	UINT iMtrlCount = GetMaterialCount();
+	fread(&iMtrlCount, sizeof(UINT), 1, _File);
+
+	for (UINT i = 0; i < iMtrlCount; ++i)
+	{
+		LoadAssetRef(m_vecMtrls[i].pSharedMtrl, _File);
+	}
 }

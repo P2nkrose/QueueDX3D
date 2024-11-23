@@ -14,9 +14,9 @@ qMissileScript::~qMissileScript()
 
 void qMissileScript::Begin()
 {
-	GetRenderComponent()->GetDynamicMaterial();
+	GetRenderComponent()->GetDynamicMaterial(0);
 
-	Ptr<qMaterial> pMtrl = GetRenderComponent()->GetMaterial();
+	Ptr<qMaterial> pMtrl = GetRenderComponent()->GetMaterial(0);
 	
 	if (nullptr != pMtrl)
 	{

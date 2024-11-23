@@ -15,7 +15,7 @@ qTileMap::qTileMap()
 	, m_Buffer(nullptr)
 {
 	SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"TileMapMtrl"));
+	SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"TileMapMtrl"), 0);
 
 	m_Buffer = new qStructuredBuffer;
 }
@@ -58,14 +58,14 @@ void qTileMap::Render()
 	m_Buffer->SetData(m_vecTileInfo.data(), sizeof(tTileInfo) * m_Row * m_Col);
 	m_Buffer->Binding(15);
 
-	GetMaterial()->SetTexParam(TEX_0, m_TileAtlas);
-	GetMaterial()->SetScalarParam(INT_1, m_AtlasMaxRow);
-	GetMaterial()->SetScalarParam(INT_2, m_AtlasMaxCol);
-	GetMaterial()->SetScalarParam(VEC2_1, Vec2(m_Col, m_Row));
-	GetMaterial()->SetScalarParam(VEC2_0, m_AtlasTileSliceUV);
-	GetMaterial()->Binding();
+	GetMaterial(0)->SetTexParam(TEX_0, m_TileAtlas);
+	GetMaterial(0)->SetScalarParam(INT_1, m_AtlasMaxRow);
+	GetMaterial(0)->SetScalarParam(INT_2, m_AtlasMaxCol);
+	GetMaterial(0)->SetScalarParam(VEC2_1, Vec2(m_Col, m_Row));
+	GetMaterial(0)->SetScalarParam(VEC2_0, m_AtlasTileSliceUV);
+	GetMaterial(0)->Binding();
 	Transform()->Binding();
-	GetMesh()->Render();
+	GetMesh()->Render(0);
 }
 
 

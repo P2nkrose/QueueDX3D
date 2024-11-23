@@ -88,7 +88,7 @@ void qLight3D::Render()
 	m_LightMtrl->Binding();
 
 	// ·»´õ¸µ
-	m_VolumeMesh->Render();
+	m_VolumeMesh->Render(0);
 }
 
 

@@ -13,106 +13,10 @@
     <Filter Include="Scripts\0. Camera">
       <UniqueIdentifier>{4a21a2cd-bace-487c-9664-bea4dd4e602f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\1. UNIT">
-      <UniqueIdentifier>{c34007ba-3630-4129-9db1-7c1ad6535505}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\3. Boss">
-      <UniqueIdentifier>{007a48a1-eed4-4e18-bf85-d685878b4b4a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\2. Monster">
-      <UniqueIdentifier>{3c771f3b-cbfb-45d6-89ca-fd8546e73bc4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\1. Player">
+    <Filter Include="Scripts\1. Player">
       <UniqueIdentifier>{77ad6cc0-fb77-4cf5-a15f-10e0b4625d77}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\1. UNIT\1. Player\PlayerSkill">
-      <UniqueIdentifier>{380dafe2-4424-4bc5-8df4-863a0f01f4d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\1. Player\PlayerSkill\01. Combo">
-      <UniqueIdentifier>{df55e576-09f6-45b4-8440-73557d6097d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\1. Player\PlayerSkill\02. Book">
-      <UniqueIdentifier>{491918ae-ed0a-4ad0-8540-82dc7d9f813c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\1. Player\PlayerSkill\03. Crash">
-      <UniqueIdentifier>{dd6e7fd2-af29-4c65-9d7d-33f64fff703e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\1. Player\PlayerSkill\04. Range">
-      <UniqueIdentifier>{d9be5d54-a0b2-4eeb-ac35-53e94359944b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\1. Player\PlayerSkill\05. Krush">
-      <UniqueIdentifier>{ecae75d0-a570-41a2-a7bb-44db88dfcc35}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\2. Platform">
-      <UniqueIdentifier>{9ab962cb-82b8-46a2-866e-9a5135de84b5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\2. Platform\01. Platform">
-      <UniqueIdentifier>{6eca6fa5-8ade-42c7-9daa-7e3914f89319}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\2. Platform\02. Wall">
-      <UniqueIdentifier>{ea43cd55-04d0-4049-a1f6-cefb92215623}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\2. Platform\03. Portal">
-      <UniqueIdentifier>{1d6a5589-95e5-4985-aaae-135b755828f2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\3. Transfer">
-      <UniqueIdentifier>{162b3203-b5fe-45c4-bc50-cf068d8bec70}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\3. Transfer\01. Door">
-      <UniqueIdentifier>{e9dfb6a5-b681-4a00-baff-a62a570db82d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\3. Transfer\02. Elevator">
-      <UniqueIdentifier>{59eb66f1-6787-421d-a4ad-3f9facd15782}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\3. Transfer\03. Post">
-      <UniqueIdentifier>{0c47ea3f-bd8f-483a-94d2-93a9b12233d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\2. Monster\01. Skeleton">
-      <UniqueIdentifier>{73bc1a57-0eb9-4423-a1ef-f25d2804d0f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\1. Player\PlayerEffect">
-      <UniqueIdentifier>{411bffeb-9ad6-4a76-94ac-681883d7332e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\2. Monster\02. Drowned">
-      <UniqueIdentifier>{f14dfa3b-b020-459c-9178-9033b43ff440}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\2. Monster\03. Ghost">
-      <UniqueIdentifier>{b0f76843-bddd-4de8-9d4a-885ebd010d8c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\3. Boss\BossSkill">
-      <UniqueIdentifier>{eb2741b5-c68f-4917-9896-2bee07cb54af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\3. Boss\BossSkill\01. Punch">
-      <UniqueIdentifier>{3ce9e3f2-b666-4c92-a26a-ed753c8f069e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\3. Boss\BossSkill\02. Slam">
-      <UniqueIdentifier>{8a5014db-e468-4358-9374-5c7807ad6367}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\3. Boss\BossSkill\03. Bleed">
-      <UniqueIdentifier>{c1ba5f80-f454-4a00-9b69-ffa7d269df56}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\4. ETC">
-      <UniqueIdentifier>{0d80d39b-e2b0-433f-900f-6f7353046f5d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\4. ETC\02. DeathSoul">
-      <UniqueIdentifier>{2bde85c0-30f7-4086-b6d9-91a968d00784}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\4. ETC\01. Collect">
-      <UniqueIdentifier>{f70d9014-68dc-437d-b1a2-e48a6d3ea599}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\4. ETC\03. Clap">
-      <UniqueIdentifier>{c6122bc4-aa14-4a76-aaf6-7debde9c68fa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\4. ETC\04. HUD">
-      <UniqueIdentifier>{95680565-35de-412c-bf50-295b4bf5647c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\4. ETC\04. HUD\01. PlayerHUD">
-      <UniqueIdentifier>{90bb84f0-8acb-40ac-b3a9-b99356af4016}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\4. ETC\04. HUD\02. BossHUD">
-      <UniqueIdentifier>{dacae5d5-debd-40b8-9ada-ea1103397b1a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TestScript">
+    <Filter Include="Scripts\2. TestScript">
       <UniqueIdentifier>{cae15e81-c02c-4870-b9e6-acb8a30a8dc3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -127,103 +31,16 @@
       <Filter>ScriptMgr</Filter>
     </ClInclude>
     <ClInclude Include="qPlayerScript.h">
-      <Filter>Scripts\1. UNIT\1. Player</Filter>
+      <Filter>Scripts\1. Player</Filter>
     </ClInclude>
     <ClInclude Include="qCameraMoveScript.h">
       <Filter>Scripts\0. Camera</Filter>
     </ClInclude>
-    <ClInclude Include="qBookScript_Right.h">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\02. Book</Filter>
-    </ClInclude>
-    <ClInclude Include="qBookScript_Left.h">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\02. Book</Filter>
-    </ClInclude>
-    <ClInclude Include="qComboScript.h">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\01. Combo</Filter>
-    </ClInclude>
-    <ClInclude Include="qCrashScript.h">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\03. Crash</Filter>
-    </ClInclude>
-    <ClInclude Include="qRangeScript.h">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\04. Range</Filter>
-    </ClInclude>
-    <ClInclude Include="qKrushScript.h">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\05. Krush</Filter>
-    </ClInclude>
-    <ClInclude Include="qPortalScript.h">
-      <Filter>Scripts\2. Platform\03. Portal</Filter>
-    </ClInclude>
-    <ClInclude Include="qPlatformScript.h">
-      <Filter>Scripts\2. Platform\01. Platform</Filter>
-    </ClInclude>
-    <ClInclude Include="qWallScript.h">
-      <Filter>Scripts\2. Platform\02. Wall</Filter>
-    </ClInclude>
     <ClInclude Include="qMissileScript.h">
       <Filter>Default</Filter>
     </ClInclude>
-    <ClInclude Include="qDoorScript.h">
-      <Filter>Scripts\3. Transfer\01. Door</Filter>
-    </ClInclude>
-    <ClInclude Include="qPostScript.h">
-      <Filter>Scripts\3. Transfer\03. Post</Filter>
-    </ClInclude>
-    <ClInclude Include="qElevatorScript.h">
-      <Filter>Scripts\3. Transfer\02. Elevator</Filter>
-    </ClInclude>
-    <ClInclude Include="qCollectScript.h">
-      <Filter>Scripts\4. ETC\01. Collect</Filter>
-    </ClInclude>
-    <ClInclude Include="qSkeletonScript.h">
-      <Filter>Scripts\1. UNIT\2. Monster\01. Skeleton</Filter>
-    </ClInclude>
-    <ClInclude Include="qPlayerHitboxScript.h">
-      <Filter>Default</Filter>
-    </ClInclude>
-    <ClInclude Include="qPlayerEffectScript.h">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerEffect</Filter>
-    </ClInclude>
-    <ClInclude Include="qDrownedScript.h">
-      <Filter>Scripts\1. UNIT\2. Monster\02. Drowned</Filter>
-    </ClInclude>
-    <ClInclude Include="qDeathSoulScript.h">
-      <Filter>Scripts\4. ETC\02. DeathSoul</Filter>
-    </ClInclude>
-    <ClInclude Include="qSkeletonAttackScript.h">
-      <Filter>Scripts\1. UNIT\2. Monster\01. Skeleton</Filter>
-    </ClInclude>
-    <ClInclude Include="qDrownedAttackScript.h">
-      <Filter>Scripts\1. UNIT\2. Monster\02. Drowned</Filter>
-    </ClInclude>
-    <ClInclude Include="qGhostScript.h">
-      <Filter>Scripts\1. UNIT\2. Monster\03. Ghost</Filter>
-    </ClInclude>
-    <ClInclude Include="qGhostAttackScript.h">
-      <Filter>Scripts\1. UNIT\2. Monster\03. Ghost</Filter>
-    </ClInclude>
-    <ClInclude Include="qClapScript.h">
-      <Filter>Scripts\4. ETC\03. Clap</Filter>
-    </ClInclude>
-    <ClInclude Include="qBossScript.h">
-      <Filter>Scripts\1. UNIT\3. Boss</Filter>
-    </ClInclude>
-    <ClInclude Include="qPunchScript.h">
-      <Filter>Scripts\1. UNIT\3. Boss\BossSkill\01. Punch</Filter>
-    </ClInclude>
-    <ClInclude Include="qSlamScript.h">
-      <Filter>Scripts\1. UNIT\3. Boss\BossSkill\02. Slam</Filter>
-    </ClInclude>
-    <ClInclude Include="qBleedScript.h">
-      <Filter>Scripts\1. UNIT\3. Boss\BossSkill\03. Bleed</Filter>
-    </ClInclude>
-    <ClInclude Include="qPlayerHUDScript.h">
-      <Filter>Scripts\4. ETC\04. HUD\01. PlayerHUD</Filter>
-    </ClInclude>
-    <ClInclude Include="qBossHUDScript.h">
-      <Filter>Scripts\4. ETC\04. HUD\02. BossHUD</Filter>
-    </ClInclude>
     <ClInclude Include="qTestScript.h">
-      <Filter>TestScript</Filter>
+      <Filter>Scripts\2. TestScript</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -237,103 +54,16 @@
       <Filter>ScriptMgr</Filter>
     </ClCompile>
     <ClCompile Include="qPlayerScript.cpp">
-      <Filter>Scripts\1. UNIT\1. Player</Filter>
+      <Filter>Scripts\1. Player</Filter>
     </ClCompile>
     <ClCompile Include="qCameraMoveScript.cpp">
       <Filter>Scripts\0. Camera</Filter>
     </ClCompile>
-    <ClCompile Include="qBookScript_Left.cpp">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\02. Book</Filter>
-    </ClCompile>
-    <ClCompile Include="qBookScript_Right.cpp">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\02. Book</Filter>
-    </ClCompile>
-    <ClCompile Include="qComboScript.cpp">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\01. Combo</Filter>
-    </ClCompile>
-    <ClCompile Include="qCrashScript.cpp">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\03. Crash</Filter>
-    </ClCompile>
-    <ClCompile Include="qRangeScript.cpp">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\04. Range</Filter>
-    </ClCompile>
-    <ClCompile Include="qKrushScript.cpp">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\05. Krush</Filter>
-    </ClCompile>
-    <ClCompile Include="qPortalScript.cpp">
-      <Filter>Scripts\2. Platform\03. Portal</Filter>
-    </ClCompile>
-    <ClCompile Include="qPlatformScript.cpp">
-      <Filter>Scripts\2. Platform\01. Platform</Filter>
-    </ClCompile>
-    <ClCompile Include="qWallScript.cpp">
-      <Filter>Scripts\2. Platform\02. Wall</Filter>
-    </ClCompile>
     <ClCompile Include="qMissileScript.cpp">
       <Filter>Default</Filter>
     </ClCompile>
-    <ClCompile Include="qDoorScript.cpp">
-      <Filter>Scripts\3. Transfer\01. Door</Filter>
-    </ClCompile>
-    <ClCompile Include="qPostScript.cpp">
-      <Filter>Scripts\3. Transfer\03. Post</Filter>
-    </ClCompile>
-    <ClCompile Include="qElevatorScript.cpp">
-      <Filter>Scripts\3. Transfer\02. Elevator</Filter>
-    </ClCompile>
-    <ClCompile Include="qCollectScript.cpp">
-      <Filter>Scripts\4. ETC\01. Collect</Filter>
-    </ClCompile>
-    <ClCompile Include="qSkeletonScript.cpp">
-      <Filter>Scripts\1. UNIT\2. Monster\01. Skeleton</Filter>
-    </ClCompile>
-    <ClCompile Include="qPlayerHitboxScript.cpp">
-      <Filter>Default</Filter>
-    </ClCompile>
-    <ClCompile Include="qPlayerEffectScript.cpp">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerEffect</Filter>
-    </ClCompile>
-    <ClCompile Include="qDrownedScript.cpp">
-      <Filter>Scripts\1. UNIT\2. Monster\02. Drowned</Filter>
-    </ClCompile>
-    <ClCompile Include="qDeathSoulScript.cpp">
-      <Filter>Scripts\4. ETC\02. DeathSoul</Filter>
-    </ClCompile>
-    <ClCompile Include="qSkeletonAttackScript.cpp">
-      <Filter>Scripts\1. UNIT\2. Monster\01. Skeleton</Filter>
-    </ClCompile>
-    <ClCompile Include="qDrownedAttackScript.cpp">
-      <Filter>Scripts\1. UNIT\2. Monster\02. Drowned</Filter>
-    </ClCompile>
-    <ClCompile Include="qGhostScript.cpp">
-      <Filter>Scripts\1. UNIT\2. Monster\03. Ghost</Filter>
-    </ClCompile>
-    <ClCompile Include="qGhostAttackScript.cpp">
-      <Filter>Scripts\1. UNIT\2. Monster\03. Ghost</Filter>
-    </ClCompile>
-    <ClCompile Include="qClapScript.cpp">
-      <Filter>Scripts\4. ETC\03. Clap</Filter>
-    </ClCompile>
-    <ClCompile Include="qBossScript.cpp">
-      <Filter>Scripts\1. UNIT\3. Boss</Filter>
-    </ClCompile>
-    <ClCompile Include="qPunchScript.cpp">
-      <Filter>Scripts\1. UNIT\3. Boss\BossSkill\01. Punch</Filter>
-    </ClCompile>
-    <ClCompile Include="qSlamScript.cpp">
-      <Filter>Scripts\1. UNIT\3. Boss\BossSkill\02. Slam</Filter>
-    </ClCompile>
-    <ClCompile Include="qBleedScript.cpp">
-      <Filter>Scripts\1. UNIT\3. Boss\BossSkill\03. Bleed</Filter>
-    </ClCompile>
-    <ClCompile Include="qPlayerHUDScript.cpp">
-      <Filter>Scripts\4. ETC\04. HUD\01. PlayerHUD</Filter>
-    </ClCompile>
-    <ClCompile Include="qBossHUDScript.cpp">
-      <Filter>Scripts\4. ETC\04. HUD\02. BossHUD</Filter>
-    </ClCompile>
     <ClCompile Include="qTestScript.cpp">
-      <Filter>TestScript</Filter>
+      <Filter>Scripts\2. TestScript</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

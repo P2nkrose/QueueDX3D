@@ -176,8 +176,8 @@ void qCamera::SortGameObject()
 		{
 			if (nullptr == vecObjects[j]->GetRenderComponent()
 				|| nullptr == vecObjects[j]->GetRenderComponent()->GetMesh()
-				|| nullptr == vecObjects[j]->GetRenderComponent()->GetMaterial()
-				|| nullptr == vecObjects[j]->GetRenderComponent()->GetMaterial()->GetShader())
+				|| nullptr == vecObjects[j]->GetRenderComponent()->GetMaterial(0)
+				|| nullptr == vecObjects[j]->GetRenderComponent()->GetMaterial(0)->GetShader())
 			{
 				continue;
 			}
@@ -190,7 +190,7 @@ void qCamera::SortGameObject()
 			//			continue;
 			//		}
 
-			Ptr<qGraphicShader> pShader = vecObjects[j]->GetRenderComponent()->GetMaterial()->GetShader();
+			Ptr<qGraphicShader> pShader = vecObjects[j]->GetRenderComponent()->GetMaterial(0)->GetShader();
 			SHADER_DOMAIN Domain = pShader->GetDomain();
 
 			switch (Domain)
@@ -305,7 +305,7 @@ void qCamera::render_effect()
 	pEffectMergeMtrl->SetTexParam(TEX_0, qRenderMgr::GetInst()->GetMRT(MRT_TYPE::EFFECT)->GetRT(0));
 	pEffectMergeMtrl->SetTexParam(TEX_1, qRenderMgr::GetInst()->GetMRT(MRT_TYPE::EFFECT_BLUR)->GetRT(0));
 	pEffectMergeMtrl->Binding();
-	pRectMesh->Render();
+	pRectMesh->Render(0);
 
 }
 
@@ -371,8 +371,8 @@ void qCamera::SortGameObject_ShadowMap()
 		{
 			if (nullptr == vecObjects[j]->GetRenderComponent()
 				|| nullptr == vecObjects[j]->GetRenderComponent()->GetMesh()
-				|| nullptr == vecObjects[j]->GetRenderComponent()->GetMaterial()
-				|| nullptr == vecObjects[j]->GetRenderComponent()->GetMaterial()->GetShader())
+				|| nullptr == vecObjects[j]->GetRenderComponent()->GetMaterial(0)
+				|| nullptr == vecObjects[j]->GetRenderComponent()->GetMaterial(0)->GetShader())
 			{
 				continue;
 			}

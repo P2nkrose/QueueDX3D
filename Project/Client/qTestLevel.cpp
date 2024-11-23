@@ -15,7 +15,6 @@
 #include <Scripts/qPlayerScript.h>
 #include <Scripts/qMissileScript.h>
 #include <Scripts/qCameraMoveScript.h>
-#include <Scripts/qPlatformScript.h>
 
 #include <Engine/qSetColorCS.h>
 #include <Engine/qStructuredBuffer.h>
@@ -185,10 +184,10 @@ void qTestLevel::CreateTestLevel()
 	pPlayer->Transform()->SetRelativeRotation(0.f, 0.f, 0.f);
 
 	pPlayer->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"SphereMesh"));
-	pPlayer->MeshRender()->SetMaterial(pStd3D_DeferredMtrl);
+	pPlayer->MeshRender()->SetMaterial(pStd3D_DeferredMtrl, 0);
 
-	pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEX_0, pTex);
-	pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEX_1, pNTex);
+	pPlayer->MeshRender()->GetMaterial(0)->SetTexParam(TEX_0, pTex);
+	pPlayer->MeshRender()->GetMaterial(0)->SetTexParam(TEX_1, pNTex);
 	//pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEXCUBE_0, pSkyBoxTex);
 
 	pLevel->AddObject(3, pPlayer);
@@ -224,6 +223,26 @@ void qTestLevel::CreateTestLevel()
 	pLandScape->LandScape()->CreateHeightMap(1024, 1024);
 
 	pLevel->AddObject(3, pLandScape);
+
+
+// ============
+// FBX Loading
+// ============	
+	{
+		Ptr<qMeshData> pMeshData = nullptr;
+		qGameObject* pObj = nullptr;
+
+		pMeshData = qAssetMgr::GetInst()->LoadFBX(L"fbx\\house.fbx");
+		pMeshData = qAssetMgr::GetInst()->FindAsset<qMeshData>(L"meshdata\\house.mdat");
+		pObj = pMeshData->Instantiate();
+		pObj->SetName(L"House");
+
+		pObj->Transform()->SetRelativePos(Vec3(0.f, 150.f, 100.f));
+		pObj->Transform()->SetRelativeScale(Vec3(1.f, 1.f, 1.f));
+
+		pLevel->AddObject(0, pObj);
+	}
+
 
 
 

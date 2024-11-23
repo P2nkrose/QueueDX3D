@@ -73,12 +73,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)OutputFile\bin\</OutDir>
     <TargetName>$(ProjectName)_D</TargetName>
-    <IncludePath>$(SolutionDir)External\Include\;$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)External\Include\;$(ProjectDir);$(SolutionDir)External\Include\FBXLoader\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)External\Library\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)OutputFile\bin\</OutDir>
-    <IncludePath>$(SolutionDir)External\Include\;$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)External\Include\;$(ProjectDir);$(SolutionDir)External\Include\FBXLoader\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)External\Library\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -187,13 +187,6 @@
     <ClInclude Include="qEditorMgr.h" />
     <ClInclude Include="qGameObjectEx.h" />
     <ClInclude Include="qLevelSaveLoad.h" />
-    <ClInclude Include="qLevel_boss.h" />
-    <ClInclude Include="qLevel_loading.h" />
-    <ClInclude Include="qLevel_loading1.h" />
-    <ClInclude Include="qLevel_logo.h" />
-    <ClInclude Include="qLevel_stage1.h" />
-    <ClInclude Include="qLevel_stage2.h" />
-    <ClInclude Include="qLevel_title.h" />
     <ClInclude Include="qTestLevel.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ScriptUI.h" />
@@ -257,13 +250,6 @@
     <ClCompile Include="qEditorMgr_EditorUI.cpp" />
     <ClCompile Include="qGameObjectEx.cpp" />
     <ClCompile Include="qLevelSaveLoad.cpp" />
-    <ClCompile Include="qLevel_boss.cpp" />
-    <ClCompile Include="qLevel_loading.cpp" />
-    <ClCompile Include="qLevel_loading1.cpp" />
-    <ClCompile Include="qLevel_logo.cpp" />
-    <ClCompile Include="qLevel_stage1.cpp" />
-    <ClCompile Include="qLevel_stage2.cpp" />
-    <ClCompile Include="qLevel_title.cpp" />
     <ClCompile Include="qTestLevel.cpp" />
     <ClCompile Include="ScriptUI.cpp" />
     <ClCompile Include="SE_AtlasView.cpp" />

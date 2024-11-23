@@ -90,15 +90,12 @@ void qMaterial::Binding()
 
 
 
-int qMaterial::Save(const wstring& _RelativePath)
+int qMaterial::Save(const wstring& _FilePath)
 {
-	SetRelativePath(_RelativePath);
-
-	wstring strFilePath = qPathMgr::GetInst()->GetContentPath();
-	strFilePath += _RelativePath;
+	SetRelativePath(qPathMgr::GetInst()->GetRelativePath(_FilePath));
 
 	FILE* File = nullptr;
-	_wfopen_s(&File, strFilePath.c_str(), L"wb");
+	_wfopen_s(&File, _FilePath.c_str(), L"wb");
 
 	if (nullptr == File)
 		return E_FAIL;

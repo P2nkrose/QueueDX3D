@@ -73,12 +73,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)External\Library\Scripts\</OutDir>
     <TargetName>$(ProjectName)_D</TargetName>
-    <IncludePath>$(SolutionDir)External\Include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)External\Include\;$(SolutionDir)External\Include\FBXLoader\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)External\Library\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)External\Library\Scripts\</OutDir>
-    <IncludePath>$(SolutionDir)External\Include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)External\Include\;$(SolutionDir)External\Include\FBXLoader\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)External\Library\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -166,40 +166,11 @@ call CodeGen.exe</Command>
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="qBleedScript.h" />
-    <ClInclude Include="qBookScript_Left.h" />
-    <ClInclude Include="qBookScript_Right.h" />
-    <ClInclude Include="qBossHUDScript.h" />
-    <ClInclude Include="qBossScript.h" />
     <ClInclude Include="qCameraMoveScript.h" />
-    <ClInclude Include="qClapScript.h" />
-    <ClInclude Include="qCollectScript.h" />
-    <ClInclude Include="qComboScript.h" />
-    <ClInclude Include="qCrashScript.h" />
-    <ClInclude Include="qDeathSoulScript.h" />
-    <ClInclude Include="qDoorScript.h" />
-    <ClInclude Include="qDrownedAttackScript.h" />
-    <ClInclude Include="qDrownedScript.h" />
-    <ClInclude Include="qElevatorScript.h" />
-    <ClInclude Include="qGhostAttackScript.h" />
-    <ClInclude Include="qGhostScript.h" />
-    <ClInclude Include="qKrushScript.h" />
     <ClInclude Include="qMissileScript.h" />
-    <ClInclude Include="qPlatformScript.h" />
-    <ClInclude Include="qPlayerEffectScript.h" />
-    <ClInclude Include="qPlayerHitboxScript.h" />
-    <ClInclude Include="qPlayerHUDScript.h" />
     <ClInclude Include="qPlayerScript.h" />
-    <ClInclude Include="qPortalScript.h" />
-    <ClInclude Include="qPostScript.h" />
-    <ClInclude Include="qPunchScript.h" />
-    <ClInclude Include="qRangeScript.h" />
     <ClInclude Include="qScriptMgr.h" />
-    <ClInclude Include="qSkeletonAttackScript.h" />
-    <ClInclude Include="qSkeletonScript.h" />
-    <ClInclude Include="qSlamScript.h" />
     <ClInclude Include="qTestScript.h" />
-    <ClInclude Include="qWallScript.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -208,40 +179,11 @@ call CodeGen.exe</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="qBleedScript.cpp" />
-    <ClCompile Include="qBookScript_Left.cpp" />
-    <ClCompile Include="qBookScript_Right.cpp" />
-    <ClCompile Include="qBossHUDScript.cpp" />
-    <ClCompile Include="qBossScript.cpp" />
     <ClCompile Include="qCameraMoveScript.cpp" />
-    <ClCompile Include="qClapScript.cpp" />
-    <ClCompile Include="qCollectScript.cpp" />
-    <ClCompile Include="qComboScript.cpp" />
-    <ClCompile Include="qCrashScript.cpp" />
-    <ClCompile Include="qDeathSoulScript.cpp" />
-    <ClCompile Include="qDoorScript.cpp" />
-    <ClCompile Include="qDrownedAttackScript.cpp" />
-    <ClCompile Include="qDrownedScript.cpp" />
-    <ClCompile Include="qElevatorScript.cpp" />
-    <ClCompile Include="qGhostAttackScript.cpp" />
-    <ClCompile Include="qGhostScript.cpp" />
-    <ClCompile Include="qKrushScript.cpp" />
     <ClCompile Include="qMissileScript.cpp" />
-    <ClCompile Include="qPlatformScript.cpp" />
-    <ClCompile Include="qPlayerEffectScript.cpp" />
-    <ClCompile Include="qPlayerHitboxScript.cpp" />
-    <ClCompile Include="qPlayerHUDScript.cpp" />
     <ClCompile Include="qPlayerScript.cpp" />
-    <ClCompile Include="qPortalScript.cpp" />
-    <ClCompile Include="qPostScript.cpp" />
-    <ClCompile Include="qPunchScript.cpp" />
-    <ClCompile Include="qRangeScript.cpp" />
     <ClCompile Include="qScriptMgr.cpp" />
-    <ClCompile Include="qSkeletonAttackScript.cpp" />
-    <ClCompile Include="qSkeletonScript.cpp" />
-    <ClCompile Include="qSlamScript.cpp" />
     <ClCompile Include="qTestScript.cpp" />
-    <ClCompile Include="qWallScript.cpp" />
     <ClCompile Include="Scripts.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

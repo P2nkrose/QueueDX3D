@@ -20,9 +20,6 @@ void qMeshRender::FinalTick()
 
 void qMeshRender::Render()
 {
-	if (!GetMesh() || !GetMaterial() || !GetMaterial()->GetShader())
-		return;
-
 
 	// FlipBookComponent 가 있으면 현재 재생중인 Sprite 정보를 Binding 하게 한다.
 	if (FlipBookComponent())
@@ -34,13 +31,22 @@ void qMeshRender::Render()
 	Transform()->Binding();
 
 	// 재질 바인딩 (재질 상수, 쉐이더 등등)
-	GetMaterial()->Binding();
+	GetMaterial(0)->Binding();
 
 	// 버텍스버퍼, 인덱스버퍼 바인딩 및 렌더링 호출
-	GetMesh()->Render();
+	GetMesh()->Render(0);
 
-	//qTexture::Clear(0);
-	//qTexture::Clear(1);
+	//for (UINT i = 0; i < GetMesh()->GetSubsetCount(); ++i)
+	//{
+	//	// 재질 바인딩(재질 상수, 쉐이더 등등)
+	//	if (!GetMaterial(i))
+	//		continue;
+
+	//	GetMaterial(i)->Binding();
+
+	//	// 버텍스버퍼, 인덱스버퍼 바인딩 및 렌더링 호출
+	//	GetMesh()->Render(i);
+	//}
 }
 
 

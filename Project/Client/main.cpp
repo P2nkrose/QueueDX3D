@@ -8,13 +8,7 @@
 
 #include "qLevelSaveLoad.h"
 #include "qTestLevel.h"
-#include "qLevel_logo.h"
-#include "qLevel_loading1.h"
-#include "qLevel_title.h"
-#include "qLevel_loading.h"
-#include "qLevel_stage1.h"
-#include "qLevel_stage2.h"
-#include "qLevel_boss.h"
+
 
 // 전역 변수:
 HINSTANCE g_hInst = nullptr;

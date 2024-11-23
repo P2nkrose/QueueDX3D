@@ -9,7 +9,6 @@
 #include "qTexture.h"
 #include "qPrefab.h"
 #include "qSound.h"
-#include "qFSM.h"
 
 class qAsset;
 
@@ -41,6 +40,8 @@ public:
 							  , D3D11_USAGE _Usage = D3D11_USAGE::D3D11_USAGE_DEFAULT);
 
 	Ptr<qTexture> CreateTexture(wstring _strKey, ComPtr<ID3D11Texture2D> _Tex2D);
+	Ptr<qMeshData> LoadFBX(const wstring& _strPath);
+
 
 public:
 	void GetAssetNames(ASSET_TYPE _Type, vector<string>& _vecOut);
