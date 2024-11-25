@@ -98,7 +98,7 @@ Ptr<qMeshData> qAssetMgr::LoadFBX(const wstring& _strPath)
 	m_mapAsset[(UINT)ASSET_TYPE::MESH_DATA].insert(make_pair(strName, pMeshData.Get()));
 
 	// meshdata 를 실제파일로 저장
-	//pMeshData->Save(strName);
+	pMeshData->Save(qPathMgr::GetInst()->GetContentPath() + strName);
 
 	return pMeshData;
 }

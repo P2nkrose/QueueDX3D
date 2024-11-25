@@ -179,8 +179,8 @@ void Content::LoadAsset(const path& _Path)
 
 	if (ext == L".mesh")
 		qAssetMgr::GetInst()->Load<qMesh>(_Path, _Path);
-	//else if (ext == L".mdat")
-		//qAssetMgr::GetInst()->Load<qMeshData>(_Path, _Path);
+	else if (ext == L".mdat")
+		qAssetMgr::GetInst()->Load<qMeshData>(_Path, _Path);
 	else if (ext == L".mtrl")
 		qAssetMgr::GetInst()->Load<qMaterial>(_Path, _Path);
 	else if (ext == L".pref")

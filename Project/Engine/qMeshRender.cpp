@@ -33,20 +33,17 @@ void qMeshRender::Render()
 	// 재질 바인딩 (재질 상수, 쉐이더 등등)
 	GetMaterial(0)->Binding();
 
-	// 버텍스버퍼, 인덱스버퍼 바인딩 및 렌더링 호출
-	GetMesh()->Render(0);
+	for (UINT i = 0; i < GetMesh()->GetSubsetCount(); ++i)
+	{
+		// 재질 바인딩(재질 상수, 쉐이더 등등)
+		if (!GetMaterial(i))
+			continue;
 
-	//for (UINT i = 0; i < GetMesh()->GetSubsetCount(); ++i)
-	//{
-	//	// 재질 바인딩(재질 상수, 쉐이더 등등)
-	//	if (!GetMaterial(i))
-	//		continue;
+		GetMaterial(i)->Binding();
 
-	//	GetMaterial(i)->Binding();
-
-	//	// 버텍스버퍼, 인덱스버퍼 바인딩 및 렌더링 호출
-	//	GetMesh()->Render(i);
-	//}
+		// 버텍스버퍼, 인덱스버퍼 바인딩 및 렌더링 호출
+		GetMesh()->Render(i);
+	}
 }
 
 
