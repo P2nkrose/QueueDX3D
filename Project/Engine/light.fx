@@ -161,6 +161,7 @@ PS_OUT PS_PointLight(VS_OUT _in)
     
     // 해당 지점이 받을 빛의 세기를 계산한다.
     tLight light = (tLight) 0.f;
+    
     CalculateLight3D(LIGHT_IDX, vViewNormal, vViewPos.xyz, light);
         
     output.vDiffuse = light.Color + light.Ambient;

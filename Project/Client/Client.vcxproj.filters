@@ -155,6 +155,9 @@
     <Filter Include="1. EditorUI\01. Inspector\ComponentUI\13. SkyBoxUI">
       <UniqueIdentifier>{7eec074c-eaf0-4893-958e-2ac6653fc055}</UniqueIdentifier>
     </Filter>
+    <Filter Include="1. EditorUI\01. Inspector\ComponentUI\14. LandScapeUI">
+      <UniqueIdentifier>{a53e006f-8596-4a6c-8091-21160ad9869e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -333,6 +336,9 @@
     </ClInclude>
     <ClInclude Include="SkyBoxUI.h">
       <Filter>1. EditorUI\01. Inspector\ComponentUI\13. SkyBoxUI</Filter>
+    </ClInclude>
+    <ClInclude Include="LandScapeUI.h">
+      <Filter>1. EditorUI\01. Inspector\ComponentUI\14. LandScapeUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -520,6 +526,9 @@
     </ClCompile>
     <ClCompile Include="SkyBoxUI.cpp">
       <Filter>1. EditorUI\01. Inspector\ComponentUI\13. SkyBoxUI</Filter>
+    </ClCompile>
+    <ClCompile Include="LandScapeUI.cpp">
+      <Filter>1. EditorUI\01. Inspector\ComponentUI\14. LandScapeUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -44,6 +44,24 @@ public:
 	void SetHeightMap(Ptr<qTexture> _HeightMap) { m_HeightMap = _HeightMap; m_IsHeightMapCreated = false; }
 	void CreateHeightMap(UINT _Width, UINT _Height);
 
+public:
+	int GetFaceX() { return m_FaceX; }
+	int GetFaceZ() { return m_FaceZ; }
+	
+	LANDSCAPE_MODE GetMode() { return m_Mode; }
+	void SetMode(LANDSCAPE_MODE _mode) { m_Mode = _mode; }
+
+	Vec2 GetBrushScale() { return m_BrushScale; }
+	void SetBrushScale(Vec2 _BrushScale) { m_BrushScale = _BrushScale; }
+
+	int GetWeightIndex() { return m_WeightIdx; }
+	void SetWeightIndex(int _wi) { m_WeightIdx = _wi; }
+
+	Ptr<qTexture> GetHeightMap() { return m_HeightMap; }
+	Ptr<qTexture> GetBrushTex() { return m_vecBrush[m_BrushIdx]; }
+
+	void SetBrushIndex(Ptr<qTexture> _tex) { m_vecBrush[m_BrushIdx] = _tex; }
+
 private:
 	void CreateMesh();
 	void CreateComputeShader();

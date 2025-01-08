@@ -30,6 +30,7 @@
 #include "ComputeShaderUI.h"
 #include "FSMUI.h"
 #include "SkyBoxUI.h"
+#include "LandScapeUI.h"
 
 #include "ScriptUI.h"
 
@@ -106,8 +107,13 @@ void Inspector::CreateComponentUI()
 
 	m_arrComUI[(UINT)COMPONENT_TYPE::SKYBOX] = new SkyBoxUI;
 	m_arrComUI[(UINT)COMPONENT_TYPE::SKYBOX]->SetName("SkyBoxUI");
-	m_arrComUI[(UINT)COMPONENT_TYPE::SKYBOX]->SetChildSize(ImVec2(0.f, 300.f));
+	m_arrComUI[(UINT)COMPONENT_TYPE::SKYBOX]->SetChildSize(ImVec2(0.f, 200.f));
 	AddChild(m_arrComUI[(UINT)COMPONENT_TYPE::SKYBOX]);
+
+	m_arrComUI[(UINT)COMPONENT_TYPE::LANDSCAPE] = new LandScapeUI;
+	m_arrComUI[(UINT)COMPONENT_TYPE::LANDSCAPE]->SetName("LandScapeUI");
+	m_arrComUI[(UINT)COMPONENT_TYPE::LANDSCAPE]->SetChildSize(ImVec2(0.f, 500.f));
+	AddChild(m_arrComUI[(UINT)COMPONENT_TYPE::LANDSCAPE]);
 }
 
 
