@@ -205,6 +205,9 @@
     <Filter Include="HLSL\03. Compute\03. LandScape\03. Weightmap">
       <UniqueIdentifier>{6c534c40-1e03-4f35-b6d4-0713536390fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="HLSL\03. Compute\04. Animation3D">
+      <UniqueIdentifier>{c5e63eda-2f1e-4f88-a3fd-e6a1879405a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -405,6 +408,12 @@
     <ClInclude Include="qFBXLoader.h">
       <Filter>Module</Filter>
     </ClInclude>
+    <ClInclude Include="qAnimator3D.h">
+      <Filter>08. Component\05. Animator3D</Filter>
+    </ClInclude>
+    <ClInclude Include="qAnimation3DShader.h">
+      <Filter>HLSL\03. Compute\04. Animation3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -590,6 +599,12 @@
     <ClCompile Include="qFBXLoader.cpp">
       <Filter>Module</Filter>
     </ClCompile>
+    <ClCompile Include="qAnimator3D.cpp">
+      <Filter>08. Component\05. Animator3D</Filter>
+    </ClCompile>
+    <ClCompile Include="qAnimation3DShader.cpp">
+      <Filter>HLSL\03. Compute\04. Animation3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -662,6 +677,9 @@
     </FxCompile>
     <FxCompile Include="weightmap.fx">
       <Filter>HLSL\03. Compute\03. LandScape\03. Weightmap</Filter>
+    </FxCompile>
+    <FxCompile Include="animation.fx">
+      <Filter>HLSL\03. Compute\04. Animation3D</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

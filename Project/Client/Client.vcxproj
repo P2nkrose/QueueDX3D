@@ -172,6 +172,7 @@
     <ClInclude Include="ImGui\imstb_truetype.h" />
     <ClInclude Include="Inspector.h" />
     <ClInclude Include="Light2DUI.h" />
+    <ClInclude Include="Light3DUI.h" />
     <ClInclude Include="ListUI.h" />
     <ClInclude Include="MaterialUI.h" />
     <ClInclude Include="MenuUI.h" />
@@ -193,6 +194,7 @@
     <ClInclude Include="SE_AtlasView.h" />
     <ClInclude Include="SE_Detail.h" />
     <ClInclude Include="SE_Sub.h" />
+    <ClInclude Include="SkyBoxUI.h" />
     <ClInclude Include="SoundUI.h" />
     <ClInclude Include="SpriteEditor.h" />
     <ClInclude Include="SpriteUI.h" />
@@ -229,6 +231,7 @@
     <ClCompile Include="Inspector.cpp" />
     <ClCompile Include="Inspector_Init.cpp" />
     <ClCompile Include="Light2DUI.cpp" />
+    <ClCompile Include="Light3DUI.cpp" />
     <ClCompile Include="ListUI.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MaterialUI.cpp" />
@@ -255,6 +258,7 @@
     <ClCompile Include="SE_AtlasView.cpp" />
     <ClCompile Include="SE_Detail.cpp" />
     <ClCompile Include="SE_Sub.cpp" />
+    <ClCompile Include="SkyBoxUI.cpp" />
     <ClCompile Include="SoundUI.cpp" />
     <ClCompile Include="SpriteEditor.cpp" />
     <ClCompile Include="SpriteUI.cpp" />

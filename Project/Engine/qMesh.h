@@ -3,6 +3,7 @@
 
 #include "qFBXLoader.h"
 
+class qStructuredBuffer;
 
 struct tIndexInfo
 {
@@ -32,6 +33,14 @@ public:
 
 	void* GetVtxSysMem() { return m_VtxSysMem; }
 
+	const vector<tMTBone>* GetBones() { return &m_vecBones; }
+	UINT GetBoneCount() { return (UINT)m_vecBones.size(); }
+	const vector<tMTAnimClip>* GetAnimClip() { return &m_vecAnimClip; }
+	bool IsAnimMesh() { return !m_vecAnimClip.empty(); }
+	qStructuredBuffer* GetBoneFrameDataBuffer() { return m_pBoneFrameData; } // 전체 본 프레임 정보
+	qStructuredBuffer* GetBoneInverseBuffer() { return  m_pBoneInverse; }	   // 각 Bone 의 Inverse 행렬
+
+
 	virtual int Load(const wstring& _FilePath) override;
 	virtual int Save(const wstring& _FilePath) override;
 
@@ -44,5 +53,12 @@ private:
 
 	// 하나의 버텍스버퍼에 여러개의 인덱스버퍼가 연결
 	vector<tIndexInfo>		m_vecIdxInfo;
+
+	// Animation3D 정보
+	vector<tMTAnimClip>		m_vecAnimClip;
+	vector<tMTBone>			m_vecBones;
+
+	qStructuredBuffer*		m_pBoneFrameData;   // 전체 본 프레임 정보(크기, 이동, 회전) (프레임 개수만큼)
+	qStructuredBuffer*		m_pBoneInverse;	    // 각 뼈의 offset 행렬(각 뼈의 위치를 되돌리는 행렬) (1행 짜리)
 };
 

@@ -35,14 +35,8 @@
     <Filter Include="1. EditorUI\01. Inspector\ComponentUI\08. Light2DUI">
       <UniqueIdentifier>{b87c4648-1471-4749-9c9e-dc8add9d16a3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="1. EditorUI\01. Inspector\ComponentUI\09. ScriptUI">
-      <UniqueIdentifier>{e67841ae-8207-4c77-ae23-766f170a4834}</UniqueIdentifier>
-    </Filter>
     <Filter Include="1. EditorUI\01. Inspector\ComponentUI\04. FlipBookComponentUI">
       <UniqueIdentifier>{71502068-105f-452c-a0d2-86e3ec560eea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="1. EditorUI\01. Inspector\ComponentUI\10. RigidBodyUI">
-      <UniqueIdentifier>{04c4c3fd-92fa-4fdf-99a4-a302bd1d4643}</UniqueIdentifier>
     </Filter>
     <Filter Include="1. EditorUI\01. Inspector\AssetUI">
       <UniqueIdentifier>{cc14d8a9-140d-40ee-9b41-5149a97a7a3f}</UniqueIdentifier>
@@ -137,9 +131,6 @@
     <Filter Include="3. Manager\01. EditorMgr\ImGui">
       <UniqueIdentifier>{81e7e3de-541a-4d55-afca-2cb701da6bf4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="1. EditorUI\01. Inspector\ComponentUI\11. FSMUI">
-      <UniqueIdentifier>{94ff698b-5f94-46e8-aad4-34c88cd242c8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3. Manager\02. LevelSaveLoad">
       <UniqueIdentifier>{2bcf02db-747e-48c9-ba01-88df8eedf585}</UniqueIdentifier>
     </Filter>
@@ -148,6 +139,21 @@
     </Filter>
     <Filter Include="3. Manager\TestLevel">
       <UniqueIdentifier>{beb5d49a-befd-4509-9359-b7d291b865d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. EditorUI\01. Inspector\ComponentUI\10. ScriptUI">
+      <UniqueIdentifier>{e67841ae-8207-4c77-ae23-766f170a4834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. EditorUI\01. Inspector\ComponentUI\11. RigidBodyUI">
+      <UniqueIdentifier>{04c4c3fd-92fa-4fdf-99a4-a302bd1d4643}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. EditorUI\01. Inspector\ComponentUI\12. FSMUI">
+      <UniqueIdentifier>{94ff698b-5f94-46e8-aad4-34c88cd242c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. EditorUI\01. Inspector\ComponentUI\09. Light3DUI">
+      <UniqueIdentifier>{66e969f0-079d-4efb-a11b-1548f64c2d2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. EditorUI\01. Inspector\ComponentUI\13. SkyBoxUI">
+      <UniqueIdentifier>{7eec074c-eaf0-4893-958e-2ac6653fc055}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -287,7 +293,7 @@
       <Filter>1. EditorUI\07. Module</Filter>
     </ClInclude>
     <ClInclude Include="ScriptUI.h">
-      <Filter>1. EditorUI\01. Inspector\ComponentUI\09. ScriptUI</Filter>
+      <Filter>1. EditorUI\01. Inspector\ComponentUI\10. ScriptUI</Filter>
     </ClInclude>
     <ClInclude Include="AnimationEditor.h">
       <Filter>1. EditorUI\09. AnimationEditor</Filter>
@@ -320,7 +326,13 @@
       <Filter>1. EditorUI\09. AnimationEditor\AE_Sub\AE_SpriteList</Filter>
     </ClInclude>
     <ClInclude Include="FSMUI.h">
-      <Filter>1. EditorUI\01. Inspector\ComponentUI\11. FSMUI</Filter>
+      <Filter>1. EditorUI\01. Inspector\ComponentUI\12. FSMUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Light3DUI.h">
+      <Filter>1. EditorUI\01. Inspector\ComponentUI\09. Light3DUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyBoxUI.h">
+      <Filter>1. EditorUI\01. Inspector\ComponentUI\13. SkyBoxUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -468,7 +480,7 @@
       <Filter>1. EditorUI\07. Module</Filter>
     </ClCompile>
     <ClCompile Include="ScriptUI.cpp">
-      <Filter>1. EditorUI\01. Inspector\ComponentUI\09. ScriptUI</Filter>
+      <Filter>1. EditorUI\01. Inspector\ComponentUI\10. ScriptUI</Filter>
     </ClCompile>
     <ClCompile Include="AnimationEditor.cpp">
       <Filter>1. EditorUI\09. AnimationEditor</Filter>
@@ -501,7 +513,13 @@
       <Filter>1. EditorUI\09. AnimationEditor\AE_Sub\AE_SpriteList</Filter>
     </ClCompile>
     <ClCompile Include="FSMUI.cpp">
-      <Filter>1. EditorUI\01. Inspector\ComponentUI\11. FSMUI</Filter>
+      <Filter>1. EditorUI\01. Inspector\ComponentUI\12. FSMUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Light3DUI.cpp">
+      <Filter>1. EditorUI\01. Inspector\ComponentUI\09. Light3DUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyBoxUI.cpp">
+      <Filter>1. EditorUI\01. Inspector\ComponentUI\13. SkyBoxUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

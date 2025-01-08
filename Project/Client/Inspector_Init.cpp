@@ -10,6 +10,7 @@
 #include "TransformUI.h"
 #include "Collider2DUI.h"
 #include "Light2DUI.h"
+#include "Light3DUI.h"
 #include "CameraUI.h"
 #include "MeshRenderUI.h"
 #include "FlipBookComUI.h"
@@ -28,6 +29,7 @@
 #include "GraphicShaderUI.h"
 #include "ComputeShaderUI.h"
 #include "FSMUI.h"
+#include "SkyBoxUI.h"
 
 #include "ScriptUI.h"
 
@@ -66,6 +68,11 @@ void Inspector::CreateComponentUI()
 	m_arrComUI[(UINT)COMPONENT_TYPE::LIGHT2D]->SetChildSize(ImVec2(0.f, 200.f));
 	AddChild(m_arrComUI[(UINT)COMPONENT_TYPE::LIGHT2D]);
 
+	m_arrComUI[(UINT)COMPONENT_TYPE::LIGHT3D] = new Light3DUI;
+	m_arrComUI[(UINT)COMPONENT_TYPE::LIGHT3D]->SetName("Light3DUI");
+	m_arrComUI[(UINT)COMPONENT_TYPE::LIGHT3D]->SetChildSize(ImVec2(0.f, 200.f));
+	AddChild(m_arrComUI[(UINT)COMPONENT_TYPE::LIGHT3D]);
+
 	m_arrComUI[(UINT)COMPONENT_TYPE::CAMERA] = new CameraUI;
 	m_arrComUI[(UINT)COMPONENT_TYPE::CAMERA]->SetName("CameraUI");
 	m_arrComUI[(UINT)COMPONENT_TYPE::CAMERA]->SetChildSize(ImVec2(0.f, 200.f));
@@ -96,6 +103,11 @@ void Inspector::CreateComponentUI()
 	m_arrComUI[(UINT)COMPONENT_TYPE::STATEMACHINE]->SetName("FSMUI");
 	m_arrComUI[(UINT)COMPONENT_TYPE::STATEMACHINE]->SetChildSize(ImVec2(0.f, 100.f));
 	AddChild(m_arrComUI[(UINT)COMPONENT_TYPE::STATEMACHINE]);
+
+	m_arrComUI[(UINT)COMPONENT_TYPE::SKYBOX] = new SkyBoxUI;
+	m_arrComUI[(UINT)COMPONENT_TYPE::SKYBOX]->SetName("SkyBoxUI");
+	m_arrComUI[(UINT)COMPONENT_TYPE::SKYBOX]->SetChildSize(ImVec2(0.f, 300.f));
+	AddChild(m_arrComUI[(UINT)COMPONENT_TYPE::SKYBOX]);
 }
 
 

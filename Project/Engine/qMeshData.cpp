@@ -7,6 +7,7 @@
 #include "qGameObject.h"
 #include "qTransform.h"
 #include "qMeshRender.h"
+#include "qAnimator3D.h"
 
 #include "qFBXLoader.h"
 
@@ -34,6 +35,17 @@ qGameObject* qMeshData::Instantiate()
 	{
 		pNewObj->MeshRender()->SetMaterial(m_vecMtrl[i], i);
 	}
+
+
+	// Animation 파트 추가
+	if (false == m_pMesh->IsAnimMesh())
+		return pNewObj;
+
+	qAnimator3D* pAnimator = new qAnimator3D;
+	pNewObj->AddComponent(pAnimator);
+
+	pAnimator->SetBones(m_pMesh->GetBones());
+	pAnimator->SetAnimClip(m_pMesh->GetAnimClip());
 
 	return pNewObj;
 }

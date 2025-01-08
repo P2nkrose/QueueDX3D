@@ -28,7 +28,8 @@ public:
 	void SetSkyBoxType(SKYBOX_TYPE _Type);
 	void SetSkyBoxTexture(Ptr<qTexture> _Tex) { m_SkyBoxTex = _Tex; }
 
-
+	SKYBOX_TYPE GetSkyBoxType() { return m_Type; }
+	Ptr<qTexture> GetSkyBoxTexture() { return m_SkyBoxTex; }
 
 private:
 	SKYBOX_TYPE     m_Type;

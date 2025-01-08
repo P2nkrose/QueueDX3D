@@ -228,3 +228,16 @@ void LoadWString(wstring& _String, FILE* _File)
 	_String.resize(len);
 	fread((wchar_t*)_String.c_str(), sizeof(wchar_t), len, _File);
 }
+
+Matrix GetMatrixFromFbxMatrix(FbxAMatrix& _mat)
+{
+	Matrix mat;
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 0; j < 4; ++j)
+		{
+			mat.m[i][j] = (float)_mat.Get(i, j);
+		}
+	}
+	return mat;
+}

@@ -174,23 +174,23 @@ void qTestLevel::CreateTestLevel()
 
 
 	// Player 추가
-	qGameObject* pPlayer = new qGameObject;
-	pPlayer->SetName(L"Player");
-	pPlayer->AddComponent(new qTransform);
-	pPlayer->AddComponent(new qMeshRender);
-
-	pPlayer->Transform()->SetRelativePos(0.f, 0.f, 0.f);
-	pPlayer->Transform()->SetRelativeScale(500.f, 500.f, 500.f);
-	pPlayer->Transform()->SetRelativeRotation(0.f, 0.f, 0.f);
-
-	pPlayer->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"SphereMesh"));
-	pPlayer->MeshRender()->SetMaterial(pStd3D_DeferredMtrl, 0);
-
-	pPlayer->MeshRender()->GetMaterial(0)->SetTexParam(TEX_0, pTex);
-	pPlayer->MeshRender()->GetMaterial(0)->SetTexParam(TEX_1, pNTex);
-	//pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEXCUBE_0, pSkyBoxTex);
-
-	pLevel->AddObject(3, pPlayer);
+	//qGameObject* pPlayer = new qGameObject;
+	//pPlayer->SetName(L"Player");
+	//pPlayer->AddComponent(new qTransform);
+	//pPlayer->AddComponent(new qMeshRender);
+	//
+	//pPlayer->Transform()->SetRelativePos(0.f, 0.f, 0.f);
+	//pPlayer->Transform()->SetRelativeScale(500.f, 500.f, 500.f);
+	//pPlayer->Transform()->SetRelativeRotation(0.f, 0.f, 0.f);
+	//
+	//pPlayer->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"SphereMesh"));
+	//pPlayer->MeshRender()->SetMaterial(pStd3D_DeferredMtrl, 0);
+	//
+	//pPlayer->MeshRender()->GetMaterial(0)->SetTexParam(TEX_0, pTex);
+	//pPlayer->MeshRender()->GetMaterial(0)->SetTexParam(TEX_1, pNTex);
+	////pPlayer->MeshRender()->GetMaterial()->SetTexParam(TEXCUBE_0, pSkyBoxTex);
+	//
+	//pLevel->AddObject(3, pPlayer);
 
 
 	// Decal Object 추가
@@ -228,22 +228,37 @@ void qTestLevel::CreateTestLevel()
 // ============
 // FBX Loading
 // ============	
+	//{
+	//	Ptr<qMeshData> pMeshData = nullptr;
+	//	qGameObject* pObj = nullptr;
+	//
+	//	pMeshData = qAssetMgr::GetInst()->LoadFBX(L"fbx\\house.fbx");
+	//	pMeshData = qAssetMgr::GetInst()->FindAsset<qMeshData>(L"meshdata\\house.mdat");
+	//	pObj = pMeshData->Instantiate();
+	//	pObj->SetName(L"House");
+	//
+	//	pObj->Transform()->SetRelativePos(Vec3(0.f, 150.f, 100.f));
+	//	pObj->Transform()->SetRelativeScale(Vec3(1.f, 1.f, 1.f));
+	//
+	//	pLevel->AddObject(0, pObj);
+	//}
+
 	{
 		Ptr<qMeshData> pMeshData = nullptr;
 		qGameObject* pObj = nullptr;
 
-		pMeshData = qAssetMgr::GetInst()->LoadFBX(L"fbx\\house.fbx");
-		pMeshData = qAssetMgr::GetInst()->FindAsset<qMeshData>(L"meshdata\\house.mdat");
+		//pMeshData = qAssetMgr::GetInst()->LoadFBX(L"fbx\\Monster.fbx");
+		pMeshData = qAssetMgr::GetInst()->FindAsset<qMeshData>(L"meshdata\\Monster.mdat");
 		pObj = pMeshData->Instantiate();
-		pObj->SetName(L"House");
+		pObj->SetName(L"Monster");
+		pObj->GetRenderComponent()->SetFrustumCheck(false);
 
-		pObj->Transform()->SetRelativePos(Vec3(0.f, 150.f, 100.f));
-		pObj->Transform()->SetRelativeScale(Vec3(1.f, 1.f, 1.f));
+		pObj->Transform()->SetRelativePos(Vec3(200.f, 0.f, 200.f));
+		pObj->Transform()->SetRelativeScale(Vec3(5.f, 5.f, 5.f));
+		pObj->Transform()->SetRelativeRotation(0.f, XM_PI / 2.f, 0.f);
 
 		pLevel->AddObject(0, pObj);
 	}
-
-
 
 
 	// 충돌 지정

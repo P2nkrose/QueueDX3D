@@ -864,6 +864,7 @@ void qAssetMgr::CreateEngineGraphicShader()
 }
 
 #include "qParticleTickCS.h"
+#include "qAnimation3DShader.h"
 
 void qAssetMgr::CreateEngineComputeShader()
 {
@@ -872,6 +873,10 @@ void qAssetMgr::CreateEngineComputeShader()
 
 	pCS = new qParticleTickCS;
 	AddAsset<qComputeShader>(L"ParticleTickCS", pCS);
+
+	// Animation3D
+	pCS = new qAnimation3DShader;
+	AddAsset<qComputeShader>(L"Animation3DUpdateCS", pCS);
 }
 
 

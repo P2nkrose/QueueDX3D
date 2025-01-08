@@ -12,6 +12,9 @@ struct Vtx
 	Vec3	vTangent;		// 접선
 	Vec3	vNormal;		// 법선
 	Vec3	vBinormal;		// 종법선
+
+	Vec4	vWeights;		// Bone 가중치
+	Vec4	vIndices;		// Bone 인덱스
 };
 
 
@@ -154,6 +157,52 @@ struct tRay
 };
 
 
+// ======================
+//     Animation 3D
+// ======================
+
+struct tFrameTrans
+{
+	Vec4	vTranslate;
+	Vec4	vScale;
+	Vec4	qRot;
+};
+
+struct tMTKeyFrame
+{
+	double	dTime;
+	int		iFrame;
+	Vec3	vTranslate;
+	Vec3	vScale;
+	Vec4	qRot;
+};
+
+struct tMTBone
+{
+	wstring				strBoneName;
+	int					iDepth;
+	int					iParentIndx;
+	Matrix				matOffset;	// Inverse 행렬( Skin 정점을 -> 기본상태로 되돌림)
+	Matrix				matBone;
+	vector<tMTKeyFrame>	vecKeyFrame;
+};
+
+struct tMTAnimClip
+{
+	wstring			strAnimName;
+	int				iStartFrame;
+	int				iEndFrame;
+	int				iFrameLength;
+
+	double			dStartTime;
+	double			dEndTime;
+	double			dTimeLength;
+	float			fUpdateTime; // 이거 안씀
+
+	FbxTime::EMode	eMode;
+};
+
+
 
 // ======================
 //  상수 버퍼 연동 구조체
@@ -193,7 +242,11 @@ struct tMtrlConst
 	Vec2		v2Arr[4];
 	Vec4		v4Arr[4];
 	Matrix		matArr[4];
-	int			btex[TEX_PARAM::END + 2];
+	int			btex[TEX_PARAM::END];
+
+
+	// 3D Animation 정보
+	int			arrAnimData[2];
 };
 
 
